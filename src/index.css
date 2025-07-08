@@ -1,0 +1,81 @@
+@import url('https://fonts.googleapis.com/css2?family=Jura:wght@300..700&display=swap');
+@import "tailwindcss";
+
+@layer base {
+    
+    html {
+        @apply hide-scrollbar max-w-screen max-h-screen;
+    }
+
+    body {
+        font-family: 'Jura', 'sans-serif';   
+    }
+
+    body.dark {
+        @apply bg-[#151515] text-[#d9d9d9];
+    }
+
+    body.light {
+        @apply bg-[#d9d9d9] text-[#151515];
+    }
+}
+
+@layer components {
+    .taskbar-item {
+        @apply hover-over w-13 p-3 h-13;
+    }
+
+    .project-app {
+        @apply hover-over p-2 flex-nowrap rounded-lg max-w-35;
+    }
+
+    .title-gradient.dark {
+        @apply bg-gradient-to-r from-[#666] via-[#f1f1f1] to-[#666] bg-clip-text text-transparent;
+    }
+    .title-gradient.light {
+        @apply bg-gradient-to-r from-[#666] via-[#999] to-[#666] bg-clip-text text-transparent;
+
+    }
+
+    .overlay {
+        @apply absolute z-99 w-dvw h-dvh bg-[rgba(0,0,0,0.5)];
+    }
+    
+    .project-desc {
+        @apply md:text-lg text-sm;
+    }
+
+    .scrollbar-style.dark {
+        scrollbar-width: thin;
+        scrollbar-color: #d9d9d9 transparent;
+    }
+
+    .scrollbar-style.light {
+        scrollbar-width: thin;
+        scrollbar-color: #151515 transparent;
+    }
+}
+
+
+
+
+@utility hover-over {
+    @apply hover:bg-[rgba(100,100,100,0.5)];
+    transition: background-color 1s;
+}
+
+
+@utility searchbar-transition {
+    transition: width 1s;
+}
+
+
+
+@utility hide-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+
+    &::-webkit-scrollbar {
+        display: none;
+    }
+}
