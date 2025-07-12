@@ -1,38 +1,43 @@
 import { useState } from 'react';
-import HBox from "./HBox.jsx";
 import { useTheme } from "../ThemeProvider.jsx";
+import HBox from "./HBox.jsx";
 
 
-const Searchbar = ({ searchImg, searchValue, setSearchValue }) => {
+const Searchbar = ({ searchImg, searchValue, setSearchValue, setOpenResults }) => {
     const { isDark } = useTheme();
     const [isSearching, setIsSearching] = useState(false);
 
-    const handleChange = (e) => {
+    const handleInputChange = (e) => {
         setSearchValue(e.target.value);
     }
 
-    const handleClick = (e) => {
+    const handleSearchClick = (e) => {
         setIsSearching(!isSearching);
+        setOpenResults(prev => !prev);
+
+        setTimeout(() => {
+            setSearchValue("");
+        }, 300)
     }
 
     return (
         <HBox className="gap-1 items-center">
-            <img onClick={handleClick} className="taskbar-item" src={searchImg} alt="search" />
+            <img onClick={handleSearchClick} className="taskbar-item" src={searchImg} alt="search" />
             <input 
             className={`
             transition-all
             duration-500
             ease-in-out
             origin-left
-            ${isSearching ? "max-w-30 opacity-100 scale-x-100" : "max-w-0 opacity-0 scale-x-0"} 
-            ${isDark ? "bg-[#999999]" : "bg-[#333333]"}
+            ${isSearching ? "max-w-[25vw] opacity-100 scale-x-100" : "max-w-0 opacity-0 scale-x-0"} 
+            ${isDark ? "bg-light-grey" : "bg-dark-grey"}
             ${isDark ? "text-[#151515]" : "text-[#d9d9d9]"}
             h-12
             rounded-sm 
             pl-2 
             outline-none
             `} 
-            placeholder="Search" type="text" value={searchValue} onChange={handleChange}
+            placeholder="Search" type="text" value={searchValue} onChange={handleInputChange}
             />
         </HBox>
     )

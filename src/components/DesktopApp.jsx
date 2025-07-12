@@ -1,19 +1,20 @@
 import { useState, useEffect } from "react";
+import { useTheme } from "../ThemeProvider.jsx";
+import { useApp } from "../AppContext.js";
+
 import VBox from "./VBox.jsx";
 import HBox from "./HBox.jsx";
+
 import closeBlack from "../assets/close-black.svg";
 import closeWhite from "../assets/close-white.svg";
 import minimizeWhite from "../assets/minimize-white.svg";
 import minimizeBlack from "../assets/minimize-black.svg";
-import { useTheme } from "../ThemeProvider.jsx";
-import { useApp } from "../AppContext.js";
-import apps from "../appInfo.js";
-// import appImages from "../images.js";
+
 
 const appImages = import.meta.glob("../assets/*.jpg", {eager: true});
 
 
-const DesktopApp = () => {
+const DesktopApp = ({ apps }) => {
     const { isDark } = useTheme();
     const { app, setApp, openApps, setOpenApps } = useApp();
     const [isVisible, setIsVisible] = useState(false);
@@ -47,11 +48,12 @@ const DesktopApp = () => {
                 <div>
                     <div className="overlay" />
                     <VBox className={`
-                    transition-transform 
+                    transition-all 
                     duration-300 
                     ease-in-out
-                    ${isDark ? "bg-[#151515]" : "bg-[#d9d9d9]"}
-                    ${isVisible ? "scale-100" : "scale-0"}
+                    origin-bottom-left
+                    ${isDark ? "bg-dark" : "bg-light"}
+                    ${isVisible ? "scale-100 opacity-100" : "scale-0 opacity-0"}
                     
                     fixed
                     w-10/12
@@ -70,7 +72,7 @@ const DesktopApp = () => {
                     
                     `}>
                         <HBox className={`
-                        ${isDark ? "bg-[#333]" : "bg-[#999]"} 
+                        ${isDark ? "bg-dark-grey" : "bg-light-grey"} 
                         justify-between
                         rounded-t-lg
                         `}>
@@ -82,9 +84,9 @@ const DesktopApp = () => {
                         </HBox>
 
                         <VBox className={`
+                        ${isDark ? "dark" : "light"}
                         overflow-auto
                         scrollbar-style
-                        ${isDark ? "dark" : "light"}
                         items-center
                         p-4
                         gap-y-1

@@ -13,11 +13,11 @@
     }
 
     body.dark {
-        @apply bg-[#151515] text-[#d9d9d9];
+        @apply bg-dark text-[#d9d9d9];
     }
 
     body.light {
-        @apply bg-[#d9d9d9] text-[#151515];
+        @apply bg-light text-[#151515];
     }
 }
 
@@ -34,7 +34,7 @@
         @apply bg-gradient-to-r from-[#666] via-[#f1f1f1] to-[#666] bg-clip-text text-transparent;
     }
     .title-gradient.light {
-        @apply bg-gradient-to-r from-[#666] via-[#888] to-[#666] bg-clip-text text-transparent;
+        @apply bg-gradient-to-r from-[#666] via-[#151515] to-[#666] bg-clip-text text-transparent;
 
     }
 
@@ -68,18 +68,35 @@
     }
 }
 
+@utility bg-light {
+    @apply bg-[#c9c9c9] transition-colors duration-300 ease-in-out;
+}
+
+@utility bg-dark {
+    @apply bg-[#202020] transition-colors duration-300 ease-in-out;
+}
+
+@utility bg-dark-grey {
+    @apply bg-[#333] transition-colors duration-300 ease-in-out;
+}
+
+@utility bg-light-grey {
+    @apply bg-[#999] transition-colors duration-300 ease-in-out;
+}
 
 @utility hover-over {
     @apply hover:bg-[rgba(100,100,100,0.5)];
     transition: background-color 1s;
 }
 
+@utility no-bottom-shadow {
+    box-shadow: 0 4px 16px 4px #D9D9D9;
+}
+
 
 @utility searchbar-transition {
     transition: width 1s;
 }
-
-
 
 @utility hide-scrollbar {
     -ms-overflow-style: none;

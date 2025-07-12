@@ -6,7 +6,6 @@ import Taskbar from "./components/Taskbar";
 import apps from "./appInfo.js";
 
 function App() {
-
   return (
     
     <ThemeProvider>
