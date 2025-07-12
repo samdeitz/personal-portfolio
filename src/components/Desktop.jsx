@@ -20,9 +20,11 @@ const Desktop = () => {
         md:pl-10
         mt-10
         gap-x-4
+
         ">
             {
                 Object.values(apps).map((a) => {
+                    console.log(a.position)
                     return <Card key={a.id} className={a.position} apptitle={a.title} onClick={() => openApp(`proj${a.id}`)} imgsrc={appImages[`${a.desktopImageSrc}`]?.default}/>
                 })
             }

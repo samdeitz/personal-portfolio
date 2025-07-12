@@ -42,12 +42,12 @@ let info = {
     },
 }
 
-let col, row = 1;
+let col = 1, row = 1;
 
 for (let app of Object.values(projects)) {
     
     app.position = `col-start-${col} row-start-${row}`;
-    if(row === 4) col++, row = 1;
+    if(row === 3) col++, row = 0;
     row++;
 }
 
@@ -56,7 +56,7 @@ row = 1
 
 for (let app of Object.values(info)) {
     app.position = `col-start-${col} row-start-${row}`
-    if (row === 4) col--, row = 1;
+    if (row === 3) col--, row = 0;
     row++;
 }
 
