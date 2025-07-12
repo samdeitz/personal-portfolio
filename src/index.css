@@ -8,7 +8,8 @@
     }
 
     body {
-        font-family: 'Jura', 'sans-serif';   
+        font-family: 'Jura', 'sans-serif';
+        animation: fadeIn 3s;
     }
 
     body.dark {
@@ -26,14 +27,14 @@
     }
 
     .project-app {
-        @apply hover-over p-2 flex-nowrap rounded-lg max-w-35;
+        @apply hover-over p-2 flex-nowrap rounded-lg max-w-30;
     }
 
     .title-gradient.dark {
         @apply bg-gradient-to-r from-[#666] via-[#f1f1f1] to-[#666] bg-clip-text text-transparent;
     }
     .title-gradient.light {
-        @apply bg-gradient-to-r from-[#666] via-[#999] to-[#666] bg-clip-text text-transparent;
+        @apply bg-gradient-to-r from-[#666] via-[#888] to-[#666] bg-clip-text text-transparent;
 
     }
 
@@ -54,9 +55,18 @@
         scrollbar-width: thin;
         scrollbar-color: #151515 transparent;
     }
+
 }
 
 
+@keyframes fadeIn {
+    from { 
+        opacity: 0;
+    }
+    to { 
+        opacity: 1; 
+    }
+}
 
 
 @utility hover-over {

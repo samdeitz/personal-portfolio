@@ -1,4 +1,3 @@
-
 import VBox from "./VBox.jsx"
 import openWhite from "../assets/open-white.svg"
 import openBlack from "../assets/open-black.svg"
@@ -10,12 +9,12 @@ const Card = ( props ) => {
     
     return (
 
-        <VBox {...props} className={`project-app ${props.className}`}>
+        <VBox {...props} className={`project-app h-fit ${props.className}`}>
             <div className="relative">
                 <img className="w-5 absolute bottom-1 left-1" src={isDark ? openWhite : openBlack} />
                 <img className="object-cover block rounded-lg" src={props.imgsrc} />
             </div>
-            <h3 className="text-center">Project Title</h3>
+            <h3 className="text-center">{props.apptitle}</h3>
         </VBox>
     )
 }

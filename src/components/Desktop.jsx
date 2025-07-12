@@ -1,30 +1,37 @@
-import { useEffect, useRef } from 'react';
 import Card from "./Card.jsx";
-import TestImage from "../assets/test.jpg";
-import { useProject } from "../ProjectProvider.jsx";
+import { useApp } from "../AppContext.js";
+import apps from "../appInfo.js";
+
+const appImages = import.meta.glob("../assets/*.jpg", {eager: true});
+
 
 const Desktop = () => {
-    const { setProject } = useProject();
+    const { app, setApp, openApps, setOpenApps } = useApp();
 
-    const renderProject = (proj) => {
-       setProject(proj);
+    const handleAppClick = (a) => {
+
+        setApp(a);
+        if(!openApps.includes(a)) {
+            setOpenApps([
+                ...openApps,
+                a
+            ]);
+        }
     }
-
 
     return (
         <div className="
         grid
-        grid-cols-6
+        grid-cols-5
         grid-rows-3
-        px-5
+        
         mt-10
-        max-h-[80vw]
         ">
-            <Card onClick={() => renderProject("proj1")} className="col-start-2" imgsrc={TestImage} />
-            <Card onClick={() => renderProject("proj2")} className="col-start-4 row-start-2" imgsrc={TestImage} />
-            <Card onClick={() => renderProject("proj3")} className="col-start-1 row-start-3" imgsrc={TestImage} />
-            <Card onClick={() => renderProject("proj4")} className="col-start-6 row-start-2" imgsrc={TestImage} />
-            <Card onClick={() => renderProject("proj5")} className="col-start-5 row-start-3" imgsrc={TestImage} />
+            {
+                Object.values(apps).map((a) => {
+                    return <Card key={a.id} className={a.position} apptitle={a.title} onClick={() => handleAppClick(`proj${a.id}`)} imgsrc={appImages[`${a.desktopImageSrc}`]?.default}/>
+                })
+            }
         </div>
     )
 }

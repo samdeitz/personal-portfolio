@@ -1,24 +1,20 @@
-import { useState } from 'react';
 import { ThemeProvider } from "./ThemeProvider";
+import { AppProvider } from './AppProvider';
+import DesktopApp from "./components/DesktopApp.jsx";
+import LandingSection from "./components/LandingSection.jsx";
 import Taskbar from "./components/Taskbar";
-import Desktop from "./components/Desktop";
-import { ProjectProvider } from './ProjectProvider';
-import Header from './components/Header';
-import Project from "./components/Project.jsx";
-import sample from "./assets/sample.jpg"
-import projects from "./projects.js";
+import apps from "./appInfo.js";
 
 function App() {
 
   return (
     
     <ThemeProvider>
-      <ProjectProvider>
-        <Project projects={projects} />
-        <Header />
-        <Desktop />
-        <Taskbar projects={projects} />
-      </ProjectProvider>
+      <AppProvider>
+        <DesktopApp apps={apps} />
+        <LandingSection />
+        <Taskbar apps={apps} />
+      </AppProvider>
     </ThemeProvider>
   )
 }
