@@ -1,45 +1,41 @@
 
-
+// id starts at 1 for projects
 let projects = {
-    proj2 : {
-        id: 2,
+    app1 : {
+        id: 1,
         title: "Workout Finder",
-        projectImageSrc: "../assets/sample.jpg",
+        appImageSrc: "../assets/exercise-finder.jpg",
+        desktopImageSrc: "../assets/exercise-finder.jpg",
         position: "",
-        desktopImageSrc: "../assets/test.jpg"
+        appOverview: "",
+        appImpact: "",
+        repoLink: ""
     },
-    proj3 : {
-        id: 3,
-        title: "Workout Tracker",
-        projectImageSrc: "../assets/sample.jpg",
-        position: "",
-        desktopImageSrc: "../assets/test.jpg"
-    },
-    proj4 : {
-        id: 4,
-        title: "Stock Market Tracker",
-        projectImageSrc: "../assets/sample.jpg",
-        position: "",
-        desktopImageSrc: "../assets/test.jpg"
-    },
-    proj5 : {
-        id: 5,
-        title: "Price Comparer",
-        projectImageSrc: "../assets/sample.jpg",
-        position: "",
-        desktopImageSrc: "../assets/test.jpg"
-    },
-    
 }
 
+//id starts at 20 for info
 let info = {
-    proj1: {
-        id: 1,
+    app20: {
+        id: 20,
         title: "About Me",
-        projectImageSrc: "../assets/sample.jpg",
+        appImageSrc: "../assets/family.jpg",
+        position: "",
+        desktopImageSrc: "../assets/abt-me.jpg"
+    },
+    app21: {
+        id: 21,
+        title: "Previous Work",
+        appImageSrc: "../assets/sample.jpg",
         position: "",
         desktopImageSrc: "../assets/test.jpg"
     },
+    app22: {
+        id: 22,
+        title: "Website Images",
+        appImageSrc: "../assets/sample.jpg",
+        position: "",
+        desktopImageSrc: "../assets/test.jpg"
+    }
 }
 
 let col = 1, row = 1;
@@ -51,7 +47,7 @@ for (let app of Object.values(projects)) {
     row++;
 }
 
-col = 5
+col = 3
 row = 1
 
 for (let app of Object.values(info)) {
@@ -61,8 +57,8 @@ for (let app of Object.values(info)) {
 }
 
 const apps = {
-   ...info,
-   ...projects
+   ...projects,
+   ...info
 }
 
 export default apps;

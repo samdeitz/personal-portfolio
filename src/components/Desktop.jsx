@@ -11,21 +11,26 @@ const Desktop = () => {
     return (
         <div className="
         grid
-        grid-cols-5
+        grid-cols-4
         grid-rows-3
         w-full
+        transition-all
+        duration-1000
+        ease-in-out
         2xl:pl-40
         xl:pl-30
         lg:pl-20
         md:pl-10
+        text-md
+        @max-md:text-sm
+        
         mt-10
         gap-x-4
-
+        z-98
         ">
             {
                 Object.values(apps).map((a) => {
-                    console.log(a.position)
-                    return <Card key={a.id} className={a.position} apptitle={a.title} onClick={() => openApp(`proj${a.id}`)} imgsrc={appImages[`${a.desktopImageSrc}`]?.default}/>
+                    return <Card key={a.id} className={`hover:animate-shake ${a.position}`} apptitle={a.title} onClick={() => openApp(`app${a.id}`)} imgsrc={appImages[a.desktopImageSrc]?.default}/>
                 })
             }
         </div>

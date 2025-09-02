@@ -3,6 +3,7 @@ import { useState } from 'react';
 import HBox from "./HBox.jsx";
 import VBox from "./VBox.jsx";
 import Searchbar from './Searchbar.jsx';
+import SearchResults from "./SearchResults.jsx";
 
 import searchWhite from "../assets/search-white.svg";
 import mailWhite from "../assets/mail-white.svg";
@@ -26,32 +27,20 @@ const Taskbar = ( { apps } ) => {
     const { openApps, openApp } = useApp();
     const [ searchValue, setSearchValue ] = useState("");
     const [ openResults, setOpenResults ] = useState(false);
+    const [ appIsBouncing, setAppIsBouncing ] = useState(["", false]);
+    const [isSearching, setIsSearching] = useState(false);
 
     return (
-        <VBox className="fixed bottom-0">
-            <VBox className={`
-                w-80
-                transition-all
-                duration-300
-                ease-in-out
-                origin-bottom
-                ring-2
-                ${isDark ? "ring-[#999]" : "ring-[#151515]"}
-                ${openResults ? "max-h-100 opacity-100 scale-y-100" : "max-h-0 opacity-0 scale-y-0"}
-                ${isDark ? "bg-dark-grey" : "bg-light-grey"}
-            `}>
-
-                {Object.values(apps).map((a) => {
-                    if(a.title.toLowerCase().includes(searchValue)) {
-                        return (
-                            <HBox className="py-2 pl-4 gap-4 cursor-pointer hover-over duration-500 items-center" key={a.id} onClick={() => openApp(a)}>
-                                <img className="h-7 rounded-lg" src={appImages[a.desktopImageSrc]?.default}/>
-                                <h1 className="" >{a.title}</h1>
-                            </HBox>
-                        )
-                    }
-                })}
-            </VBox>
+        <>
+        <SearchResults 
+            isDark={isDark}
+            searchValue={searchValue}
+            openResults={openResults}
+            apps={apps}
+            openApp={openApp}
+        />
+        <VBox className="fixed z-98 bottom-0 ">
+            
             <HBox 
             className={`
             ${isDark ? "bg-dark-grey" : "bg-light-grey"}
@@ -70,8 +59,10 @@ const Taskbar = ( { apps } ) => {
                     searchValue={searchValue} 
                     setSearchValue={setSearchValue} 
                     setOpenResults={setOpenResults}
+                    isSearching={isSearching}
+                    setIsSearching={setIsSearching}
                     />
-                    <HBox>
+                    <HBox className={`${isSearching && "hidden sm:flex"}`}>
                         <a href="mailto: sdeitz@uwo.ca" target="_blank">
                             <img className="taskbar-item" src={isDark ? mailWhite : mailBlack} alt="mail" />
                         </a>
@@ -83,8 +74,13 @@ const Taskbar = ( { apps } ) => {
                         </a>
                         {openApps.length > 0 && (
                             openApps.map((a) =>
-                                <VBox className="taskbar-item gap-2" key={a} onClick={() => openApp(a)}>
-                                    <img className="rounded-lg" src={appImages[`${apps[a].desktopImageSrc}`]?.default} />
+                                <VBox className="taskbar-item gap-2 bounce-container" 
+                                    onMouseEnter={() => setAppIsBouncing([a, true])} 
+                                    onMouseLeave={() => setAppIsBouncing(["", false])}
+                                    key={a} 
+                                    onClick={() => openApp(a)}
+                                >
+                                    <img className={`rounded-lg ${appIsBouncing[0] === a && appIsBouncing[1] && "animate-small-bounce"}`} src={appImages[apps[a].desktopImageSrc]?.default} />
                                     <div className={`${isDark ?"bg-light" : "bg-dark"} rounded-lg min-w-[100%] min-h-1 m-auto`} ></div>
                                 </VBox>
                             )
@@ -93,6 +89,8 @@ const Taskbar = ( { apps } ) => {
 
                     </HBox>
                 </HBox>
+
+
                 <HBox>
                     <a href="../assets/SDResumeTech.pdf" 
                     className="
@@ -107,7 +105,8 @@ const Taskbar = ( { apps } ) => {
                 </HBox>
 
             </HBox> 
-        </VBox>           
+        </VBox>      
+        </>     
         
     )
 }

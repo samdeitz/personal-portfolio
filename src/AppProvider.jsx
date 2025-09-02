@@ -1,16 +1,18 @@
 import { useState, useMemo } from 'react';
+import { useMediaQuery } from "react-responsive";
 import { AppContext } from "./AppContext.js";
 
 
 export const AppProvider = ( { children } ) => {
     const [app, setApp] = useState("");
     const [openApps, setOpenApps] = useState([])
+    const isDesktop = useMediaQuery({ minWidth: 600 })
 
     const openApp = (a) => {
-        if(!(typeof a === "string")) a = `proj${a.id}`;
+        if(!(typeof a === "string")) a = `app${a.id}`;
         setApp(a);
 
-        if(!openApps.includes(a)) {
+        if(!openApps.includes(a) && isDesktop) {
             setOpenApps([
                 ...openApps,
                 a
