@@ -1,4 +1,4 @@
-import VBox from "./VBox";
+import VBox from "./ui/VBox";
 import { useTheme } from "../ThemeProvider";
 
 
@@ -12,8 +12,8 @@ const Header = () => {
         text-center
         z-98
         ">
-            <h1 className="text-3xl bold">Hello, I'm <span className={`title-gradient ${isDark ? "dark" : "light"}`}>Sam Deitz</span>...</h1>
-            <h1 className="text-3xl bold">A full stack developer</h1>
+            <h1 className={`text-3xl font-bold header-shadow ${isDark ? "white" : "black"}`}>Hello, I'm <span className={`title-gradient ${isDark ? "dark" : "light"}`}>Sam Deitz</span>...</h1>
+            <h1 className={`text-3xl font-bold header-shadow ${isDark ? "white" : "black"}`}>A full stack developer</h1>
         </VBox>       
     )
 }

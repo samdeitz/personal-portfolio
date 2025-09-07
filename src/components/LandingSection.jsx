@@ -1,6 +1,6 @@
 import Header from './Header.jsx';
 import Desktop from "./Desktop.jsx";
-import VBox from "./VBox.jsx";
+import VBox from "./ui/VBox.jsx";
 import me from "../assets/me2.png";
 
 const LandingSection = () => {
@@ -8,11 +8,12 @@ const LandingSection = () => {
 
     return (
         <VBox className="@container overflow-y-scroll items-center hide-scrollbar">
+
             <Header />
             <Desktop />
             <img src={me} className="
+            fixed
             z-97
-            absolute
             right-0
             bottom-0
             max-h-[100vh]

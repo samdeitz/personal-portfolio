@@ -1,5 +1,5 @@
 import { useTheme } from "../ThemeProvider.jsx";
-import HBox from "./HBox.jsx";
+import HBox from "./ui/HBox.jsx";
 
 
 const Searchbar = ({ searchImg, searchValue, setSearchValue, setOpenResults, isSearching, setIsSearching }) => {
@@ -26,17 +26,20 @@ const Searchbar = ({ searchImg, searchValue, setSearchValue, setOpenResults, isS
                 transition-all
                 duration-500
                 ease-in-out
-                ${isSearching ? "min-w-54 sm:min-w-94" : "min-w-0"}
+                flex-shrink-0
+                ${isSearching ? "min-w-54 sm:min-w-64 md:min-w-74 lg:min-w-94" : "min-w-0"}
                 ${isSearching ? (!isDark ? "bg-dark-grey" : "bg-light-grey") : (!isDark ? "bg-light-grey" : "bg-dark-grey")}
                 `}>
-            <img onClick={handleSearchClick} className="taskbar-item" src={searchImg} alt="search" />
+            <div className="taskbar-item">
+                <img onClick={handleSearchClick} src={searchImg} alt="search" />
+            </div>
             <input 
             className={`
             transition-all
             duration-500
             ease-in-out
             origin-left
-            ${isSearching ? "max-w-40 min-w-40 sm:min-w-80 opacity-100" : "min-w-0 max-w-0 opacity-0 "} 
+            ${isSearching ? "max-w-40 opacity-100" : "max-w-0 opacity-0"} 
             ${isDark ? "text-[#151515]" : "text-[#d9d9d9]"}
             h-12
             rounded-sm 

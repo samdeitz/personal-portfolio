@@ -1,19 +1,20 @@
-import VBox from "./VBox.jsx";
-import HBox from "./HBox.jsx";
+import VBox from "./ui/VBox.jsx";
+import HBox from "./ui/HBox.jsx";
 
 const appImages = import.meta.glob("../assets/*.jpg", {eager: true});
 
 
-const SearchResults = ({ isDark, openResults, apps, searchValue, openApp }) => {
-
+const SearchResults = ({ isDark, openResults, setOpenResults, apps, searchValue, openApp, setIsSearching }) => {
 
     return (
         <VBox className={`
                 fixed
                 bottom-13
-                z-99
+                z-98
                 min-w-54
-                sm:min-w-94
+                sm:min-w-64 
+                md:min-w-74 
+                lg:min-w-94
                 transition-all
                 duration-500
                 ease-in-out
@@ -21,14 +22,23 @@ const SearchResults = ({ isDark, openResults, apps, searchValue, openApp }) => {
                 overflow-auto
                 scrollbar-style
                 ${isDark ? "dark" : "light"}
-                ${isDark ? "bg-dark-grey" : "bg-light-grey"}
+                ${isDark ? "bg-light-grey" : "bg-dark-grey"}
+                ${isDark ? "text-[#151515]" : "text-[#d9d9d9]"}
                 ${openResults ? "max-h-55 opacity-100 scale-100" : "max-h-0 opacity-0 scale-0"}
             `}>
 
                 {Object.values(apps).map((a) => {
                     if(a.title.toLowerCase().includes(searchValue)) {
                         return (
-                            <HBox className="py-2 pl-4 gap-4 cursor-pointer hover-over duration-500 items-center" key={a.id} onClick={() => openApp(a)}>
+                            <HBox 
+                                className="py-2 pl-4 gap-4 cursor-pointer hover-over duration-500 items-center" 
+                                key={a.id} 
+                                onClick={() => {
+                                    setIsSearching(false); 
+                                    setOpenResults(false);
+                                    openApp(a);
+                                }}
+                            >
                                 <img className="h-7 rounded-lg" src={appImages[a.desktopImageSrc]?.default} alt="desktop image"/>
                                 <h1 className="" >{a.title}</h1>
                             </HBox>

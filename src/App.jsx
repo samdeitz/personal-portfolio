@@ -10,6 +10,7 @@ function App() {
     
     <ThemeProvider>
       <AppProvider>
+
         <DesktopApp apps={apps} />
         <LandingSection />
         <Taskbar apps={apps} />

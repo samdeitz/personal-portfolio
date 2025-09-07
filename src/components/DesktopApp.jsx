@@ -3,8 +3,8 @@ import { useMediaQuery } from "react-responsive";
 import { useTheme } from "../ThemeProvider.jsx";
 import { useApp } from "../AppContext.js";
 
-import VBox from "./VBox.jsx";
-import HBox from "./HBox.jsx";
+import VBox from "./ui/VBox.jsx";
+import HBox from "./ui/HBox.jsx";
 
 import closeBlack from "../assets/close-black.svg";
 import closeWhite from "../assets/close-white.svg";
@@ -22,7 +22,7 @@ const DesktopApp = ({ apps }) => {
     const { app, setApp, openApps, setOpenApps } = useApp();
     const [isVisible, setIsVisible] = useState(false);
     const currentApp = apps[app];
-    const isDesktop = useMediaQuery({ minWidth: 600 });
+    const isDesktop = useMediaQuery({ minWidth: 400 });
 
 
     useEffect(() => {
@@ -51,7 +51,7 @@ const DesktopApp = ({ apps }) => {
         <>
             {app && (
                 <div>
-                    <div className="overlay" />
+                    <div className="overlay h-[100vh]" />
                     <VBox className={`
                     transition-all 
                     duration-300 
@@ -81,7 +81,7 @@ const DesktopApp = ({ apps }) => {
                         justify-between
                         rounded-t-lg
                         `}>
-                            <h1 className=" self-center pl-2">{currentApp.title}</h1>
+                            <h1 className="self-center pl-2 font-bold">{currentApp.title}</h1>
                             <HBox>
                                 {isDesktop && <img onClick={minimizeApp} src={isDark ? minimizeWhite : minimizeBlack} className="hover-over w-10 h-fit p-2 rounded-lg"/>}
                                 <img onClick={closeApp} className="w-10 p-2 h-fit hover-over rounded-lg" src={isDark ? closeWhite : closeBlack} />
@@ -108,7 +108,7 @@ const DesktopApp = ({ apps }) => {
                                 <hr className="w-11/12 my-5" />
 
                                 <a className="self-start" href="https://github.com/samdeitz" target="_blank">
-                                    <HBox className="items-center gap-2 hover-over p-1 rounded-lg cursor-pointer">
+                                    <HBox className="items-center gap-2 hover-over p-1 pl-2 pr-3 rounded-lg cursor-pointer">
                                             <img className="w-10" src={isDark ? githubWhite : githubBlack} />
                                             <h1 className="h-fit">Go to repo</h1>
                                     </HBox>

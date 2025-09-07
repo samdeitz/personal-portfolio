@@ -25,7 +25,7 @@
 
 @layer components {
     .taskbar-item {
-        @apply hover-over w-13 p-3 h-13;
+        @apply hover-over w-13 p-3 h-13 cursor-pointer;
     }
 
     .project-app {
@@ -41,7 +41,7 @@
     }
 
     .overlay {
-        @apply absolute z-99 w-dvw h-dvh bg-[rgba(0,0,0,0.5)];
+        @apply absolute z-99 h-full w-full bg-[rgba(0,0,0,0.5)];
     }
     
     .project-desc {
@@ -62,6 +62,24 @@
         @apply underline underline-offset-2 hover:text-[#999];
     }
 
+    .header-shadow.white {
+        text-shadow: 15px 15px 5px #d9d9d9;
+    }
+
+    .header-shadow.black {
+        text-shadow: 15px 15px 5px #151515;
+    }
+
+    .text-outline-black {
+        -webkit-text-stroke: .5px #151515;
+        text-shadow: 0px 0px 2px #151515;
+    }
+
+    .text-outline-white {
+        -webkit-text-stroke: .5px #d9d9d9;
+        text-shadow: 15px 15px 5px #d9d9d9;
+    }
+    
 }
 
 @keyframes shake {
