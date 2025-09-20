@@ -9,7 +9,7 @@
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "predeploy": "npm run build",
+    "predeploy": "npm run build && echo samdeitz.ca > docs/CNAME",
     "deploy": "gh-pages -d docs"
   },
   "dependencies": {
