@@ -12,5 +12,5 @@ export default defineConfig({
   build: {
     outDir: 'docs'
   },
-  base: "/personal-portfolio/"
+  base: "/"
 })
