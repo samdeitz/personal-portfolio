@@ -9,5 +9,7 @@ export default defineConfig({
     react(),
     tailwindcss(),
   ],
-  base: "/personal-portfolio"
+  build: {
+    outDir: 'docs'
+  }
 })
