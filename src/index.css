@@ -33,10 +33,10 @@
     }
 
     .title-gradient.dark {
-        @apply bg-gradient-to-r from-[#666] via-[#f1f1f1] to-[#666] bg-clip-text text-transparent;
+        @apply bg-gradient-to-r from-[#666] via-[#999] to-[#666] bg-clip-text text-transparent;
     }
     .title-gradient.light {
-        @apply bg-gradient-to-r from-[#666] via-[#151515] to-[#666] bg-clip-text text-transparent;
+        @apply bg-gradient-to-r from-[#666] via-[#333] to-[#666] bg-clip-text text-transparent;
 
     }
 
@@ -61,13 +61,13 @@
     .reference-link {
         @apply underline underline-offset-2 hover:text-[#999];
     }
-
+    
     .header-shadow.white {
-        text-shadow: 15px 15px 5px #d9d9d9;
+        text-shadow: 5px 5px 5px #d9d9d9;
     }
 
     .header-shadow.black {
-        text-shadow: 15px 15px 5px #151515;
+        text-shadow: 5px 5px 5px #151515;
     }
 
     .text-outline-black {

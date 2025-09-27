@@ -122,13 +122,13 @@ const Taskbar = ( { apps } ) => {
                         
                         displayableOpenApps.map((a) => 
                             <VBox className="taskbar-item gap-2 bounce-container flex-shrink-0" 
-                            onMouseEnter={() => setAppIsBouncing([a, true])} 
-                            onMouseLeave={() => setAppIsBouncing(["", false])}
-                            key={a} 
-                            onClick={() => openApp(a)}
+                                onMouseEnter={() => setAppIsBouncing([a, true])} 
+                                onMouseLeave={() => setAppIsBouncing(["", false])}
+                                key={a} 
+                                onClick={() => openApp(a)}
                             >
-                            <img className={`rounded-lg ${appIsBouncing[0] === a && appIsBouncing[1] && "animate-small-bounce"}`} src={appImages[apps[a].desktopImageSrc]?.default} />
-                            <div className={`${isDark ?"bg-light" : "bg-dark"} rounded-lg min-w-[100%] min-h-1 m-auto`} ></div>
+                                <img className={`rounded-lg ${appIsBouncing[0] === a && appIsBouncing[1] && "animate-small-bounce"}`} src={appImages[apps[a].desktopImageSrc]?.default} />
+                                <div className={`${isDark ?"bg-light" : "bg-dark"} rounded-lg min-w-[100%] min-h-1 m-auto`} ></div>
                             </VBox>  
                         )
                     )}
@@ -149,10 +149,12 @@ const Taskbar = ( { apps } ) => {
                                     onClick={() => setShowApps(!showApps)} 
                                 />
                             </div>
-                        </VBox>}
+                        </VBox>
+                    }
                 </HBox>
                 <HBox className="flex-shrink-0">
-                    <a href="../assets/SDResumeTech.pdf" 
+                    <a href="../../SDResumeTech.pdf"
+                    target="_blank" 
                     className="
                     flex 
                     items-center 

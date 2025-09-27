@@ -4,12 +4,62 @@ let projects = {
     app1 : {
         id: 1,
         title: "Workout Finder",
-        appImageSrc: "../assets/exercise-finder.jpg",
+        appImageSrc: "",
         desktopImageSrc: "../assets/exercise-finder.jpg",
         position: "",
         appOverview: "",
         appImpact: "",
-        repoLink: ""
+        repoLink: "https://github.com/samdeitz/exercisefinder"
+    },
+    app2 : {
+        id: 2,
+        title: "Rush Hour",
+        appImageSrc: "",
+        desktopImageSrc: "../assets/rush-hour.jpg",
+        position: "",
+        appOverview: "",
+        appImpact: "",
+        repoLink: "https://github.com/samdeitz/rushhour"
+    },
+    app3 : {
+        id: 3,
+        title: "Escape The Dungeon",
+        appImageSrc: "",
+        desktopImageSrc: "../assets/door.jpg",
+        position: "",
+        appOverview: "",
+        appImpact: "",
+        repoLink: "https://github.com/samdeitz/riddlegame"
+    },
+    app4 : {
+        id: 4,
+        title: "Loading Icon",
+        appImageSrc: "",
+        desktopImageSrc: "../assets/loading.jpg",
+        position: "",
+        appOverview: "",
+        appImpact: "",
+        repoLink: "https://github.com/samdeitz/loadingicon"
+    },
+    app5 : {
+        id: 5,
+        title: "Snake",
+        appImageSrc: "",
+        desktopImageSrc: "../assets/snake.jpg",
+        position: "",
+        appOverview: "",
+        appImpact: "",
+        repoLink: "https://github.com/samdeitz/snakegame"
+    },
+    app6 : {
+        id: 6,
+        title: "Pong",
+        appImageSrc: "",
+        desktopImageSrc: "../assets/pong.jpg",
+        position: "",
+        appOverview: "",
+        appImpact: "",
+        repoLink: "https://github.com/samdeitz/pong"
     },
 }
 

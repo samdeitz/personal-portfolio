@@ -99,22 +99,24 @@ const DesktopApp = ({ apps }) => {
                         `}>
 
                         {currentApp.id < 20 &&
-                            <>
-                                <img className="max-w-10/12 max-h-4/6 border-2 rounded-lg" src={appImages[currentApp.appImageSrc]?.default} />
+                            <VBox className="gap-4">
+                                <p className="text-center">Coming Soon...</p>
+                                {/* <img className="max-w-10/12 max-h-4/6 border-2 rounded-lg" src={appImages[currentApp.appImageSrc]?.default} />
                                 <hr className="w-11/12 my-5" />
+                                
                                 <p className="w-10/12">Project overview: Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
                                 <hr className="w-11/12 my-5" />
                                 <p className="w-10/12">Project Impact: Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
-                                <hr className="w-11/12 my-5" />
+                                <hr className="w-11/12 my-5" /> */}
 
-                                <a className="self-start" href="https://github.com/samdeitz" target="_blank">
+                                <a className="self-start center" href={currentApp.repoLink} target="_blank">
                                     <HBox className="items-center gap-2 hover-over p-1 pl-2 pr-3 rounded-lg cursor-pointer">
                                             <img className="w-10" src={isDark ? githubWhite : githubBlack} />
                                             <h1 className="h-fit">Go to repo</h1>
                                     </HBox>
                                 </a>
 
-                            </>
+                            </VBox>
                         }
 
                         {/* all apps with different formats */}
