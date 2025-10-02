@@ -23,7 +23,7 @@ let projects = {
     },
     app3 : {
         id: 3,
-        title: "Escape The Dungeon",
+        title: "Dungeon Escape",
         appImageSrc: "",
         desktopImageSrc: "../assets/door.jpg",
         position: "",

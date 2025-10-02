@@ -9,7 +9,7 @@ const LandingSection = () => {
     const { isDark } = useTheme();
 
     return (
-        <VBox className="@container overflow-y-scroll items-center hide-scrollbar">
+        <VBox className="@container overflow-y-scroll hide-scrollbar">
 
             <Header />
             <Desktop />
@@ -20,6 +20,7 @@ const LandingSection = () => {
             bottom-0
             max-h-[100vh]
             overflow-none
+            aspect-auto
             "/>
         </VBox>
     )

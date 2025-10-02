@@ -13,6 +13,10 @@
         animation: fadeIn 3s;
     }
 
+    img {
+        aspect-ratio: 1 / 1;
+    }
+
     body.dark {
         @apply bg-dark text-[#d9d9d9];
     }
@@ -29,7 +33,7 @@
     }
 
     .project-app {
-        @apply hover-over p-2 flex-nowrap rounded-lg max-w-30;
+        @apply hover-over p-2 flex-nowrap rounded-lg hover:opacity-100 opacity-70;
     }
 
     .title-gradient.dark {
