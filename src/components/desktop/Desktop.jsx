@@ -28,7 +28,6 @@ const Desktop = () => {
             ease-in-out
             text-md
             @max-md:text-sm
-            mt-20
             ml-10
             pb-20
             gap-8

@@ -127,14 +127,14 @@ const DesktopApp = ({ apps }) => {
                         }
 
                         {/* all apps with different formats */}
-                        {currentApp.id === 20 && // about me
+                        {/* {currentApp.id === 20 && // about me
                             <>
                                 <img className="border-2 rounded-lg" src={imagesByName[`${currentApp.appImageSrc}`]} />
                             </>
-                        }
+                        } */}
                         
                         
-                        {currentApp.id === 21 && // previous work
+                        {currentApp.id === 21 || currentApp.id === 20 && // previous work
                             <>
                                 <h1 className="">Coming soon...</h1>
                             </>

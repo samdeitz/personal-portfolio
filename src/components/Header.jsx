@@ -8,7 +8,7 @@ const Header = () => {
     return (
         <VBox className="
         p-4
-        pt-10
+        py-10
         text-center
         z-98
         ">

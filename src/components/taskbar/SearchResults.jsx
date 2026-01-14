@@ -19,7 +19,7 @@ const SearchResults = ({ isDark, openResults, setOpenResults, apps, searchValue,
                 fixed
                 bottom-13
                 z-98
-                min-w-54
+                min-w-60.25
                 sm:min-w-64 
                 md:min-w-74 
                 lg:min-w-94
