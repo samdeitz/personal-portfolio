@@ -1,5 +1,5 @@
 import VBox from "./ui/VBox";
-import { useTheme } from "../ThemeProvider";
+import { useTheme } from "@/ThemeProvider";
 
 
 const Header = () => {

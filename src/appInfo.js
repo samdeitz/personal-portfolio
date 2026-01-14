@@ -5,7 +5,7 @@ let projects = {
         id: 1,
         title: "Workout Finder",
         appImageSrc: "",
-        desktopImageSrc: "../assets/exercise-finder.jpg",
+        desktopImageSrc: "exercise-finder.jpg",
         position: "",
         appOverview: "",
         appImpact: "",
@@ -15,7 +15,7 @@ let projects = {
         id: 2,
         title: "Rush Hour",
         appImageSrc: "",
-        desktopImageSrc: "../assets/rush-hour.jpg",
+        desktopImageSrc: "rush-hour.jpg",
         position: "",
         appOverview: "",
         appImpact: "",
@@ -25,7 +25,7 @@ let projects = {
         id: 3,
         title: "Dungeon Escape",
         appImageSrc: "",
-        desktopImageSrc: "../assets/door.jpg",
+        desktopImageSrc: "door.jpg",
         position: "",
         appOverview: "",
         appImpact: "",
@@ -35,7 +35,7 @@ let projects = {
         id: 4,
         title: "Loading Icon",
         appImageSrc: "",
-        desktopImageSrc: "../assets/loading.jpg",
+        desktopImageSrc: "loading.jpg",
         position: "",
         appOverview: "",
         appImpact: "",
@@ -45,7 +45,7 @@ let projects = {
         id: 5,
         title: "Snake",
         appImageSrc: "",
-        desktopImageSrc: "../assets/snake.jpg",
+        desktopImageSrc: "snake.jpg",
         position: "",
         appOverview: "",
         appImpact: "",
@@ -55,7 +55,7 @@ let projects = {
         id: 6,
         title: "Pong",
         appImageSrc: "",
-        desktopImageSrc: "../assets/pong.jpg",
+        desktopImageSrc: "pong.jpg",
         position: "",
         appOverview: "",
         appImpact: "",
@@ -68,23 +68,23 @@ let info = {
     app20: {
         id: 20,
         title: "About Me",
-        appImageSrc: "../assets/family.jpg",
+        appImageSrc: "family.jpg",
         position: "",
-        desktopImageSrc: "../assets/abt-me.jpg"
+        desktopImageSrc: "abt-me.jpg"
     },
     app21: {
         id: 21,
         title: "Previous Work",
-        appImageSrc: "../assets/sample.jpg",
+        appImageSrc: "sample.jpg",
         position: "",
-        desktopImageSrc: "../assets/test.jpg"
+        desktopImageSrc: "test.jpg"
     },
     app22: {
         id: 22,
         title: "Website Images",
-        appImageSrc: "../assets/sample.jpg",
+        appImageSrc: "sample.jpg",
         position: "",
-        desktopImageSrc: "../assets/test.jpg"
+        desktopImageSrc: "test.jpg"
     }
 }
 

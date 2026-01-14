@@ -1,5 +1,5 @@
-import { useTheme } from "../ThemeProvider.jsx";
-import HBox from "./ui/HBox.jsx";
+import { useTheme } from "@/ThemeProvider.jsx";
+import HBox from "@/components/ui/HBox.jsx";
 
 
 const Searchbar = ({ searchImg, searchValue, setSearchValue, setOpenResults, isSearching, setIsSearching }) => {
@@ -9,7 +9,7 @@ const Searchbar = ({ searchImg, searchValue, setSearchValue, setOpenResults, isS
         setSearchValue(e.target.value);
     }
 
-    const handleSearchClick = (e) => {
+    const handleSearchClick = () => {
         setIsSearching(!isSearching);
         setOpenResults(prev => !prev);
 

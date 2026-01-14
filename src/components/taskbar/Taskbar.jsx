@@ -1,32 +1,39 @@
 import { useState, useRef, useEffect } from 'react';
 import { useMediaQuery } from "react-responsive";
-import { useApp } from "../AppContext.js";
-import { useTheme } from '../ThemeProvider.jsx';
+import { useApp } from "@/AppContext.js";
+import { useTheme } from '@/ThemeProvider.jsx';
 
-import HBox from "./ui/HBox.jsx";
-import VBox from "./ui/VBox.jsx";
+import HBox from "@/components/ui/HBox.jsx";
+import VBox from "@/components/ui/VBox.jsx";
 import Searchbar from './Searchbar.jsx';
 import SearchResults from "./SearchResults.jsx";
 import OverflowingApps from "./OverflowingApps.jsx";
 
-import searchWhite from "../assets/search-white.svg";
-import mailWhite from "../assets/mail-white.svg";
-import githubWhite from "../assets/github-white.svg";
-import linkedinWhite from "../assets/linkedin-white.svg";
-import sunWhite from "../assets/sun-white.svg";
-import moreAppsBlack from "../assets/moreapps-black.svg";
-import moreAppsWhite from "../assets/moreapps-white.svg";
+import searchWhite from "@/assets/search-white.svg";
+import mailWhite from "@/assets/mail-white.svg";
+import githubWhite from "@/assets/github-white.svg";
+import linkedinWhite from "@/assets/linkedin-white.svg";
+import sunWhite from "@/assets/sun-white.svg";
+import moreAppsBlack from "@/assets/moreapps-black.svg";
+import moreAppsWhite from "@/assets/moreapps-white.svg";
 
 
-import searchBlack from "../assets/search-black.svg";
-import mailBlack from "../assets/mail-black.svg";
-import githubBlack from "../assets/github-black.svg";
-import linkedinBlack from "../assets/linkedin-black.svg";
-import sunBlack from "../assets/sun-black.svg";
+import searchBlack from "@/assets/search-black.svg";
+import mailBlack from "@/assets/mail-black.svg";
+import githubBlack from "@/assets/github-black.svg";
+import linkedinBlack from "@/assets/linkedin-black.svg";
+import sunBlack from "@/assets/sun-black.svg";
 
 
-const appImages = import.meta.glob("../assets/*.jpg", {eager: true});
+const appImages = import.meta.glob("@/assets/*.jpg", {
+    eager: true,
+    import: "default"
+});
 
+// change keys to
+const imagesByName = Object.fromEntries(
+  Object.entries(appImages).map(([path, url]) => [path.split("/").pop(), url])
+);
 
 const Taskbar = ( { apps } ) => {
     const { isDark, toggleTheme } = useTheme();
@@ -123,7 +130,7 @@ const Taskbar = ( { apps } ) => {
                                 key={a} 
                                 onClick={() => openApp(a)}
                             >
-                                <img className={`rounded-lg ${appIsBouncing[0] === a && appIsBouncing[1] && "animate-small-bounce"}`} src={appImages[apps[a].desktopImageSrc]?.default} />
+                                <img className={`rounded-lg ${appIsBouncing[0] === a && appIsBouncing[1] && "animate-small-bounce"}`} src={imagesByName[apps[a].desktopImageSrc]} />
                                 <div className={`${isDark ?"bg-light" : "bg-dark"} rounded-lg min-w-[100%] min-h-1 m-auto`} ></div>
                             </VBox>  
                         )
@@ -132,7 +139,7 @@ const Taskbar = ( { apps } ) => {
                         <VBox className={`${showApps ? (isDark ? "bg-light-grey" : "bg-dark-grey") : (isDark ? "bg-dark-grey" : "bg-light-grey")}`}>
                             <OverflowingApps 
                                 nonDisplayableOpenApps={nonDisplayableOpenApps}
-                                appImages={appImages}
+                                appImages={imagesByName}
                                 isDark={isDark}
                                 apps={apps}
                                 showApps={showApps}

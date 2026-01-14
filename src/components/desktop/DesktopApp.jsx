@@ -1,21 +1,28 @@
 import { useState, useEffect } from "react";
 import { useMediaQuery } from "react-responsive";
-import { useTheme } from "../ThemeProvider.jsx";
-import { useApp } from "../AppContext.js";
+import { useTheme } from "@/ThemeProvider.jsx";
+import { useApp } from "@/AppContext.js";
 
-import VBox from "./ui/VBox.jsx";
-import HBox from "./ui/HBox.jsx";
+import VBox from "@/components/ui/VBox.jsx";
+import HBox from "@/components/ui/HBox.jsx";
 
-import closeBlack from "../assets/close-black.svg";
-import closeWhite from "../assets/close-white.svg";
-import minimizeWhite from "../assets/minimize-white.svg";
-import minimizeBlack from "../assets/minimize-black.svg";
-import githubWhite from "../assets/github-white.svg";
-import githubBlack from "../assets/github-black.svg";
+import closeBlack from "@/assets/close-black.svg";
+import closeWhite from "@/assets/close-white.svg";
+import minimizeWhite from "@/assets/minimize-white.svg";
+import minimizeBlack from "@/assets/minimize-black.svg";
+import githubWhite from "@/assets/github-white.svg";
+import githubBlack from "@/assets/github-black.svg";
 
 
-const appImages = import.meta.glob("../assets/*.jpg", {eager: true});
+const appImages = import.meta.glob("@/assets/*.jpg", {
+    eager: true,
+    import: "default"
+});
 
+// change keys to
+const imagesByName = Object.fromEntries(
+  Object.entries(appImages).map(([path, url]) => [path.split("/").pop(), url])
+);
 
 const DesktopApp = ({ apps }) => {
     const { isDark } = useTheme();
@@ -122,7 +129,7 @@ const DesktopApp = ({ apps }) => {
                         {/* all apps with different formats */}
                         {currentApp.id === 20 && // about me
                             <>
-                                <img className="max-w-10/12 max-h-4/6 border-2 rounded-lg" src={appImages[`${currentApp.appImageSrc}`]?.default} />
+                                <img className="border-2 rounded-lg" src={imagesByName[`${currentApp.appImageSrc}`]} />
                             </>
                         }
                         
