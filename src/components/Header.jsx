@@ -1,5 +1,5 @@
 import VBox from "./ui/VBox";
-import { useTheme } from "../ThemeProvider";
+import { useTheme } from "@/ThemeProvider";
 
 
 const Header = () => {
@@ -8,7 +8,7 @@ const Header = () => {
     return (
         <VBox className="
         p-4
-        pt-10
+        py-10
         text-center
         z-98
         ">

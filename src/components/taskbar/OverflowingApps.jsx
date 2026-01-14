@@ -1,4 +1,4 @@
-import HBox from "./ui/HBox.jsx";
+import HBox from "@/components/ui/HBox.jsx";
 
 const OverflowingApps = ({ nonDisplayableOpenApps, appImages, isDark, apps, showApps, setShowApps, openApp }) => {
 

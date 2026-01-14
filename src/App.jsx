@@ -1,8 +1,8 @@
 import { ThemeProvider } from "./ThemeProvider";
 import { AppProvider } from './AppProvider';
-import DesktopApp from "./components/DesktopApp.jsx";
+import DesktopApp from "./components/desktop/DesktopApp.jsx";
 import LandingSection from "./components/LandingSection.jsx";
-import Taskbar from "./components/Taskbar";
+import Taskbar from "./components/taskbar/Taskbar";
 import apps from "./appInfo.js";
 
 function App() {

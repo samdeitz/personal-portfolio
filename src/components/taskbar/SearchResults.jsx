@@ -1,7 +1,15 @@
-import VBox from "./ui/VBox.jsx";
-import HBox from "./ui/HBox.jsx";
+import VBox from "@/components/ui/VBox.jsx";
+import HBox from "@/components/ui/HBox.jsx";
 
-const appImages = import.meta.glob("../assets/*.jpg", {eager: true});
+const appImages = import.meta.glob("@/assets/*.jpg", {
+    eager: true,
+    import: "default"
+});
+
+// change keys to
+const imagesByName = Object.fromEntries(
+  Object.entries(appImages).map(([path, url]) => [path.split("/").pop(), url])
+);
 
 
 const SearchResults = ({ isDark, openResults, setOpenResults, apps, searchValue, openApp, setIsSearching }) => {
@@ -11,7 +19,7 @@ const SearchResults = ({ isDark, openResults, setOpenResults, apps, searchValue,
                 fixed
                 bottom-13
                 z-98
-                min-w-54
+                min-w-60.25
                 sm:min-w-64 
                 md:min-w-74 
                 lg:min-w-94
@@ -39,7 +47,7 @@ const SearchResults = ({ isDark, openResults, setOpenResults, apps, searchValue,
                                     openApp(a);
                                 }}
                             >
-                                <img className="h-7 rounded-lg" src={appImages[a.desktopImageSrc]?.default} alt="desktop image"/>
+                                <img className="h-7 rounded-lg" src={imagesByName[a.desktopImageSrc]} alt="desktop image"/>
                                 <h1 className="" >{a.title}</h1>
                             </HBox>
                         )

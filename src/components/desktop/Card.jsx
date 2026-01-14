@@ -1,7 +1,7 @@
-import VBox from "./ui/VBox.jsx"
-import openWhite from "../assets/open-white.svg"
-import openBlack from "../assets/open-black.svg"
-import { useTheme } from "../ThemeProvider.jsx";
+import VBox from "@/components/ui/VBox.jsx"
+import openWhite from "@/assets/open-white.svg"
+import openBlack from "@/assets/open-black.svg"
+import { useTheme } from "@/ThemeProvider.jsx";
 
 
 const Card = ( props ) => {
