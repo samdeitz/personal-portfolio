@@ -39,6 +39,7 @@
     .title-gradient.dark {
         @apply bg-gradient-to-r from-[#666] via-[#999] to-[#666] bg-clip-text text-transparent;
     }
+        
     .title-gradient.light {
         @apply bg-gradient-to-r from-[#666] via-[#333] to-[#666] bg-clip-text text-transparent;
 
@@ -86,42 +87,45 @@
     
 }
 
-@keyframes shake {
-    0% {
-        transform: rotate(0deg);
+@theme {
+    @keyframes shake {
+        0% {
+            transform: rotate(0deg);
+        }
+        25% {
+            transform: rotate(1deg);
+        }
+        75% {
+            transform: rotate(-1deg);
+        }
+        100% {
+            transform: rotate(0deg);
+        }
     }
-    25% {
-        transform: rotate(1deg);
+
+    @keyframes smallBounce {
+        0% {
+            transform: translateY(0%);
+        }
+        50% {
+            transform: translateY(-10%);
+        }
+        100% {
+            transform: translateY(0%);
+        }
+
     }
-    75% {
-        transform: rotate(-1deg);
-    }
-    100% {
-        transform: rotate(0deg);
+
+    @keyframes fadeIn {
+        from { 
+            opacity: 0;
+        }
+        to { 
+            opacity: 1; 
+        }
     }
 }
 
-@keyframes smallBounce {
-    0% {
-        transform: translateY(0%);
-    }
-    50% {
-        transform: translateY(-10%);
-    }
-     100% {
-        transform: translateY(0%);
-     }
-
-}
-
-@keyframes fadeIn {
-    from { 
-        opacity: 0;
-    }
-    to { 
-        opacity: 1; 
-    }
-}
 
 @utility animate-small-bounce {
     animation: smallBounce 0.3s linear 0s infinite;

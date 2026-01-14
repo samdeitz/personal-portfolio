@@ -12,8 +12,9 @@ const Header = () => {
         text-center
         z-98
         ">
-            <h1 className={`text-3xl font-bold header-shadow ${isDark ? "white" : "black"}`}>Hello, I'm <span className={`title-gradient ${isDark ? "dark" : "light"}`}>Sam Deitz</span>...</h1>
-            <h1 className={`text-3xl font-bold header-shadow ${isDark ? "white" : "black"}`}>A Front End Developer</h1>
+            <h1 className={`text-2xl leading-tight font-normal`}>Hello,</h1>
+            <h1 className={`text-5xl leading-tight font-bold -mt-2 title-gradient ${isDark ? "dark" : "light"}`}>I'm Sam Deitz</h1>
+            <h1 className={`text-2xl leading-tight font-normal`}>A Front End Developer</h1>
         </VBox>       
     )
 }

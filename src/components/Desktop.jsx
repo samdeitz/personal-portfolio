@@ -2,7 +2,6 @@ import Card from "./Card.jsx";
 import apps from "../appInfo.js";
 import HBox from "./ui/HBox.jsx";
 import { useApp } from "../AppContext.js";
-import { useTheme } from "../ThemeProvider.jsx";
 
 const appImages = import.meta.glob("../assets/*.jpg", {eager: true});
 

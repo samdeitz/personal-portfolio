@@ -18,7 +18,7 @@ const LandingSection = () => {
             z-97
             right-0
             bottom-0
-            max-h-[100vh]
+            max-h-screen
             overflow-none
             aspect-auto
             "/>

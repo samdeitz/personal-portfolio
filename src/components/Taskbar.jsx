@@ -1,8 +1,7 @@
-import { useState, useRef, useEffect, useLayoutEffect } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { useMediaQuery } from "react-responsive";
 import { useApp } from "../AppContext.js";
 import { useTheme } from '../ThemeProvider.jsx';
-import { useBreakpoint } from "../hooks/useBreakpoint.jsx";
 
 import HBox from "./ui/HBox.jsx";
 import VBox from "./ui/VBox.jsx";
@@ -42,9 +41,6 @@ const Taskbar = ( { apps } ) => {
     const [nonDisplayableOpenApps, setNonDisplayableOpenApps] = useState([]);
     const taskbarRef = useRef(null);
     const appRef = useRef(null);
-    const prevSearchingRef = useRef(null);
-    const visibleRef = useRef([]);
-    const hiddenRef  = useRef([]);
 
 
     useEffect(() => {
@@ -70,7 +66,7 @@ const Taskbar = ( { apps } ) => {
         let observer = new ResizeObserver(sortApps);
         observer.observe(el);
         return () => observer.disconnect();
-    }, [openApps, isSearching])
+    }, [openApps, isSearching, isDesktop])
 
 
     return (
