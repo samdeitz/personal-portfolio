@@ -1,21 +1,20 @@
-import { useTheme } from "@/ThemeProvider.jsx";
+import { useTheme } from "@/context/ThemeContext.js";
 import HBox from "@/components/ui/HBox.jsx";
 
 
-const Searchbar = ({ searchImg, searchValue, setSearchValue, setOpenResults, isSearching, setIsSearching }) => {
-    const { isDark } = useTheme();
+const Searchbar = ({ searchImg, searchValue, setSearchValue, isSearching, setIsSearching }) => {
+    const { isDark } = useTheme(); // theme context
 
+    // handle user typing
     const handleInputChange = (e) => {
         setSearchValue(e.target.value);
     }
 
-    const handleSearchClick = () => {
-        setIsSearching(!isSearching);
-        setOpenResults(prev => !prev);
 
-        setTimeout(() => {
-            setSearchValue("");
-        }, 300)
+    // handles if a user clicks the search icon
+    const handleSearchClick = () => {
+        setIsSearching(!isSearching); // toggle searching
+        setSearchValue(""); // reset search value
     }
 
     return (
@@ -29,9 +28,13 @@ const Searchbar = ({ searchImg, searchValue, setSearchValue, setOpenResults, isS
                 flex-shrink-0
                 ${isSearching ? (!isDark ? "bg-dark-grey" : "bg-light-grey") : (!isDark ? "bg-light-grey" : "bg-dark-grey")}
         `}>
+
+            {/* icon to toggle searching */}
             <div  onClick={handleSearchClick} className="taskbar-item">
                 <img src={searchImg} alt="search" />
             </div>
+
+            {/* searchbar, conditionally rendered by isSearching */}
             <input 
                 className={`
                     transition-all

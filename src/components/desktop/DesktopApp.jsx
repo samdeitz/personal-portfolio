@@ -1,56 +1,62 @@
 import { useState, useEffect } from "react";
 import { useMediaQuery } from "react-responsive";
-import { useTheme } from "@/ThemeProvider.jsx";
-import { useApp } from "@/AppContext.js";
+import { useTheme } from "@/context/ThemeContext.js";
+import { useApp } from "@/context/AppContext.js";
 
 import VBox from "@/components/ui/VBox.jsx";
 import HBox from "@/components/ui/HBox.jsx";
 
-import closeBlack from "@/assets/close-black.svg";
-import closeWhite from "@/assets/close-white.svg";
-import minimizeWhite from "@/assets/minimize-white.svg";
-import minimizeBlack from "@/assets/minimize-black.svg";
-import githubWhite from "@/assets/github-white.svg";
-import githubBlack from "@/assets/github-black.svg";
+import closeBlack from "@/assets/icons/close-black.svg";
+import closeWhite from "@/assets/icons/close-white.svg";
+import minimizeWhite from "@/assets/icons/minimize-white.svg";
+import minimizeBlack from "@/assets/icons/minimize-black.svg";
+import githubWhite from "@/assets/icons/github-white.svg";
+import githubBlack from "@/assets/icons/github-black.svg";
 
 
-const appImages = import.meta.glob("@/assets/*.jpg", {
-    eager: true,
-    import: "default"
-});
+// const appImages = import.meta.glob("@/assets/images/*.jpg", {
+//     eager: true,
+//     import: "default"
+// });
 
 // change keys to
-const imagesByName = Object.fromEntries(
-  Object.entries(appImages).map(([path, url]) => [path.split("/").pop(), url])
-);
+// const imagesByName = Object.fromEntries(
+//   Object.entries(appImages).map(([path, url]) => [path.split("/").pop(), url])
+// );
 
 const DesktopApp = ({ apps }) => {
-    const { isDark } = useTheme();
-    const { app, setApp, openApps, setOpenApps } = useApp();
-    const [isVisible, setIsVisible] = useState(false);
-    const currentApp = apps[app];
-    const isDesktop = useMediaQuery({ minWidth: 400 });
+    const { isDark } = useTheme(); // Theme boolean
+    const { app, setApp, openApps, setOpenApps } = useApp(); // open app information
+    const [isVisible, setIsVisible] = useState(false); // if an app is open 
+    const currentApp = apps[app]; // current app open
+    const notMobile = useMediaQuery({ minWidth: 400 }); // boolean to conditionally render for devices that are not mobile
 
 
+    // determine if an app is open
     useEffect(() => {
         if (app) setIsVisible(true);
     }, [app]);
 
-    const closeApp = () => {
-        setIsVisible(false);
 
+    // The 'x' on the open app is clicked
+    const closeApp = () => {
+        setIsVisible(false); // no longer visible
+
+        // update context for other components 
         setTimeout(() => {
-            setApp("");
-            setOpenApps([...openApps].filter((val) => val != app));
+            setApp(""); // current app on screen set to empty
+            setOpenApps([...openApps].filter((val) => val != app)); // closed app removed from taskbar
         }, 300);
         
     }
 
+    // The '-' on the open app is clicked
     const minimizeApp = () => {
-        setIsVisible(false);
+        setIsVisible(false); // no longer visible
 
+        // update context
         setTimeout(() => {
-            setApp("");
+            setApp(""); // current app on screen is set to empty, does not remove from taskbar
         }, 300);
     }
 
@@ -58,7 +64,9 @@ const DesktopApp = ({ apps }) => {
         <>
             {app && (
                 <div>
-                    <div className="overlay h-[100vh]" />
+                    <div className="overlay h-[100vh]" /> {/* Overlay behind app to block clicking other elements on the screen */}
+                    
+                    {/* -------- APP WINDOW -------- */}
                     <VBox className={`
                     transition-all 
                     duration-300 
@@ -83,28 +91,35 @@ const DesktopApp = ({ apps }) => {
                     
                     
                     `}>
+                        {/* --- HEADER --- */}
                         <HBox className={`
-                        ${isDark ? "bg-dark-grey" : "bg-light-grey"} 
-                        justify-between
-                        rounded-t-lg
+                            ${isDark ? "bg-dark-grey" : "bg-light-grey"} 
+                            justify-between
+                            rounded-t-lg
                         `}>
+
+                            {/* App Title */}
                             <h1 className="self-center pl-2 font-bold">{currentApp.title}</h1>
+                            
+                            {/* Close/Minimize buttons */}
                             <HBox>
-                                {isDesktop && <img onClick={minimizeApp} src={isDark ? minimizeWhite : minimizeBlack} className="hover-over w-10 h-fit p-2 rounded-lg"/>}
+                                {notMobile && <img onClick={minimizeApp} src={isDark ? minimizeWhite : minimizeBlack} className="hover-over w-10 h-fit p-2 rounded-lg"/>}
                                 <img onClick={closeApp} className="w-10 p-2 h-fit hover-over rounded-lg" src={isDark ? closeWhite : closeBlack} />
                             </HBox>
                         </HBox>
 
+                        {/* --- APP CONTENT --- */}
                         <VBox className={`
-                        ${isDark ? "dark" : "light"}
-                        overflow-auto
-                        scrollbar-style
-                        items-center
-                        h-full
-                        p-4
-                        gap-y-1
+                            ${isDark ? "dark" : "light"}
+                            overflow-auto
+                            scrollbar-style
+                            items-center
+                            h-full
+                            p-4
+                            gap-y-1
                         `}>
-
+                        
+                        {/* --- PROJECTS --- */}
                         {currentApp.id < 20 &&
                             <VBox className="gap-4">
                                 <p className="text-center">Coming Soon...</p>
@@ -126,7 +141,7 @@ const DesktopApp = ({ apps }) => {
                             </VBox>
                         }
 
-                        {/* all apps with different formats */}
+                        {/* --- OTHER (ID = 20 and UP) --- */}
                         {/* {currentApp.id === 20 && // about me
                             <>
                                 <img className="border-2 rounded-lg" src={imagesByName[`${currentApp.appImageSrc}`]} />
