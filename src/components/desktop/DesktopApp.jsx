@@ -108,6 +108,8 @@ const DesktopApp = ({ apps }) => {
                             </HBox>
                         </HBox>
 
+
+
                         {/* --- APP CONTENT --- */}
                         <VBox className={`
                             ${isDark ? "dark" : "light"}
@@ -119,56 +121,58 @@ const DesktopApp = ({ apps }) => {
                             gap-y-1
                         `}>
                         
-                        {/* --- PROJECTS --- */}
-                        {currentApp.id < 20 &&
-                            <VBox className="gap-4">
-                                <p className="text-center">Coming Soon...</p>
-                                {/* <img className="max-w-10/12 max-h-4/6 border-2 rounded-lg" src={appImages[currentApp.appImageSrc]?.default} />
-                                <hr className="w-11/12 my-5" />
-                                
-                                <p className="w-10/12">Project overview: Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
-                                <hr className="w-11/12 my-5" />
-                                <p className="w-10/12">Project Impact: Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
-                                <hr className="w-11/12 my-5" /> */}
+                            {/* --- PROJECTS --- */}
+                            {currentApp.id < 20 &&
+                                <VBox className="gap-4">
+                                    <p className="text-center">Coming Soon...</p>
+                                    {/* <img className="max-w-10/12 max-h-4/6 border-2 rounded-lg" src={appImages[currentApp.appImageSrc]?.default} />
+                                    <hr className="w-11/12 my-5" />
+                                    
+                                    <p className="w-10/12">Project overview: Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+                                    <hr className="w-11/12 my-5" />
+                                    <p className="w-10/12">Project Impact: Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+                                    <hr className="w-11/12 my-5" /> */}
 
-                                <a className="self-start center" href={currentApp.repoLink} target="_blank">
-                                    <HBox className="items-center gap-2 hover-over p-1 pl-2 pr-3 rounded-lg cursor-pointer">
-                                            <img className="w-10" src={isDark ? githubWhite : githubBlack} />
-                                            <h1 className="h-fit">Go to repo</h1>
-                                    </HBox>
-                                </a>
+                                    <a className="self-start center" href={currentApp.repoLink} target="_blank">
+                                        <HBox className="items-center gap-2 hover-over p-1 pl-2 pr-3 rounded-lg cursor-pointer">
+                                                <img className="w-10" src={isDark ? githubWhite : githubBlack} />
+                                                <h1 className="h-fit">Go to repo</h1>
+                                        </HBox>
+                                    </a>
 
-                            </VBox>
-                        }
+                                </VBox>
+                            }
 
-                        {/* --- OTHER (ID = 20 and UP) --- */}
-                        {/* {currentApp.id === 20 && // about me
-                            <>
-                                <img className="border-2 rounded-lg" src={imagesByName[`${currentApp.appImageSrc}`]} />
-                            </>
-                        } */}
-                        
-                        
-                        {currentApp.id === 21 || currentApp.id === 20 && // previous work
-                            <>
-                                <h1 className="">Coming soon...</h1>
-                            </>
-                        }
+                            
 
-                        {currentApp.id === 22 && // references for images used
-                            <>
-                                <h1 className="pt-5">Icons used for this website from <a className="reference-link" href="https://icons8.com/" target="_blank">Icons8</a> </h1>
-                                <a className="reference-link" target="_blank" href="https://icons8.com/icon/7695/search">Search</a>
-                                <a className="reference-link" target="_blank" href="https://icons8.com/icon/YRRhCXfA0Vd0/mail">Mail</a>
-                                <a className="reference-link" target="_blank" href="https://icons8.com/icon/8808/linkedin">LinkedIn</a>
-                                <a className="reference-link" target="_blank" href="https://icons8.com/icon/62856/github">GitHub</a>
-                                <a className="reference-link" target="_blank" href="https://icons8.com/icon/5e8ZvPF0Llyj/sun-and-moon">Sun And Moon</a>
-                                <a className="reference-link" target="_blank" href="https://icons8.com/icon/60664/external-link">Open</a>
-                                <a className="reference-link" target="_blank" href="https://icons8.com/icon/71200/close">Close</a>
-                                <a className="reference-link" target="_blank" href="https://icons8.com/icon/WeOgTBKEK9Zc/horizontal-line">Horizontal Line</a>
+                            {/* --- OTHER (ID = 20 and UP) --- */}
+                            {/* {currentApp.id === 20 && // about me
+                                <>
+                                    <img className="border-2 rounded-lg" src={imagesByName[`${currentApp.appImageSrc}`]} />
+                                </>
+                            } */}
+                            
+                            
+                            {currentApp.id === 21 || currentApp.id === 20 && // previous work
+                                <>
+                                    <h1 className="">Coming soon...</h1>
+                                </>
+                            }
 
-                            </>
-                        }
+                            {currentApp.id === 22 && // references for images used
+                                <>
+                                    <h1 className="pt-5">Icons used for this website from <a className="reference-link" href="https://icons8.com/" target="_blank">Icons8</a> </h1>
+                                    <a className="reference-link" target="_blank" href="https://icons8.com/icon/7695/search">Search</a>
+                                    <a className="reference-link" target="_blank" href="https://icons8.com/icon/YRRhCXfA0Vd0/mail">Mail</a>
+                                    <a className="reference-link" target="_blank" href="https://icons8.com/icon/8808/linkedin">LinkedIn</a>
+                                    <a className="reference-link" target="_blank" href="https://icons8.com/icon/62856/github">GitHub</a>
+                                    <a className="reference-link" target="_blank" href="https://icons8.com/icon/5e8ZvPF0Llyj/sun-and-moon">Sun And Moon</a>
+                                    <a className="reference-link" target="_blank" href="https://icons8.com/icon/60664/external-link">Open</a>
+                                    <a className="reference-link" target="_blank" href="https://icons8.com/icon/71200/close">Close</a>
+                                    <a className="reference-link" target="_blank" href="https://icons8.com/icon/WeOgTBKEK9Zc/horizontal-line">Horizontal Line</a>
+
+                                </>
+                            }
                         </VBox>
                     
                     </VBox>

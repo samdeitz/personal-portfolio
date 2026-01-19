@@ -37,22 +37,30 @@ const imagesByName = Object.fromEntries(
 );
 
 const Taskbar = ( { apps } ) => {
+
+    // ----- CONTEXT -----
     const { isDark, toggleTheme } = useTheme(); // Theme context for rendering and toggling
     const { openApps, openApp } = useApp(); // app context for opening and seeing whats open
+
+    // ----- SEARCHING -----
     const [ searchValue, setSearchValue ] = useState(""); // search value state
-    const [ appIsBouncing, setAppIsBouncing ] = useState(["", false]); // hovering a taskbar app -> bounce it ["appID", bounce?]
     const [ isSearching, setIsSearching ] = useState(false); // user is searching
-    const [ showApps, setShowApps ] = useState(false); // show taskbar apps (depends on screen size)
+
+    // ----- SIZING -----
     const notMobile = useMediaQuery({ minWidth: 400 }) // Screen size determination
+
+    // ----- TASKBAR APPS -----
+    const [ showOverflowingApps, setShowOverflowingApps ] = useState(false); // show taskbar apps (depends on screen size)
+    const taskbarRef = useRef(null); // reference to taskbar
+    const appRef = useRef(null); // reference to any app
     const [displayableOpenApps, setDisplayableOpenApps] = useState([]); // apps able to fit on the taskbar
     const [nonDisplayableOpenApps, setNonDisplayableOpenApps] = useState([]); // apps that would overflow the taskbar size
-    const taskbarRef = useRef(null); // reference to taskbar (for handling overflow)
-    const appRef = useRef(null); // reference to any app (for handling overflow)
+
 
 
     useEffect(() => {
         let el = taskbarRef.current; // get taskbar element
-        const APPW = 52; // get app width
+        const APPW = appRef.current.getBoundingClientRect().width; // get app width
         if (!el || !notMobile) return; // if the app is mobile, the apps dont show anyway
         
         // Function to sort apps into visible (able to fit) and hidden (overflows)
@@ -74,8 +82,6 @@ const Taskbar = ( { apps } ) => {
             setDisplayableOpenApps(visible);
             setNonDisplayableOpenApps(hidden);
         }
-
-
         sortApps();
 
         // sorts apps every time user resizes the screen
@@ -137,13 +143,12 @@ const Taskbar = ( { apps } ) => {
                         
                         
                         displayableOpenApps.map((a) => 
-                            <VBox className="taskbar-item gap-2 bounce-container flex-shrink-0" 
-                                onMouseEnter={() => setAppIsBouncing([a, true])} 
-                                onMouseLeave={() => setAppIsBouncing(["", false])}
+                            <VBox 
+                                className="taskbar-item gap-2 bounce-container flex-shrink-0 group" 
                                 key={a} 
                                 onClick={() => openApp(a)}
                             >
-                                <img className={`rounded-lg ${appIsBouncing[0] === a && appIsBouncing[1] && "animate-small-bounce"}`} src={imagesByName[apps[a].desktopImageSrc]} />
+                                <img className="rounded-lg group-hover:animate-small-bounce" src={imagesByName[apps[a].desktopImageSrc]} />
                                 <div className={`${isDark ?"bg-light" : "bg-dark"} rounded-lg min-w-[100%] min-h-1 m-auto`} ></div>
                             </VBox>  
                         )
@@ -151,20 +156,20 @@ const Taskbar = ( { apps } ) => {
 
                     {/* Apps for hidden app menu */}
                     {nonDisplayableOpenApps.length > 0 && 
-                        <VBox className={showApps ? (isDark ? "bg-light-grey" : "bg-dark-grey") : (isDark ? "bg-dark-grey" : "bg-light-grey")}>
+                        <VBox className={showOverflowingApps ? (isDark ? "bg-light-grey" : "bg-dark-grey") : (isDark ? "bg-dark-grey" : "bg-light-grey")}>
                             <OverflowingApps 
                                 nonDisplayableOpenApps={nonDisplayableOpenApps}
                                 appImages={imagesByName}
                                 apps={apps}
-                                showApps={showApps}
-                                setShowApps={setShowApps}
+                                showOverflowingApps={showOverflowingApps}
+                                setShowOverflowingApps={setShowOverflowingApps}
                             />
 
                             {/* More apps menu (to show hidden apps) */}
                             <div className="taskbar-item">
                                 <img 
                                     src={isDark ? moreAppsWhite : moreAppsBlack} 
-                                    onClick={() => setShowApps(!showApps)} 
+                                    onClick={() => setShowOverflowingApps(!showOverflowingApps)} 
                                 />
                             </div>
                         </VBox>
