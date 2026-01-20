@@ -113,7 +113,6 @@ const Taskbar = ( { apps } ) => {
             justify-between
             h-13
             z-98
-            translate-y-0
             bottom-0
             w-screen
             `}>

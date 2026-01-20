@@ -38,7 +38,7 @@ const Desktop = () => {
             {
                 // Render all apps on desktop from appInfo.js
                 Object.values(apps).map((a) => {
-                    return <Card key={a.id} className={`${a.position}`} apptitle={a.title} onClick={() => openApp(`app${a.id}`)} imgsrc={imagesByName[a.desktopImageSrc]}/>
+                    return <Card key={a.id} className={`${a.position}`} apptitle={a.title} onClick={() => openApp(a.title)} imgsrc={imagesByName[a.desktopImageSrc]}/>
                 })
             }
         </HBox>

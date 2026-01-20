@@ -9,7 +9,7 @@ const Card = ( props ) => {
     
     return (
         // return a card for an app
-        <VBox {...props} className={`transition-all duration-1000 relative project-app h-fit hover:animate-shake cursor-pointer ${props.className}`}>
+        <VBox {...props} className={`relative h-fit transition-[transform,opacity] shrink-0 transform-gpu duration-1000 project-app hover:animate-shake cursor-pointer ${props.className}`}>
             
             {/* Open icon */}
             <img className="w-5 absolute top-3 right-3" src={isDark ? openWhite : openBlack} />
