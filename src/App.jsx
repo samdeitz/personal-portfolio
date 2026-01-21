@@ -1,5 +1,5 @@
-import { ThemeProvider } from "./ThemeProvider";
-import { AppProvider } from './AppProvider';
+import { ThemeProvider } from "./context/ThemeProvider";
+import { AppProvider } from './context/AppProvider';
 import DesktopApp from "./components/desktop/DesktopApp.jsx";
 import LandingSection from "./components/LandingSection.jsx";
 import Taskbar from "./components/taskbar/Taskbar";

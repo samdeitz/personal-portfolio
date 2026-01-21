@@ -1,9 +1,9 @@
 import Header from './Header.jsx';
 import Desktop from "./desktop/Desktop.jsx";
 import VBox from "./ui/VBox.jsx";
-import meDark from "@/assets/me-dark.png";
-import meLight from "@/assets/me-light.png";
-import { useTheme } from "@/ThemeProvider.jsx";
+import meDark from "@/assets/images/me-dark.png";
+import meLight from "@/assets/images/me-light.png";
+import { useTheme } from "@/context/ThemeContext.js";
 
 const LandingSection = () => {
     const { isDark } = useTheme();

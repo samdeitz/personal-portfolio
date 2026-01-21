@@ -1,7 +1,7 @@
 
 // id starts at 1 for projects
 let projects = {
-    app1 : {
+    "Workout Finder" : {
         id: 1,
         title: "Workout Finder",
         appImageSrc: "",
@@ -11,7 +11,7 @@ let projects = {
         appImpact: "",
         repoLink: "https://github.com/samdeitz/exercisefinder"
     },
-    app2 : {
+    "Rush Hour" : {
         id: 2,
         title: "Rush Hour",
         appImageSrc: "",
@@ -21,7 +21,7 @@ let projects = {
         appImpact: "",
         repoLink: "https://github.com/samdeitz/rushhour"
     },
-    app3 : {
+    "Dungeon Escape" : {
         id: 3,
         title: "Dungeon Escape",
         appImageSrc: "",
@@ -31,7 +31,7 @@ let projects = {
         appImpact: "",
         repoLink: "https://github.com/samdeitz/riddlegame"
     },
-    app4 : {
+    "Loading Icon" : {
         id: 4,
         title: "Loading Icon",
         appImageSrc: "",
@@ -41,7 +41,7 @@ let projects = {
         appImpact: "",
         repoLink: "https://github.com/samdeitz/loadingicon"
     },
-    app5 : {
+    "Snake" : {
         id: 5,
         title: "Snake",
         appImageSrc: "",
@@ -51,7 +51,7 @@ let projects = {
         appImpact: "",
         repoLink: "https://github.com/samdeitz/snakegame"
     },
-    app6 : {
+    "Pong" : {
         id: 6,
         title: "Pong",
         appImageSrc: "",
@@ -65,21 +65,21 @@ let projects = {
 
 //id starts at 20 for info
 let info = {
-    app20: {
+    "About Me": {
         id: 20,
         title: "About Me",
         appImageSrc: "family.jpg",
         position: "",
         desktopImageSrc: "abt-me.jpg"
     },
-    app21: {
+    "Previous Work": {
         id: 21,
         title: "Previous Work",
         appImageSrc: "sample.jpg",
         position: "",
         desktopImageSrc: "test.jpg"
     },
-    app22: {
+    "Website Images": {
         id: 22,
         title: "Website Images",
         appImageSrc: "sample.jpg",

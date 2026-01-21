@@ -3,11 +3,11 @@ import { AppContext } from "./AppContext.js";
 
 
 export const AppProvider = ( { children } ) => {
-    const [app, setApp] = useState("");
-    const [openApps, setOpenApps] = useState([])
+    const [app, setApp] = useState(""); // Current open app
+    const [openApps, setOpenApps] = useState([]) // List of apps running in the background (taskbar)
 
     const openApp = (a) => {
-        if(!(typeof a === "string")) a = `app${a.id}`;
+        if(!(typeof a === "string")) a = a.title;
         setApp(a);
 
         if(!openApps.includes(a)) {
