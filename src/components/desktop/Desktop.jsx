@@ -24,7 +24,6 @@ const Desktop = () => {
             @max-[78rem]:justify-between
             @max-[78rem]:m-auto
             w-3/4
-            h-100vh
             transition-all
             duration-1000
             ease-in-out

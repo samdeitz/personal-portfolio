@@ -81,7 +81,7 @@ const DesktopApp = ({ apps }) => {
             {app && (
 
                 <div>
-                    <div className={`overlay z-99]`} style={{ height: screenHeight }} /> {/* Overlay behind app to block clicking other elements on the screen */}
+                    <div className="overlay z-99 fixed" style={{ height: screenHeight }} /> {/* Overlay behind app to block clicking other elements on the screen */}
                     
                     {/* -------- APP WINDOW -------- */}
                     <VBox className={`
