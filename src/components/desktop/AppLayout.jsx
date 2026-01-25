@@ -1,30 +1,82 @@
-// <a className="self-start center" href={currentApp.repoLink} target="_blank">
-//                                         <HBox className="items-center gap-2 hover-over p-1 pl-2 pr-3 rounded-lg cursor-pointer">
-//                                                 <img className="w-10" src={isDark ? githubWhite : githubBlack} />
-//                                                 <h1 className="h-fit">Go to repo</h1>
-//                                         </HBox>
-//                                     </a>
 const workoutFinderApp = [
     {
-        type: "RepoLink"
-    }
-];
-const rushHourApp = [];
-const dungeonEscapeApp = [];
-const loadingIconApp = [];
-const snakeApp = [];
-const pongApp = [];
-const aboutMeApp = [
-    {
-        type: "HeaderImage"
+        type: "Paragraph",
+        text: "Details Coming soon..."
     },
     {
+        type: "RepoLink"
+    },
+];
+const rushHourApp = [
+    {
         type: "Paragraph",
-        text: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. "
+        text: "Details Coming soon..."
+    },
+    {
+        type: "RepoLink"
+    },
+];
+const dungeonEscapeApp = [
+    {
+        type: "Paragraph",
+        text: "Details Coming soon..."
+    },
+    {
+        type: "RepoLink"
+    },
+];
+const loadingIconApp = [
+    {
+        type: "Paragraph",
+        text: "Details Coming soon..."
+    },
+    {
+        type: "RepoLink"
+    }, 
+];
+const snakeApp = [
+    {
+        type: "Paragraph",
+        text: "Details Coming soon..."
+    },
+    {
+        type: "RepoLink"
+    },
+];
+const pongApp = [
+    {
+        type: "Paragraph",
+        text: "Details Coming soon..."
+    },
+    {
+        type: "RepoLink"
+    },
+];
+const aboutMeApp = [
+    // {
+    //     type: "HeaderImage"
+    // },
+    // {
+    //     type: "Paragraph",
+    //     text: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. "
+    // }
+    {
+        type: "Paragraph",
+        text: "Details Coming soon..."
     }
 ];
-const previousWorkApp = [];
-const websiteImagesApp = [];
+const previousWorkApp = [
+    {
+        type: "Paragraph",
+        text: "Details Coming soon..."
+    }
+];
+const websiteImagesApp = [
+    {
+        type: "Paragraph",
+        text: "Details Coming soon..."
+    }
+];
 
 
 export const appLayouts = {

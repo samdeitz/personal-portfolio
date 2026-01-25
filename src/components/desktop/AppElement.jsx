@@ -10,8 +10,8 @@ const AppElement = ({ element, currentApp, images }) => {
     switch (element.type) {
         case "RepoLink":
             return (
-                <a className="self-start center" href={currentApp.repoLink} target="_blank">
-                    <HBox className="items-center gap-2 hover-over m-4 p-1 pl-2 pr-3 rounded-lg cursor-pointer">
+                <a className="self-center" href={currentApp.repoLink} target="_blank">
+                    <HBox className="items-center gap-2 hover-over p-1 pr-2 rounded-lg cursor-pointer">
                             <img className="w-10" src={isDark ? githubWhite : githubBlack} />
                             <h1 className="h-fit">Go to repo</h1>
                     </HBox>
@@ -24,7 +24,7 @@ const AppElement = ({ element, currentApp, images }) => {
 
         case "Paragraph":
             return (
-                <p className="m-4 w-10/12">
+                <p className="p-4">
                     {element.text}
                 </p>
             );
