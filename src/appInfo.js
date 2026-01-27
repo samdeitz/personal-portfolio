@@ -62,14 +62,14 @@ let projects = {
         repoLink: "https://github.com/samdeitz/pong"
     },
     "Punch-in Page" : {
-        id: 6,
+        id: 7,
         title: "Punch-in Page",
         appImageSrc: "",
-        desktopImageSrc: "pong.jpg",
+        desktopImageSrc: "punch-in.jpg",
         position: "",
         appOverview: "",
         appImpact: "",
-        repoLink: "https://github.com/samdeitz/pong"
+        repoLink: "https://github.com/samdeitz/md-punch-in"
     },
 }
 

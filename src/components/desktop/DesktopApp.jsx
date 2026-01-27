@@ -133,19 +133,17 @@ const DesktopApp = ({ apps }) => {
                             h-full
                             gap-y-1
                         `}>
-                            {currentAppLayout.map((element) => {
+                            {currentAppLayout.map((element, index) => {
                                     return (
                                         <AppElement
                                             element={element}
                                             currentApp={currentApp}
                                             images={imagesByName}
+                                            key={element.type + index}
                                         ></AppElement>
                                     );
                                 })}   
                         </VBox>
-                                
-                            
-                    
                     </VBox>
                 </div>
         )}

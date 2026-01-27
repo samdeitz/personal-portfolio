@@ -52,6 +52,15 @@ const pongApp = [
         type: "RepoLink"
     },
 ];
+const punchInApp = [
+    {
+        type: "Paragraph",
+        text: "Details Coming soon..."
+    },
+    {
+        type: "RepoLink"
+    },
+];
 const aboutMeApp = [
     // {
     //     type: "HeaderImage"
@@ -86,6 +95,7 @@ export const appLayouts = {
     "Loading Icon": loadingIconApp,
     "Snake": snakeApp,
     "Pong": pongApp,
+    "Punch-in Page": punchInApp,
     "About Me": aboutMeApp,
     "Previous Work": previousWorkApp,
     "Website Images": websiteImagesApp
