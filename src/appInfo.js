@@ -61,6 +61,16 @@ let projects = {
         appImpact: "",
         repoLink: "https://github.com/samdeitz/pong"
     },
+    "Punch-in Page" : {
+        id: 6,
+        title: "Punch-in Page",
+        appImageSrc: "",
+        desktopImageSrc: "pong.jpg",
+        position: "",
+        appOverview: "",
+        appImpact: "",
+        repoLink: "https://github.com/samdeitz/pong"
+    },
 }
 
 //id starts at 20 for info
