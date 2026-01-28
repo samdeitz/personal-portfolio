@@ -1,0 +1,30 @@
+[
+  {
+    "fullname": "John Smith",
+    "displayname": "John",
+    "password": "123",
+    "office": "Toronto",
+    "groups": "Engineering"
+  },
+  {
+    "fullname": "Jane Doe",
+    "displayname": "Jane",
+    "password": "123",
+    "office": "London",
+    "groups": "Marketing"
+  },
+  {
+    "fullname": "Samuel Deitz",
+    "displayname": "Sam",
+    "password": "123",
+    "office": "London",
+    "groups": "Front-End Web Development"
+  },
+  {
+    "fullname": "Arielle Tetelbaum",
+    "displayname": "Ari",
+    "password": "123",
+    "office": "London",
+    "groups": "Front-End Web Development"
+  }
+]

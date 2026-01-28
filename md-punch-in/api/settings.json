@@ -1,0 +1,23 @@
+{
+  "punch_options": [
+    { "text": "In", "color": "green", "in_or_out": true },
+    { "text": "Out", "color": "red", "in_or_out": false }
+  ],
+  "show_display_name": true,
+  "display_current_users": false,
+  "display_office_name": false,
+  "display_group_name": false,
+  "time_format": "",
+  "date_format": "",
+  "logo": "",
+  "app_name": "Time Clock",
+  "css": {
+      "bs_primary": "#F15D22",
+      "bs_secondary": "#4D5258",
+      "bs_gray": "#4D5258",
+      "bs_primary_rgb": "rgb(241, 93, 34)",
+      "bs_secondary_rgb": "rgb(77, 82, 88)",
+      "bs_body_color": "#d9d9d9",
+      "bs_body_bg": "#ffffff"
+  }
+}
