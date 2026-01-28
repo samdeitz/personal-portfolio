@@ -31,3 +31,4 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.PORTFOLIO_REPO_TOKEN }}
         run: npm run deploy
+        
