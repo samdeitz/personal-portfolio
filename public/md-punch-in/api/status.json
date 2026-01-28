@@ -1,0 +1,38 @@
+[
+  {
+    "fullname": "John Smith",
+    "displayname": "John",
+    "status": "Out",
+    "time": "15:00",
+    "date": "2026-1-26",
+    "office": "Toronto",
+    "groups": "Engineering"
+  },
+  {
+    "fullname": "Jane Smith",
+    "displayname": "Jane",
+    "status": "Out",
+    "time": "13:00",
+    "date": "2026-1-26",
+    "office": "Toronto",
+    "groups": "Engineering"
+  },
+  {
+    "fullname": "Samuel Deitz",
+    "displayname": "Sam",
+    "status": "Out",
+    "time": "5:00",
+    "date": "2026-1-26",
+    "office": "London",
+    "groups": "Front-End Web Development"
+  },
+  {
+    "fullname": "Arielle Tetelbaum",
+    "displayname": "Ari",
+    "status": "Out",
+    "time": "10:00",
+    "date": "2026-1-26",
+    "office": "London",
+    "groups": "Front-End Web Development"
+  }
+]
