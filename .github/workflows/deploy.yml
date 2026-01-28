@@ -8,7 +8,7 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    
+
     steps:
 
       - name: checkout
@@ -21,6 +21,11 @@ jobs:
 
       - name: install dependencies
         run: npm ci
+
+      - name: configure git for commit and deploy
+        run: |
+              git config --global user.name "deploy-bot"
+              git config --global user.email "deploy-bot@github.com"      
 
       - name: deploy
         run: npm run deploy
