@@ -1,7 +1,7 @@
 import VBox from "@/components/ui/VBox.jsx";
 import HBox from "@/components/ui/HBox.jsx";
-import { useApp } from "@/context/appContext.js"
-import { useTheme } from "@/context/themeContext.js"
+import { useApp } from "@/context/AppContext.js"
+import { useTheme } from "@/context/ThemeContext.js"
 
 // import app icons for results tab
 const appImages = import.meta.glob("@/assets/icons/appIcons/*.jpg", {
