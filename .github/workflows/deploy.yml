@@ -28,4 +28,6 @@ jobs:
               git config --global user.email "deploy-bot@github.com"      
 
       - name: deploy
+        env:
+          GH_TOKEN: ${{ secrets.PORTFOLIO_REPO_TOKEN }}
         run: npm run deploy
