@@ -4,8 +4,9 @@ let projects = {
     "Workout Finder" : {
         id: 1,
         title: "Workout Finder",
-        appImageSrc: "",
+        appImageSrc: "exercise-finder-banner.jpg",
         desktopImageSrc: "exercise-finder.jpg",
+        route: "/exercisefinder",
         position: "",
         appOverview: "",
         appImpact: "",
@@ -14,7 +15,7 @@ let projects = {
     "Rush Hour" : {
         id: 2,
         title: "Rush Hour",
-        appImageSrc: "",
+        appImageSrc: "rush-hour-banner.jpg",
         desktopImageSrc: "rush-hour.jpg",
         position: "",
         appOverview: "",
@@ -24,8 +25,8 @@ let projects = {
     "Dungeon Escape" : {
         id: 3,
         title: "Dungeon Escape",
-        appImageSrc: "",
-        desktopImageSrc: "door.jpg",
+        appImageSrc: "escape-banner.jpg",
+        desktopImageSrc: "escape.jpg",
         position: "",
         appOverview: "",
         appImpact: "",
@@ -54,7 +55,7 @@ let projects = {
     "Pong" : {
         id: 6,
         title: "Pong",
-        appImageSrc: "",
+        appImageSrc: "pong-banner.jpg",
         desktopImageSrc: "pong.jpg",
         position: "",
         appOverview: "",
@@ -64,8 +65,9 @@ let projects = {
     "Punch-in Page" : {
         id: 7,
         title: "Punch-in Page",
-        appImageSrc: "",
+        appImageSrc: "punch-in-banner.jpg",
         desktopImageSrc: "punch-in.jpg",
+        route: "/md-punch-in",
         position: "",
         appOverview: "",
         appImpact: "",
