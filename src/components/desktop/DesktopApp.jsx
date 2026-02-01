@@ -15,7 +15,7 @@ import minimizeBlack from "@/assets/icons/minimize-black.svg";
 
 
 
-const appImages = import.meta.glob("@/assets/images/*.jpg", {
+const appImages = import.meta.glob("@/assets/images/*", {
     eager: true,
     import: "default"
 });

@@ -16,6 +16,15 @@ const next = {
 const vercel = {
     technology: "Vercel"
 }
+const java = {
+    technology: "Java"
+}
+const javaSwing = {
+    technology: "Java Swing Library"
+}
+const  javaHSA2 = {
+    technology: "Java HSA2 Library"
+}
 
 const workoutFinderApp = [
     {
@@ -53,6 +62,13 @@ const rushHourApp = [
     {
         type: "RepoLink"
     },
+    {
+        type: "Tech Stack",
+        content: [
+            java,
+            javaSwing,
+        ]
+    }
 ];
 const dungeonEscapeApp = [
     {
@@ -66,24 +82,50 @@ const dungeonEscapeApp = [
     {
         type: "RepoLink"
     },
+    {
+        type: "Tech Stack",
+        content: [
+            java
+        ]
+    }
 ];
 const loadingIconApp = [
     {
+        type: "HeaderImage",
+    },
+    {
         type: "Paragraph",
         text: "Details Coming soon..."
     },
     {
         type: "RepoLink"
-    }, 
+    },
+    {
+        type: "Tech Stack",
+        content: [
+            java,
+            javaSwing
+        ]
+    }
 ];
 const snakeApp = [
     {
+        type: "HeaderImage",
+    },
+    {
         type: "Paragraph",
         text: "Details Coming soon..."
     },
     {
         type: "RepoLink"
     },
+    {
+        type: "Tech Stack",
+        content: [
+            java,
+            javaSwing
+        ]
+    }
 ];
 const pongApp = [
     {
@@ -97,6 +139,13 @@ const pongApp = [
     {
         type: "RepoLink"
     },
+    {
+        type: "Tech Stack",
+        content: [
+            java,
+            javaHSA2
+        ]
+    }
 ];
 const punchInApp = [
     {

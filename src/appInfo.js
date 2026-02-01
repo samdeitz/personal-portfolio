@@ -35,7 +35,7 @@ let projects = {
     "Loading Icon" : {
         id: 4,
         title: "Loading Icon",
-        appImageSrc: "",
+        appImageSrc: "loading-banner.gif",
         desktopImageSrc: "loading.jpg",
         position: "",
         appOverview: "",
@@ -45,7 +45,7 @@ let projects = {
     "Snake" : {
         id: 5,
         title: "Snake",
-        appImageSrc: "",
+        appImageSrc: "snake-banner.png",
         desktopImageSrc: "snake.jpg",
         position: "",
         appOverview: "",
@@ -65,7 +65,7 @@ let projects = {
     "Punch-in Page" : {
         id: 7,
         title: "Punch-in Page",
-        appImageSrc: "punch-in-banner.jpg",
+        appImageSrc: "punch-in-banner2.jpg",
         desktopImageSrc: "punch-in.jpg",
         route: "/md-punch-in",
         position: "",

@@ -13,7 +13,7 @@ const AppElement = ({ element, currentApp, images }) => {
     switch (element.type) {
         case "RepoLink":
             return (
-                <a key={currentApp.id} className="self-center" href={currentApp.repoLink} target="_blank">
+                <a key={currentApp.id} className="self-start ml-4" href={currentApp.repoLink} target="_blank">
                     <HBox className="items-center h-12 gap-2 hover-over p-1 pr-2 rounded-lg cursor-pointer">
                             <img className="w-10" src={isDark ? githubWhite : githubBlack} />
                             <h1 className="h-fit">Go to repo</h1>
@@ -34,7 +34,7 @@ const AppElement = ({ element, currentApp, images }) => {
 
         case "Route":
             return (
-                <a key={currentApp.id} className="self-center" href={currentApp.route} target="_blank">
+                <a key={currentApp.id} className="self-start ml-4" href={currentApp.route} target="_blank">
                     <HBox className="items-center h-12 gap-2 hover-over p-1 pl-2 rounded-lg cursor-pointer">
                             <h1 className="h-fit">Visit Site</h1>
                             <img className="w-5" src={isDark ? openWhite : openBlack} />
@@ -44,7 +44,7 @@ const AppElement = ({ element, currentApp, images }) => {
 
         case "Horizontal Box":
             return (
-                <HBox className="ml-4 gap-4 h-10 self-start" key={currentApp.id}>
+                <HBox className="self-start" key={currentApp.id}>
                     {
                         element.content.map((e, index) => {
                             return (
