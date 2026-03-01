@@ -179,7 +179,7 @@ const Taskbar = ( { apps } ) => {
                 <HBox className="flex-shrink-0">
 
                     {/* Resume link */}
-                    <a href="../../SDResumeTech.pdf"
+                    <a href="../../SamDeitz.pdf"
                         target="_blank" 
                         className="
                         flex 

@@ -1,70 +1,189 @@
+const vite = {
+    technology: "Vite"
+}
+const tailwind = {
+    technology: "TailwindCSS"
+}
+const svelte = {
+    technology: "Svelte"
+}
+const react = {
+    technology: "React.js"
+}
+const next = {
+    technology: "Next.js"
+}
+const vercel = {
+    technology: "Vercel"
+}
+const java = {
+    technology: "Java"
+}
+const javaSwing = {
+    technology: "Java Swing Library"
+}
+const  javaHSA2 = {
+    technology: "Java HSA2 Library"
+}
+
 const workoutFinderApp = [
+    {
+        type: "HeaderImage"
+    },
     {
         type: "Paragraph",
         text: "Details Coming soon..."
     },
     {
-        type: "RepoLink"
+        type: "Horizontal Box",
+        content: [
+            {
+                type: "RepoLink"
+            },
+            {
+                type: "Route"
+            }
+        ]
     },
+    {
+        type: "Tech Stack",
+        content: [
+            react,
+            vite,
+            tailwind,
+        ]
+    }
 ];
 const rushHourApp = [
     {
+        type: "HeaderImage"
+    },
+    {
         type: "Paragraph",
         text: "Details Coming soon..."
     },
     {
         type: "RepoLink"
     },
+    {
+        type: "Tech Stack",
+        content: [
+            java,
+            javaSwing,
+        ]
+    }
 ];
 const dungeonEscapeApp = [
     {
+        type: "HeaderImage",
+        className: "object-left"
+    },
+    {
         type: "Paragraph",
         text: "Details Coming soon..."
     },
     {
         type: "RepoLink"
     },
+    {
+        type: "Tech Stack",
+        content: [
+            java
+        ]
+    }
 ];
 const loadingIconApp = [
     {
+        type: "HeaderImage",
+    },
+    {
         type: "Paragraph",
         text: "Details Coming soon..."
     },
     {
         type: "RepoLink"
-    }, 
+    },
+    {
+        type: "Tech Stack",
+        content: [
+            java,
+            javaSwing
+        ]
+    }
 ];
 const snakeApp = [
     {
+        type: "HeaderImage",
+    },
+    {
         type: "Paragraph",
         text: "Details Coming soon..."
     },
     {
         type: "RepoLink"
     },
+    {
+        type: "Tech Stack",
+        content: [
+            java,
+            javaSwing
+        ]
+    }
 ];
 const pongApp = [
     {
+        type: "HeaderImage",
+    },
+    {
         type: "Paragraph",
         text: "Details Coming soon..."
     },
     {
         type: "RepoLink"
     },
+    {
+        type: "Tech Stack",
+        content: [
+            java,
+            javaHSA2
+        ]
+    }
 ];
 const punchInApp = [
     {
+        type: "HeaderImage",
+        className: ""
+    },
+    {
         type: "Paragraph",
         text: "Details Coming soon..."
     },
     {
-        type: "RepoLink"
+        type: "Horizontal Box",
+        content: [
+            {
+                type: "RepoLink"
+            },
+            {
+                type: "Route"
+            }
+        ]
     },
+    {
+        type: "Tech Stack",
+        content: [
+            svelte,
+            vite,
+            tailwind
+        ]
+    }
+    
 ];
 const aboutMeApp = [
-    // {
-    //     type: "HeaderImage"
-    // },
+    {
+        type: "HeaderImage",
+        className: "object-[50%_20%]"
+    },
     // {
     //     type: "Paragraph",
     //     text: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. "

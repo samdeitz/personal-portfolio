@@ -88,6 +88,20 @@
 }
 
 @theme {
+    --animate-small-bounce: smallBounce 0.3s linear 0s infinite;
+    --animate-shake: shake 0.3s linear 0s infinite;
+    --animate-flip: flip 0.5 ease-in-out 0s both 1;
+    
+
+    @keyframes flip {
+        0% {
+            transform: rotateY(0deg);
+        }
+        100% {
+            transform: rotateY(180deg);
+        }
+    }
+
     @keyframes shake {
         0% {
             transform: rotate(0deg);
@@ -127,13 +141,6 @@
 }
 
 
-@utility animate-small-bounce {
-    animation: smallBounce 0.3s linear 0s infinite;
-}
-
-@utility animate-shake {
-    animation: shake 0.3s linear 0s infinite;
-}
 
 @utility bg-light {
     @apply bg-[#c9c9c9] transition-colors duration-300 ease-in-out;
