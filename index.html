@@ -3,10 +3,19 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="/logo-dark.svg" media="(prefers-color-scheme:light)" />
+    <link rel="icon" href="/logo-light.svg" media="(prefers-color-scheme:dark)" />
     <title>Sam Deitz</title>
   </head>
+  <style>
+    .placeholder {
+      background-color: #151515;
+    }
+  </style>
   <body>
-    <div id="root"></div>
+    <div id="root">
+      <div class="placeholder"></div>
+    </div>
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>

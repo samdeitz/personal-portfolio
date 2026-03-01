@@ -56,6 +56,9 @@ const workoutFinderApp = [
 ];
 const rushHourApp = [
     {
+        type: "HeaderImage"
+    },
+    {
         type: "Paragraph",
         text: "Details Coming soon..."
     },
@@ -130,7 +133,6 @@ const snakeApp = [
 const pongApp = [
     {
         type: "HeaderImage",
-        className: "object-[50%_15%]"
     },
     {
         type: "Paragraph",

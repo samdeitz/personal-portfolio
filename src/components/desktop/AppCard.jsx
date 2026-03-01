@@ -12,13 +12,13 @@ const Card = ( props ) => {
         <VBox {...props} className={`relative h-fit transition-[transform,opacity] shrink-0 transform-gpu duration-1000 project-app hover:animate-shake cursor-pointer ${props.className}`}>
             
             {/* Open icon */}
-            <img className="w-5 absolute top-3 right-3" src={isDark ? openWhite : openBlack} />
+            <img className={`w-5 absolute top-3 right-3 ${ isDark ? "bg-[#15151550]" : "bg-[#d9d9d950]"} rounded-sm`} src={isDark ? openWhite : openBlack} />
             
             {/* App image */}
             <img className="@max-lg:w-24 w-35 sm rounded-t-lg" src={props.imgsrc} />
 
             {/* App name */}
-            <h3 className={`@max-lg:w-24 w-35 text-center font-bold ${isDark ? " bg-[rgba(0,0,0,0.3)]" : "bg-[rgba(255,255,255,0.3)]"}  rounded-b-lg`}>{props.apptitle}</h3>
+            <h3 className={`@max-lg:w-24 w-35 text-center font-bold ${isDark ? "bg-[rgba(0,0,0,0.3)]" : "bg-[rgba(255,255,255,0.3)]"}  rounded-b-lg`}>{props.apptitle}</h3>
         </VBox>
     )
 }
