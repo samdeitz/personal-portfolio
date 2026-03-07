@@ -105,24 +105,6 @@
         @apply underline underline-offset-2 hover:text-[#999];
     }
     
-    .header-shadow.white {
-        text-shadow: 5px 5px 5px #d9d9d9;
-    }
-
-    .header-shadow.black {
-        text-shadow: 5px 5px 5px #151515;
-    }
-
-    .text-outline-black {
-        -webkit-text-stroke: .5px #151515;
-        text-shadow: 0px 0px 2px #151515;
-    }
-
-    .text-outline-white {
-        -webkit-text-stroke: .5px #d9d9d9;
-        text-shadow: 15px 15px 5px #d9d9d9;
-    }
-    
 }
 
 @theme {
@@ -183,28 +165,11 @@
     --color-tdark: #1f1f1f;
     --color-tlight-secondary: #555;
     --color-tdark-secondary: #A0A0A0;
-}
 
-
-
-@utility bg-light {
-    background-color: var(--light);
-    @apply transition-colors duration-300 ease-in-out;
-}
-
-@utility bg-dark {
-    background-color: var(--dark);
-    @apply transition-colors duration-300 ease-in-out;
-}
-
-@utility bg-dark-grey {
-    background-color: var(--dark-grey);
-    /* @apply transition-colors duration-300 ease-in-out; */
-}
-
-@utility bg-light-grey {
-    background-color: var(--light-grey);
-    /* @apply transition-colors duration-300 ease-in-out; */
+    --color-dark: var(--dark);
+    --color-light: var(--light);
+    --color-dark-grey: var(--dark-grey);
+    --color-light-grey: var(--light-grey);
 }
 
 @utility hover-over {
@@ -215,7 +180,6 @@
 @utility no-bottom-shadow {
     box-shadow: 0 4px 16px 4px #D9D9D9;
 }
-
 
 @utility searchbar-transition {
     transition: width 1s;
