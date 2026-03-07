@@ -68,13 +68,15 @@ const apps = {
         id: 21,
         title: "Previous Work",
         appImageSrc: "sample.jpg",
-        desktopImageSrc: "test.jpg"
+        position: "",
+        desktopImageSrc: "logo-dark.png"
     },
     "Website Images": {
         id: 22,
         title: "Website Images",
         appImageSrc: "sample.jpg",
-        desktopImageSrc: "test.jpg"
+        position: "",
+        desktopImageSrc: "logo-dark.png"
     }
 }
 

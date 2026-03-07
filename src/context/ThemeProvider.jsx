@@ -10,8 +10,10 @@ export const ThemeProvider = ({ children }) => {
     }
 
     useEffect(() => {
-        document.body.classList.toggle("dark", isDark);
-        document.body.classList.toggle("light", !isDark);
+        document.body.classList.remove("dark", "light");
+        document.body.classList.add(isDark ? "dark" : "light");
+        document.documentElement.classList.remove("dark", "light");
+        document.documentElement.classList.add(isDark ? "dark" : "light");
     }, [isDark])
     
     return (

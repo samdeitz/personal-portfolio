@@ -5,7 +5,7 @@ import { useApp } from "@/context/AppContext.js";
 
 
 // Glob images for apps
-const appImages = import.meta.glob("@/assets/icons/appIcons/*.jpg", {
+const appImages = import.meta.glob("@/assets/icons/appIcons/*", {
     eager: true,
     import: "default"
 });
@@ -21,7 +21,7 @@ const Desktop = () => {
     return (
         <HBox className="
             flex-wrap
-            @max-[78rem]:justify-between
+            @max-[78rem]:justify-around
             @max-[78rem]:m-auto
             w-3/4
             transition-all
