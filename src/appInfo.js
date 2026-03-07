@@ -87,14 +87,14 @@ let info = {
         title: "Previous Work",
         appImageSrc: "sample.jpg",
         position: "",
-        desktopImageSrc: "test.jpg"
+        desktopImageSrc: "logo-dark.png"
     },
     "Website Images": {
         id: 22,
         title: "Website Images",
         appImageSrc: "sample.jpg",
         position: "",
-        desktopImageSrc: "test.jpg"
+        desktopImageSrc: "logo-dark.png"
     }
 }
 

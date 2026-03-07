@@ -2,18 +2,15 @@ import Header from './Header.jsx';
 import Desktop from "./desktop/Desktop.jsx";
 import VBox from "./ui/VBox.jsx";
 import meDark from "@/assets/images/me-dark.png";
-import meLight from "@/assets/images/me-light.png";
-import { useTheme } from "@/context/ThemeContext.js";
 
 const LandingSection = () => {
-    const { isDark } = useTheme();
 
     return (
         <VBox className="@container overflow-y-scroll hide-scrollbar">
 
             <Header />
             <Desktop />
-            <img src={isDark ? meDark : meLight} className="
+            <img src={meDark} className="
             fixed
             z-97
             right-0

@@ -22,9 +22,6 @@ const Searchbar = ({ searchImg, searchValue, setSearchValue, isSearching, setIsS
                 gap-1 
                 items-center 
                 origin-left
-                transition-all
-                duration-500
-                ease-in-out
                 flex-shrink-0
                 ${isSearching ? (!isDark ? "bg-dark-grey" : "bg-light-grey") : (!isDark ? "bg-light-grey" : "bg-dark-grey")}
         `}>
@@ -37,12 +34,12 @@ const Searchbar = ({ searchImg, searchValue, setSearchValue, isSearching, setIsS
             {/* searchbar, conditionally rendered by isSearching */}
             <input 
                 className={`
-                    transition-all
+                    transition-[opacity, transform]
                     duration-500
                     ease-in-out
                     origin-left
                     ${isSearching ? "max-w-46.25 min-w-46.25 sm:min-w-50 md:min-w-60 lg:min-w-80 opacity-100" : "min-w-0 max-w-0 opacity-0"} 
-                    ${isDark ? "text-[#151515]" : "text-[#d9d9d9]"}
+                    ${isDark ? "text-tdark" : "text-tlight"}
                     h-12
                     rounded-sm 
                     pl-2 

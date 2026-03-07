@@ -2,29 +2,67 @@
 @import "tailwindcss";
 
 
+
 @layer base {
-    
+
+    :root {
+        --light: #ccc;
+        --dark: #202020;
+        --dark-grey: #333;
+        --light-grey: #AAA;
+    }
+
     html {
-        @apply hide-scrollbar max-w-screen max-h-screen;
+        @apply hide-scrollbar;
+    }
+
+    html.dark {
+        @apply bg-dark text-tlight;
+    }
+
+    html.light {
+        @apply bg-light text-tdark;
     }
 
     body {
+        @apply min-h-screen;
+        position: relative;
+        isolation: isolate;
         font-family: 'Jura', 'sans-serif';
         animation: fadeIn 3s;
+        z-index: 0;
     }
+
+    /* gradient layers */
+    body::before,
+    body::after {
+        content: "";
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        transition: opacity 0.5s ease;
+    }
+
+    /* dark layer (visible by default) */
+    body::before {
+        background: linear-gradient(to bottom, #303030 0%, var(--dark) 50%);
+        opacity: 1;          /* default */
+    }
+
+    /* light layer (hidden by default) */
+    body::after {
+        background: linear-gradient(to bottom, #999, var(--light));
+        opacity: 0;          /* default */
+    }
+
+    /* theme overrides */
+    body.light::before { opacity: 0; }
+    body.light::after  { opacity: 1; }
+
 
     img {
         aspect-ratio: 1 / 1;
     }
-
-    body.dark {
-        @apply bg-dark text-[#d9d9d9];
-    }
-
-    body.light {
-        @apply bg-light text-[#151515];
-    }
-
 }
 
 @layer components {
@@ -33,7 +71,7 @@
     }
 
     .project-app {
-        @apply hover-over p-2 flex-nowrap rounded-lg hover:opacity-100 opacity-70;
+        @apply hover-over p-2 flex-nowrap rounded-lg hover:opacity-100 opacity-80;
     }
 
     .title-gradient.dark {
@@ -41,7 +79,7 @@
     }
         
     .title-gradient.light {
-        @apply bg-gradient-to-r from-[#666] via-[#333] to-[#666] bg-clip-text text-transparent;
+        @apply bg-gradient-to-r from-[#202020] via-[#555] to-[#202020] bg-clip-text text-transparent;
 
     }
 
@@ -126,6 +164,13 @@
     }
 }
 
+@theme {
+    --color-tlight: #d9d9d9;
+    --color-tdark: #1f1f1f;
+    --color-tlight-secondary: #555;
+    --color-tdark-secondary: #A0A0A0;
+}
+
 
 @utility animate-small-bounce {
     animation: smallBounce 0.3s linear 0s infinite;
@@ -136,19 +181,23 @@
 }
 
 @utility bg-light {
-    @apply bg-[#c9c9c9] transition-colors duration-300 ease-in-out;
+    background-color: var(--light);
+    @apply transition-colors duration-300 ease-in-out;
 }
 
 @utility bg-dark {
-    @apply bg-[#202020] transition-colors duration-300 ease-in-out;
+    background-color: var(--dark);
+    @apply transition-colors duration-300 ease-in-out;
 }
 
 @utility bg-dark-grey {
-    @apply bg-[#333] transition-colors duration-300 ease-in-out;
+    background-color: var(--dark-grey);
+    /* @apply transition-colors duration-300 ease-in-out; */
 }
 
 @utility bg-light-grey {
-    @apply bg-[#999] transition-colors duration-300 ease-in-out;
+    background-color: var(--light-grey);
+    /* @apply transition-colors duration-300 ease-in-out; */
 }
 
 @utility hover-over {

@@ -37,7 +37,6 @@ const DesktopApp = ({ apps }) => {
 
     useEffect(() => {
         const updateHeight = () => {
-            console.log(screenHeight);  
             setScreenHeight(document.documentElement.scrollHeight);
         }
 

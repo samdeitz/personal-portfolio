@@ -111,10 +111,12 @@ const Taskbar = ( { apps } ) => {
             flex 
             items-center 
             justify-between
+            duration-500
             h-13
             z-98
             bottom-0
             w-screen
+            
             `}>
                 {/* --- SEARCHBAR --- */}
                 <Searchbar 
