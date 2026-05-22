@@ -22,7 +22,7 @@ const AppElement = ({ element, currentApp, images }) => {
             );
         case "HeaderImage":
             return (
-                <img key={currentApp.id} className={`${element?.className} self-center h-[250px] w-full object-cover`} src={images[currentApp.appImageSrc]} />
+                <img key={currentApp.id} className={`${element?.className} self-center h-2/5 w-full object-cover`} src={images[currentApp.appImageSrc]} />
             );
 
         case "Paragraph":

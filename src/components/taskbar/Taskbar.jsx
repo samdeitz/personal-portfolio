@@ -1,11 +1,11 @@
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect } from "react";
 import { useMediaQuery } from "react-responsive";
 import { useApp } from "@/context/AppContext.js";
-import { useTheme } from '@/context/ThemeContext.js';
+import { useTheme } from "@/context/ThemeContext.js";
 
 import HBox from "@/components/ui/HBox.jsx";
 import VBox from "@/components/ui/VBox.jsx";
-import Searchbar from './Searchbar.jsx';
+import Searchbar from "./Searchbar.jsx";
 import SearchResults from "./SearchResults.jsx";
 import OverflowingApps from "./OverflowingApps.jsx";
 
@@ -27,86 +27,80 @@ import sunBlack from "@/assets/icons/taskbarIcons/sun-black.svg";
 
 // glob images for apps
 const appImages = import.meta.glob("@/assets/icons/appIcons/*.jpg", {
-    eager: true,
-    import: "default"
+  eager: true,
+  import: "default",
 });
 
 // change keys to be by image name rather than path
 const imagesByName = Object.fromEntries(
-  Object.entries(appImages).map(([path, url]) => [path.split("/").pop(), url])
+  Object.entries(appImages).map(([path, url]) => [path.split("/").pop(), url]),
 );
 
-const Taskbar = ( { apps } ) => {
+const Taskbar = ({ apps }) => {
+  // ----- CONTEXT -----
+  const { isDark, toggleTheme } = useTheme(); // Theme context for rendering and toggling
+  const { windows, restoreWindow } = useApp(); // app context for opening and seeing whats open
 
-    // ----- CONTEXT -----
-    const { isDark, toggleTheme } = useTheme(); // Theme context for rendering and toggling
-    const { openApps, openApp } = useApp(); // app context for opening and seeing whats open
+  // ----- SEARCHING -----
+  const [searchValue, setSearchValue] = useState(""); // search value state
+  const [isSearching, setIsSearching] = useState(false); // user is searching
 
-    // ----- SEARCHING -----
-    const [ searchValue, setSearchValue ] = useState(""); // search value state
-    const [ isSearching, setIsSearching ] = useState(false); // user is searching
+  // ----- SIZING -----
+  const notMobile = useMediaQuery({ minWidth: 400 }); // Screen size determination
 
-    // ----- SIZING -----
-    const notMobile = useMediaQuery({ minWidth: 400 }) // Screen size determination
+  // ----- TASKBAR APPS -----
+  const [showOverflowingApps, setShowOverflowingApps] = useState(false); // show taskbar apps (depends on screen size)
+  const taskbarRef = useRef(null); // reference to taskbar
+  const appRef = useRef(null); // reference to any app
+  const [displayableOpenApps, setDisplayableOpenApps] = useState([]); // apps able to fit on the taskbar
+  const [nonDisplayableOpenApps, setNonDisplayableOpenApps] = useState([]); // apps that would overflow the taskbar size
 
-    // ----- TASKBAR APPS -----
-    const [ showOverflowingApps, setShowOverflowingApps ] = useState(false); // show taskbar apps (depends on screen size)
-    const taskbarRef = useRef(null); // reference to taskbar
-    const appRef = useRef(null); // reference to any app
-    const [displayableOpenApps, setDisplayableOpenApps] = useState([]); // apps able to fit on the taskbar
-    const [nonDisplayableOpenApps, setNonDisplayableOpenApps] = useState([]); // apps that would overflow the taskbar size
+  useEffect(() => {
+    let el = taskbarRef.current; // get taskbar element
+    const APPW = appRef.current.getBoundingClientRect().width; // get app width
+    if (!el || !notMobile) return; // if the app is mobile, the apps dont show anyway
 
+    // Function to sort apps into visible (able to fit) and hidden (overflows)
+    const sortApps = () => {
+      let visible = [];
+      let hidden = [];
 
+      // amount of apps able to fit --> Subtracts 2 to fit the overflowingApps menu, and subtracts one more for extra space
+      let fittableApps = Math.floor(el.clientWidth / APPW) - 3;
 
-    useEffect(() => {
-        let el = taskbarRef.current; // get taskbar element
-        const APPW = appRef.current.getBoundingClientRect().width; // get app width
-        if (!el || !notMobile) return; // if the app is mobile, the apps dont show anyway
-        
-        // Function to sort apps into visible (able to fit) and hidden (overflows)
-        const sortApps = () => {
-            let visible = [];
-            let hidden = [];
+      // slice into visible and hidden if needed
+      if (windows.length > fittableApps) {
+        visible = [...windows.slice(0, fittableApps - 1)];
+        hidden = [...windows.slice(fittableApps - 1)];
+      } else visible = [...windows];
 
-            // amount of apps able to fit --> Subtracts 2 to fit the overflowingApps menu, and subtracts one more for extra space
-            let fittableApps = Math.floor(el.clientWidth / APPW)-3;
-            
-            // slice into visible and hidden if needed
-            if (openApps.length > fittableApps) {
-                visible = [...openApps.slice(0, fittableApps-1)];
-                hidden = [...openApps.slice(fittableApps-1)];
-            }
-            else visible = [...openApps];
+      // set state variables
+      setDisplayableOpenApps(visible);
+      setNonDisplayableOpenApps(hidden);
+    };
+    sortApps();
 
-            // set state variables
-            setDisplayableOpenApps(visible);
-            setNonDisplayableOpenApps(hidden);
-        }
-        sortApps();
+    // sorts apps every time user resizes the screen
+    let observer = new ResizeObserver(sortApps);
+    observer.observe(el);
+    return () => observer.disconnect(); // cleanup
+  }, [windows, isSearching, notMobile]);
 
-        // sorts apps every time user resizes the screen
-        let observer = new ResizeObserver(sortApps);
-        observer.observe(el);
-        return () => observer.disconnect(); // cleanup
-    }, [openApps, isSearching, notMobile])
+  return (
+    <>
+      {/* -------- SEARCH RESULTS MENU -------- */}
+      <SearchResults
+        apps={apps}
+        isSearching={isSearching}
+        setIsSearching={setIsSearching}
+        searchValue={searchValue}
+      />
 
-
-    return (
-        <>
-        {/* -------- SEARCH RESULTS MENU -------- */}
-        <SearchResults 
-            apps={apps}
-            isSearching={isSearching}
-            setIsSearching={setIsSearching}
-            searchValue={searchValue}
-        />
-        
-        {/* -------- TASKBAR -------- */}
-        <VBox className="fixed z-98 bottom-0 max-w-full" id="taskbar">
-            
-            {/* Left aligned items */}
-            <HBox 
-            className={`
+      {/* -------- TASKBAR -------- */}
+      <VBox className="fixed z-98 bottom-0 max-w-full" id="taskbar">
+        {/* Left aligned items */}
+        <HBox
+          className={`
             ${isDark ? "bg-dark-grey" : "bg-light-grey"}
             flex 
             items-center 
@@ -117,92 +111,127 @@ const Taskbar = ( { apps } ) => {
             bottom-0
             w-screen
             
-            `}>
-                {/* --- SEARCHBAR --- */}
-                <Searchbar 
-                    searchImg={isDark ? searchWhite : searchBlack} 
-                    searchValue={searchValue} 
-                    setSearchValue={setSearchValue} 
-                    isSearching={isSearching}
-                    setIsSearching={setIsSearching}
+            `}
+        >
+          {/* --- SEARCHBAR --- */}
+          <Searchbar
+            searchImg={isDark ? searchWhite : searchBlack}
+            searchValue={searchValue}
+            setSearchValue={setSearchValue}
+            isSearching={isSearching}
+            setIsSearching={setIsSearching}
+          />
+
+          {/* --- SOCIAL ICONS --- */}
+          <HBox
+            className={`${isSearching && "hidden sm:flex"} flex-grow min-w-0`}
+            ref={taskbarRef}
+          >
+            <a
+              className="taskbar-item"
+              href="mailto: sdeitz@uwo.ca"
+              target="_blank"
+              ref={appRef}
+            >
+              <img src={isDark ? mailWhite : mailBlack} alt="mail" />
+            </a>
+            <a
+              className="taskbar-item flex-shrink-0"
+              href="https://www.linkedin.com/in/sam-deitz-80559a31a/"
+              target="_blank"
+            >
+              <img
+                src={isDark ? linkedinWhite : linkedinBlack}
+                alt="linkedin"
+              />
+            </a>
+            <a
+              className="taskbar-item flex-shrink-0"
+              href="https://github.com/samdeitz"
+              target="_blank"
+            >
+              <img src={isDark ? githubWhite : githubBlack} alt="github" />
+            </a>
+
+            {/* Displayable open apps render */}
+            {displayableOpenApps.length > 0 &&
+              notMobile &&
+              displayableOpenApps.map((a) => (
+                <VBox
+                  className="taskbar-item gap-2 bounce-container flex-shrink-0 group"
+                  key={a.id}
+                  onClick={() => restoreWindow(a.id)}
+                >
+                  <img
+                    className="rounded-lg group-hover:animate-small-bounce"
+                    src={imagesByName[apps[a.type].desktopImageSrc]}
+                  />
+                  <div
+                    className={`${isDark ? "bg-light" : "bg-dark"} rounded-lg min-w-[100%] min-h-1 m-auto`}
+                  ></div>
+                </VBox>
+              ))}
+
+            {/* Apps for hidden app menu */}
+            {nonDisplayableOpenApps.length > 0 && (
+              <VBox
+                className={
+                  showOverflowingApps
+                    ? isDark
+                      ? "bg-light-grey"
+                      : "bg-dark-grey"
+                    : isDark
+                      ? "bg-dark-grey"
+                      : "bg-light-grey"
+                }
+              >
+                <OverflowingApps
+                  nonDisplayableOpenApps={nonDisplayableOpenApps}
+                  appImages={imagesByName}
+                  apps={apps}
+                  showOverflowingApps={showOverflowingApps}
+                  setShowOverflowingApps={setShowOverflowingApps}
                 />
 
-                {/* --- SOCIAL ICONS --- */}
-                <HBox className={`${isSearching && "hidden sm:flex"} flex-grow min-w-0`} ref={taskbarRef}>
-                    <a className="taskbar-item" href="mailto: sdeitz@uwo.ca" target="_blank" ref={appRef}>
-                        <img src={isDark ? mailWhite : mailBlack} alt="mail" />
-                    </a>
-                    <a className="taskbar-item flex-shrink-0" href="https://www.linkedin.com/in/sam-deitz-80559a31a/" target="_blank">
-                        <img src={isDark ? linkedinWhite : linkedinBlack} alt="linkedin" />
-                    </a>
-                    <a className="taskbar-item flex-shrink-0" href="https://github.com/samdeitz" target="_blank">
-                        <img src={isDark ? githubWhite : githubBlack} alt="github" />
-                    </a>
+                {/* More apps menu (to show hidden apps) */}
+                <div className="taskbar-item">
+                  <img
+                    src={isDark ? moreAppsWhite : moreAppsBlack}
+                    onClick={() => setShowOverflowingApps(!showOverflowingApps)}
+                  />
+                </div>
+              </VBox>
+            )}
+          </HBox>
 
-                    {/* Displayable open apps render */}
-                    {displayableOpenApps.length > 0 && notMobile  && (
-                        
-                        
-                        displayableOpenApps.map((a) => 
-                            <VBox 
-                                className="taskbar-item gap-2 bounce-container flex-shrink-0 group" 
-                                key={a} 
-                                onClick={() => openApp(a)}
-                            >
-                                <img className="rounded-lg group-hover:animate-small-bounce" src={imagesByName[apps[a].desktopImageSrc]} />
-                                <div className={`${isDark ?"bg-light" : "bg-dark"} rounded-lg min-w-[100%] min-h-1 m-auto`} ></div>
-                            </VBox>  
-                        )
-                    )}
-
-                    {/* Apps for hidden app menu */}
-                    {nonDisplayableOpenApps.length > 0 && 
-                        <VBox className={showOverflowingApps ? (isDark ? "bg-light-grey" : "bg-dark-grey") : (isDark ? "bg-dark-grey" : "bg-light-grey")}>
-                            <OverflowingApps 
-                                nonDisplayableOpenApps={nonDisplayableOpenApps}
-                                appImages={imagesByName}
-                                apps={apps}
-                                showOverflowingApps={showOverflowingApps}
-                                setShowOverflowingApps={setShowOverflowingApps}
-                            />
-
-                            {/* More apps menu (to show hidden apps) */}
-                            <div className="taskbar-item">
-                                <img 
-                                    src={isDark ? moreAppsWhite : moreAppsBlack} 
-                                    onClick={() => setShowOverflowingApps(!showOverflowingApps)} 
-                                />
-                            </div>
-                        </VBox>
-                    }
-                </HBox>
-
-                {/* Right aligned items */}
-                <HBox className="flex-shrink-0">
-
-                    {/* Resume link */}
-                    <a href="../../SamDeitz.pdf"
-                        target="_blank" 
-                        className="
+          {/* Right aligned items */}
+          <HBox className="flex-shrink-0">
+            {/* Resume link */}
+            <a
+              href="../../SamDeitz.pdf"
+              target="_blank"
+              className="
                         flex 
                         items-center 
                         taskbar-item
                         w-20
-                    ">
-                        resume
-                    </a>
+                    "
+            >
+              resume
+            </a>
 
-                    {/* Light/dark mode toggle */}
-                    <img onClick={toggleTheme} className="taskbar-item" src={isDark ? sunWhite : sunBlack} alt="sun/moon" />
-                </HBox>
-
-            </HBox> 
-        </VBox>      
-        </>     
-        
-    )
-}
-
+            {/* Light/dark mode toggle */}
+            <img
+              onClick={toggleTheme}
+              className="taskbar-item"
+              src={isDark ? sunWhite : sunBlack}
+              alt="sun/moon"
+            />
+          </HBox>
+        </HBox>
+      </VBox>
+    </>
+  );
+};
 
 export default Taskbar;
-
