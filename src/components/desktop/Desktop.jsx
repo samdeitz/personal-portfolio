@@ -15,7 +15,7 @@ const imagesByName = Object.fromEntries(
 );
 
 const Desktop = () => {
-  const { createWindow } = useApp(); // Get function to open an app
+  const { dispatch } = useApp(); // Get function to open an app
 
   return (
     <HBox
@@ -43,7 +43,14 @@ const Desktop = () => {
               key={a.id}
               className={`${a.position}`}
               apptitle={a.title}
-              onClick={() => createWindow(a.id)}
+              onClick={() =>
+                dispatch({
+                  type: "CREATE_WINDOW",
+                  payload: {
+                    windowID: a.id,
+                  },
+                })
+              }
               imgsrc={imagesByName[a.desktopImageSrc]}
             />
           );

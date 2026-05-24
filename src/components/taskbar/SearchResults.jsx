@@ -15,7 +15,7 @@ const imagesByName = Object.fromEntries(
 );
 
 const SearchResults = ({ apps, isSearching, setIsSearching, searchValue }) => {
-  const { createWindow } = useApp();
+  const { dispatch } = useApp();
   const { isDark } = useTheme();
 
   return (
@@ -50,7 +50,12 @@ const SearchResults = ({ apps, isSearching, setIsSearching, searchValue }) => {
               key={a.id}
               onClick={() => {
                 setIsSearching(false);
-                createWindow(a.id);
+                dispatch({
+                  type: "CREATE_WINDOW",
+                  payload: {
+                    windowID: a.id,
+                  },
+                });
               }}
             >
               <img
@@ -68,4 +73,3 @@ const SearchResults = ({ apps, isSearching, setIsSearching, searchValue }) => {
 };
 
 export default SearchResults;
-

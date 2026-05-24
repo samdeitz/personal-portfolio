@@ -14,37 +14,38 @@ import closeWhite from "@/assets/icons/close-white.svg";
 import minimizeWhite from "@/assets/icons/minimize-white.svg";
 import minimizeBlack from "@/assets/icons/minimize-black.svg";
 
-const OpenTab = ({ appID, isVisible, imagesByName }) => {
+const OpenTab = ({ style, appID, windowID, isVisible, imagesByName }) => {
   const notMobile = useMediaQuery({ minWidth: 400 }); // boolean to conditionally render for devices that are not mobile
   const { isDark } = useTheme(); // Theme boolean
-  const { windows, minimizeApp, closeApp } = useApp();
+  const { windows, dispatch } = useApp();
   const currentApp = apps[windows.find((window) => window.id === appID).title];
   const currentAppLayout = appLayouts[currentApp.title];
 
   return (
     <VBox
+      style={style}
       className={`
         transition-all 
+        border-2
         duration-300 
         ease-in-out
         origin-bottom-left
         ${isDark ? "bg-dark" : "bg-light"}
         ${isVisible ? "scale-100 opacity-100" : "scale-0 opacity-0"}
-        
-        fixed
-        m-5
-        md:mx-auto
-        max-w-3xl
-        border-2
-
-        left-0
-        right-0
-        top-0
-        bottom-0
+        relative
+        min-w-0
 
         rounded-lg
         z-100
       `}
+      onMouseEnter={() =>
+        dispatch({
+          type: "FOCUS_CHANGE",
+          payload: {
+            windowID,
+          },
+        })
+      }
     >
       {/* --- HEADER --- */}
       <HBox
@@ -61,13 +62,27 @@ const OpenTab = ({ appID, isVisible, imagesByName }) => {
         <HBox>
           {notMobile && (
             <img
-              onClick={() => minimizeApp(appID)}
+              onClick={() =>
+                dispatch({
+                  type: "MINIMIZE_WINDOW",
+                  payload: {
+                    windowID: appID,
+                  },
+                })
+              }
               src={isDark ? minimizeWhite : minimizeBlack}
               className="hover-over w-10 h-fit p-2 rounded-lg"
             />
           )}
           <img
-            onClick={() => closeApp(appID)}
+            onClick={() =>
+              dispatch({
+                type: "CLOSE_WINDOW",
+                payload: {
+                  windowID: appID,
+                },
+              })
+            }
             className="w-10 p-2 h-fit hover-over rounded-lg"
             src={isDark ? closeWhite : closeBlack}
           />
@@ -77,7 +92,7 @@ const OpenTab = ({ appID, isVisible, imagesByName }) => {
       <VBox
         className={`
                 ${isDark ? "dark" : "light"}
-                overflow-auto
+                overflow-y-auto
                 scrollbar-style
                 items-center
                 h-full

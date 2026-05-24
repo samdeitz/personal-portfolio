@@ -39,7 +39,7 @@ const imagesByName = Object.fromEntries(
 const Taskbar = ({ apps }) => {
   // ----- CONTEXT -----
   const { isDark, toggleTheme } = useTheme(); // Theme context for rendering and toggling
-  const { windows, restoreWindow } = useApp(); // app context for opening and seeing whats open
+  const { windows, dispatch } = useApp(); // app context for opening and seeing whats open
 
   // ----- SEARCHING -----
   const [searchValue, setSearchValue] = useState(""); // search value state
@@ -160,7 +160,14 @@ const Taskbar = ({ apps }) => {
                 <VBox
                   className="taskbar-item gap-2 bounce-container flex-shrink-0 group"
                   key={a.id}
-                  onClick={() => restoreWindow(a.id)}
+                  onClick={() =>
+                    dispatch({
+                      type: "RESTORE_WINDOW",
+                      payload: {
+                        windowID: a.id,
+                      },
+                    })
+                  }
                 >
                   <img
                     className="rounded-lg group-hover:animate-small-bounce"

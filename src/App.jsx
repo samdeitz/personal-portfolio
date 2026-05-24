@@ -9,7 +9,6 @@ function App() {
   return (
     <ThemeProvider>
       <AppProvider>
-        <DesktopApp />
         <LandingSection />
         <Taskbar apps={apps} />
       </AppProvider>

@@ -10,7 +10,7 @@ const OverflowingApps = ({
   setShowOverflowingApps,
 }) => {
   const { isDark } = useTheme(); // theme context
-  const { restoreWindow } = useApp(); // app context to open an app
+  const { dispatch } = useApp(); // app context to open an app
 
   return (
     <HBox
@@ -33,7 +33,12 @@ const OverflowingApps = ({
           key={a}
           onClick={() => {
             setShowOverflowingApps(false);
-            restoreWindow(a.id);
+            dispatch({
+              type: "RESTORE_WINDOW",
+              dispatch: {
+                windowID: a.id,
+              },
+            });
           }}
         >
           <img
@@ -47,4 +52,3 @@ const OverflowingApps = ({
 };
 
 export default OverflowingApps;
-

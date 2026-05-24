@@ -1,16 +1,18 @@
-import Header from './Header.jsx';
+import Header from "./Header.jsx";
 import Desktop from "./desktop/Desktop.jsx";
+import DesktopApp from "./desktop/DesktopApp.jsx";
 import VBox from "./ui/VBox.jsx";
 import meDark from "@/assets/images/me-dark.png";
 
 const LandingSection = () => {
-
-    return (
-        <VBox className="@container overflow-y-scroll hide-scrollbar">
-
-            <Header />
-            <Desktop />
-            <img src={meDark} className="
+  return (
+    <VBox className="@container overflow-y-scroll hide-scrollbar">
+      <DesktopApp />
+      <Header />
+      <Desktop />
+      <img
+        src={meDark}
+        className="
             fixed
             z-97
             right-0
@@ -18,9 +20,11 @@ const LandingSection = () => {
             max-h-screen
             overflow-none
             aspect-auto
-            "/>
-        </VBox>
-    )
-}
+            "
+      />
+    </VBox>
+  );
+};
 
 export default LandingSection;
+
