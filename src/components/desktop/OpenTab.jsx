@@ -6,18 +6,12 @@ import { useMediaQuery } from "react-responsive";
 import apps from "@/appInfo.js";
 import AppElement from "./AppElement.jsx";
 import VBox from "@/components/ui/VBox.jsx";
-import HBox from "@/components/ui/HBox.jsx";
-
-import closeBlack from "@/assets/icons/close-black.svg";
-import closeWhite from "@/assets/icons/close-white.svg";
-
-import minimizeWhite from "@/assets/icons/minimize-white.svg";
-import minimizeBlack from "@/assets/icons/minimize-black.svg";
+import AppHeader from "./AppHeader.jsx";
 
 const OpenTab = ({ style, appID, windowID, isVisible, imagesByName }) => {
   const notMobile = useMediaQuery({ minWidth: 400 }); // boolean to conditionally render for devices that are not mobile
   const { isDark } = useTheme(); // Theme boolean
-  const { windows, dispatch } = useApp();
+  const { focusedWindowID, windows, dispatch } = useApp();
   const currentApp = apps[windows.find((window) => window.id === appID).title];
   const currentAppLayout = appLayouts[currentApp.title];
 
@@ -32,6 +26,7 @@ const OpenTab = ({ style, appID, windowID, isVisible, imagesByName }) => {
         origin-bottom-left
         ${isDark ? "bg-dark" : "bg-light"}
         ${isVisible ? "scale-100 opacity-100" : "scale-0 opacity-0"}
+        ${focusedWindowID === windowID && "border-blue-300"}
         relative
         min-w-0
 
@@ -48,46 +43,8 @@ const OpenTab = ({ style, appID, windowID, isVisible, imagesByName }) => {
       }
     >
       {/* --- HEADER --- */}
-      <HBox
-        className={`
-                ${isDark ? "bg-dark-grey" : "bg-light-grey"} 
-                justify-between
-                rounded-t-lg
-            `}
-      >
-        {/* App Title */}
-        <h1 className="self-center pl-2 font-bold">{currentApp.title}</h1>
+      <AppHeader appID={appID} title={currentApp.title} notMobile={notMobile} />
 
-        {/* Close/Minimize buttons */}
-        <HBox>
-          {notMobile && (
-            <img
-              onClick={() =>
-                dispatch({
-                  type: "MINIMIZE_WINDOW",
-                  payload: {
-                    windowID: appID,
-                  },
-                })
-              }
-              src={isDark ? minimizeWhite : minimizeBlack}
-              className="hover-over w-10 h-fit p-2 rounded-lg"
-            />
-          )}
-          <img
-            onClick={() =>
-              dispatch({
-                type: "CLOSE_WINDOW",
-                payload: {
-                  windowID: appID,
-                },
-              })
-            }
-            className="w-10 p-2 h-fit hover-over rounded-lg"
-            src={isDark ? closeWhite : closeBlack}
-          />
-        </HBox>
-      </HBox>
       {/* --- APP CONTENT --- */}
       <VBox
         className={`

@@ -23,7 +23,7 @@ const SearchResults = ({ apps, isSearching, setIsSearching, searchValue }) => {
       className={`
                 fixed
                 bottom-13
-                z-98
+                z-100
                 min-w-60.25
                 sm:min-w-64 
                 md:min-w-74 

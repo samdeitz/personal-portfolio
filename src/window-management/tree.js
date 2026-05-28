@@ -72,6 +72,15 @@ const getNewWindowNode = (window, parent) => {
   };
 };
 
+export const getNewFocusID = (tree, windowToRemoveID) => {
+  if (Object.keys(tree).length <= 1) return null;
+
+  const parent = tree[tree[windowToRemoveID].parent];
+  const sibling = parent.children.find((id) => id != windowToRemoveID);
+
+  return sibling;
+};
+
 export const removeWindow = ({ tree, rootID, windowID }) => {
   const node = tree[windowID];
 

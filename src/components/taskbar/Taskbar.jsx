@@ -97,7 +97,7 @@ const Taskbar = ({ apps }) => {
       />
 
       {/* -------- TASKBAR -------- */}
-      <VBox className="fixed z-98 bottom-0 max-w-full" id="taskbar">
+      <VBox className="fixed z-100 bottom-0 max-w-full" id="taskbar">
         {/* Left aligned items */}
         <HBox
           className={`

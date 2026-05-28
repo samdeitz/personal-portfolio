@@ -6,6 +6,7 @@ import githubBlack from "@/assets/icons/github-black.svg";
 import openWhite from "@/assets/icons/open-white.svg";
 import openBlack from "@/assets/icons/open-black.svg";
 import TechnologyIcon from "./TechnologyIcon";
+import Terminal from "./apps/Terminal";
 
 const AppElement = ({ element, currentApp, images }) => {
   const { isDark } = useTheme();
@@ -75,11 +76,18 @@ const AppElement = ({ element, currentApp, images }) => {
     case "Tech Stack":
       return (
         <HBox className="ml-4 gap-4 self-start">
-          {element.content.map((e) => {
-            return <TechnologyIcon technology={e.technology}></TechnologyIcon>;
+          {element.content.map((e, index) => {
+            return (
+              <TechnologyIcon
+                key={index}
+                technology={e.technology}
+              ></TechnologyIcon>
+            );
           })}
         </HBox>
       );
+    case "Terminal":
+      return <Terminal></Terminal>;
   }
 };
 

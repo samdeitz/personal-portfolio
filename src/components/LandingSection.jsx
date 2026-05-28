@@ -1,6 +1,7 @@
 import Header from "./Header.jsx";
 import Desktop from "./desktop/Desktop.jsx";
 import DesktopApp from "./desktop/DesktopApp.jsx";
+import Terminal from "./desktop/apps/Terminal.jsx";
 import VBox from "./ui/VBox.jsx";
 import meDark from "@/assets/images/me-dark.png";
 
@@ -27,4 +28,3 @@ const LandingSection = () => {
 };
 
 export default LandingSection;
-
