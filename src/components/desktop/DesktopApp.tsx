@@ -1,8 +1,6 @@
 import { useState, useEffect } from "react";
-import { useMediaQuery } from "react-responsive";
-import { useApp } from "@/context/AppContext.js";
+import { useApp } from "@/context/AppContext";
 import OpenTab from "./OpenTab";
-import { SPLIT_BREAKPOINT } from "../../context/AppProvider";
 
 const appImages = import.meta.glob("@/assets/images/*", {
   eager: true,

@@ -1,4 +1,4 @@
-const apps = {
+export const projects = {
   // --------- PROJECTS ---------
   "Workout Finder": {
     id: 1,
@@ -51,7 +51,9 @@ const apps = {
     route: "/md-punch-in",
     repoLink: "https://github.com/samdeitz/md-punch-in",
   },
+};
 
+export const info = {
   // --------- OTHER THINGS ---------
   "About Me": {
     id: 20,
@@ -66,13 +68,6 @@ const apps = {
     position: "",
     desktopImageSrc: "logo-dark.png",
   },
-  "Website Images": {
-    id: 22,
-    title: "Website Images",
-    appImageSrc: "sample.jpg",
-    position: "",
-    desktopImageSrc: "logo-dark.png",
-  },
   Terminal: {
     id: 23,
     title: "Terminal",
@@ -80,5 +75,6 @@ const apps = {
   },
 };
 
-export default apps;
+const apps = { ...projects, ...info };
 
+export default apps;
