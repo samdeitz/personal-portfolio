@@ -15,6 +15,7 @@ const AppHeader = ({ title, notMobile, appID }) => {
     <HBox
       className={`
                 ${isDark ? "bg-dark-grey" : "bg-light-grey"} 
+                shrink-0
                 justify-between
                 rounded-t-lg
             `}

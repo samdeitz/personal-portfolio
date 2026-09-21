@@ -2,15 +2,6 @@ import { useState, useEffect } from "react";
 import OpenTab from "./OpenTab";
 import { useApp } from "../../context/AppContext";
 
-const appImages = import.meta.glob("@/assets/images/*", {
-  eager: true,
-  import: "default",
-});
-
-const imagesByName = Object.fromEntries(
-  Object.entries(appImages).map(([path, url]) => [path.split("/").pop(), url]),
-);
-
 const DesktopApp = () => {
   const { windows, layoutGrid, layouts } = useApp(); // open app information
   const [isVisible, setIsVisible] = useState(false); // if an app is open
@@ -47,7 +38,6 @@ const DesktopApp = () => {
                 }}
                 windowID={window.id}
                 isVisible={isVisible}
-                imagesByName={imagesByName}
               ></OpenTab>
             );
           })}

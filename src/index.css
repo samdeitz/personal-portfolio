@@ -67,6 +67,69 @@
 }
 
 @layer components {
+  .project-viewport {
+    container-type: inline-size;
+  }
+
+  .project-content {
+    flex-shrink: 0;
+    width: 100%;
+    max-width: 76ch;
+    margin-inline: auto;
+    padding: clamp(1rem, 4cqi, 2rem);
+    font-size: 1rem;
+    line-height: 1.65;
+    overflow-wrap: anywhere;
+  }
+
+  /* Space belongs to the flow, rather than padding on individual blocks. */
+  .content-flow > * + * {
+    margin-block-start: 0.875rem;
+  }
+
+  .content-flow > .content-heading:not(:first-child) {
+    margin-block-start: 1.5rem;
+  }
+
+  .content-flow > .content-heading + * {
+    margin-block-start: 0.5rem;
+  }
+
+  .content-heading {
+    font-size: 1.125rem;
+    line-height: 1.35;
+    text-wrap: pretty;
+  }
+
+  h1.content-heading {
+    font-size: 1.5rem;
+  }
+
+  .content-paragraph {
+    margin-block-end: 0;
+  }
+
+  .content-image {
+    display: block;
+    width: 100%;
+    height: auto;
+    max-height: 24rem;
+    aspect-ratio: auto;
+    object-fit: cover;
+    border-radius: 0.5rem;
+  }
+
+  .content-link {
+    display: inline-flex;
+    max-width: 100%;
+    border-radius: 0.5rem;
+  }
+
+  .content-link:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 2px;
+  }
+
   .taskbar-item {
     @apply hover-over w-13 p-3 h-13 cursor-pointer;
   }

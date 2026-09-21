@@ -1,4 +1,4 @@
-import apps from "../../appInfo.js";
+import apps from "../../apps/registry.js";
 import { useApp } from "../../context/AppContext.js";
 import HBox from "../ui/HBox.js";
 import Card from "./AppCard.jsx";
@@ -36,7 +36,7 @@ const Desktop = () => {
             "
     >
       {
-        // Render all apps on desktop from appInfo.js
+        // Render all apps on desktop from apps/registry.js
         Object.values(apps).map((a) => {
           return (
             <Card

@@ -1,20 +1,20 @@
-import { appLayouts } from "./AppLayout.jsx";
+import type { CSSProperties } from "react";
 import { useMediaQuery } from "react-responsive";
 
 import AppHeader from "./AppHeader.jsx";
-import apps from "../../appInfo.js";
+import { getApp } from "../../apps/registry";
 import { useApp } from "../../context/AppContext.js";
 import { useTheme } from "../../context/ThemeContext.js";
 import VBox from "../ui/VBox.js";
-import AppElement from "./AppElement.js";
+import AppContent from "./AppContent";
 
-const OpenTab = ({ style, windowID, isVisible, imagesByName }) => {
+const OpenTab = ({ style, windowID, isVisible }: { style: CSSProperties; windowID: string; isVisible: boolean }) => {
   const notMobile = useMediaQuery({ minWidth: 400 }); // boolean to conditionally render for devices that are not mobile
   const { isDark } = useTheme(); // Theme boolean
   const { focusedWindowID, windows, dispatch } = useApp();
-  const currentApp =
-    apps[windows.find((window) => window.id === windowID).type];
-  const currentAppLayout = appLayouts[currentApp.id];
+  const window = windows.find((window) => window.id === windowID);
+  const currentApp = window && getApp(window.type);
+  if (!currentApp) return null;
 
   return (
     <VBox
@@ -30,6 +30,8 @@ const OpenTab = ({ style, windowID, isVisible, imagesByName }) => {
         ${focusedWindowID === windowID && "border-blue-300"}
         relative
         min-w-0
+        min-h-0
+        overflow-hidden
         h-full
 
         rounded-lg
@@ -58,21 +60,12 @@ const OpenTab = ({ style, windowID, isVisible, imagesByName }) => {
                 overflow-y-auto
                 ${currentApp.title == "Terminal" && "hide-scrollbar"}
                 scrollbar-style
-                items-center
-                h-full
-                gap-y-5
+                min-h-0
+                flex-1
+                ${currentApp.kind === "project" ? "project-viewport" : "items-center gap-y-5"}
             `}
       >
-        {currentAppLayout.map((element, index) => {
-          return (
-            <AppElement
-              element={element}
-              currentApp={currentApp}
-              images={imagesByName}
-              key={element.type + index}
-            ></AppElement>
-          );
-        })}
+        <AppContent app={currentApp} />
       </VBox>
     </VBox>
   );

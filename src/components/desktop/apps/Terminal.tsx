@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import { executeCommand } from "../../../commands/registry";
-import apps from "../../../appInfo";
+import apps from "../../../apps/registry";
 import { useApp } from "../../../context/AppContext";
 import { useTheme } from "../../../context/ThemeContext";
 import HBox from "../../ui/HBox";

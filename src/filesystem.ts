@@ -1,32 +1,15 @@
-import type { App } from "./appInfo";
 import about from "./filesystem/about.txt?raw";
 import skills from "./filesystem/skills.txt?raw";
 import settings from "./filesystem/settings.conf?raw";
+import apps, { type AppID } from "./apps/registry";
+import { projects } from "./projects";
+import type { FileNode } from "./filesystem/types";
+export type { Directory, FileType, FileNode } from "./filesystem/types";
 
-export type Directory = {
-  type: "directory";
-  name: string;
-  children: FileNode[];
-};
-
-export type FileType = "directory" | "file" | "app";
-
-export type FileNode =
-  | {
-      type: "directory";
-      name: string;
-      children: FileNode[];
-    }
-  | {
-      type: "file";
-      name: string;
-      content: string;
-    }
-  | {
-      type: "app";
-      name: string;
-      appID: App;
-    };
+const appEntry = (appID: AppID): FileNode => ({
+  type: "app", name: apps[appID].title, appID,
+});
+const projectEntries = (): FileNode[] => Object.values(projects).map(project => appEntry(project.id));
 
 export const filesystem: FileNode = {
   type: "directory",
@@ -44,94 +27,16 @@ export const filesystem: FileNode = {
               type: "directory",
               name: "Desktop",
               children: [
-                {
-                  type: "app",
-                  name: "Workout Finder",
-                  appID: "workout-finder",
-                },
-                {
-                  type: "app",
-                  name: "Rush Hour",
-                  appID: "rush-hour",
-                },
-                {
-                  type: "app",
-                  name: "Dungeon Escape",
-                  appID: "dungeon-escape",
-                },
-                {
-                  type: "app",
-                  name: "Loading Icon",
-                  appID: "loading-icon",
-                },
-                {
-                  type: "app",
-                  name: "Snake",
-                  appID: "snake",
-                },
-                {
-                  type: "app",
-                  name: "Pong",
-                  appID: "pong",
-                },
-                {
-                  type: "app",
-                  name: "Punch-in Page",
-                  appID: "punch-in-page",
-                },
-                {
-                  type: "app",
-                  name: "About Me",
-                  appID: "about-me",
-                },
-                {
-                  type: "app",
-                  name: "Previous Work",
-                  appID: "previous-work",
-                },
+                ...projectEntries(),
+                appEntry("about-me"),
+                appEntry("previous-work"),
               ],
             },
 
             {
               type: "directory",
               name: "Projects",
-              children: [
-                {
-                  type: "app",
-                  name: "Workout Finder",
-                  appID: "workout-finder",
-                },
-                {
-                  type: "app",
-                  name: "Rush Hour",
-                  appID: "rush-hour",
-                },
-                {
-                  type: "app",
-                  name: "Dungeon Escape",
-                  appID: "dungeon-escape",
-                },
-                {
-                  type: "app",
-                  name: "Loading Icon",
-                  appID: "loading-icon",
-                },
-                {
-                  type: "app",
-                  name: "Snake",
-                  appID: "snake",
-                },
-                {
-                  type: "app",
-                  name: "Pong",
-                  appID: "pong",
-                },
-                {
-                  type: "app",
-                  name: "Punch-in Page",
-                  appID: "punch-in-page",
-                },
-              ],
+              children: projectEntries(),
             },
 
             {

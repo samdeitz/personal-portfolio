@@ -3,7 +3,7 @@ import { close } from "./close.js";
 import { changeTheme } from "./theme.js";
 import type { Dispatch, SetStateAction } from "react";
 import type { AppWindow, WMAction } from "../context/types.js";
-import type { DesktopApp } from "../appInfo.js";
+import type { DesktopApp } from "../apps/registry.js";
 import { cd } from "./cd.js";
 import { ls } from "./ls.js";
 import type { HistoryRecord } from "../components/desktop/apps/Terminal.js";

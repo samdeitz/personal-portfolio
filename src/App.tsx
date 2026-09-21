@@ -2,7 +2,7 @@ import { ThemeProvider } from "./context/ThemeProvider";
 import { AppProvider } from "./context/AppProvider";
 import LandingSection from "./components/LandingSection";
 import Taskbar from "./components/taskbar/Taskbar";
-import apps from "./appInfo";
+import apps from "./apps/registry";
 
 function App() {
   return (

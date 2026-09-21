@@ -1,4 +1,4 @@
-import apps from "../appInfo";
+import apps from "../apps/registry";
 import type { AppWindow, WMAction, WMState } from "../context/types";
 import { insertNode, removeWindow, getNewFocusID } from "./tree";
 
@@ -14,6 +14,8 @@ export const wmReducer = (state: WMState, action: WMAction): WMState => {
       let app = Object.values(apps).find(
         (appInfo) => appInfo.id === action.payload.windowID,
       );
+
+      if (!app) return state;
 
       let newWindow: AppWindow = {
         id: crypto.randomUUID(),

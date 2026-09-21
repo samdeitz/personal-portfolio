@@ -1,60 +1,17 @@
-import viteLogo from "@/assets/icons/vite-logo.svg";
-import tailwindLogo from "@/assets/icons/tailwind-logo.svg";
-import svelteLogo from "@/assets/icons/svelte-logo.svg";
-import reactLogo from "@/assets/icons/react-logo.svg";
-import javaLogo from "@/assets/icons/java-logo.svg";
-import nextLogoLight from "@/assets/icons/next-logo-light.svg";
-import nextLogoDark from "@/assets/icons/next-logo-dark.svg";
-import vercelLogoLight from "@/assets/icons/vercel-logo-light.svg";
-import vercelLogoDark from "@/assets/icons/vercel-logo-dark.svg";
-import { useTheme } from "@/context/ThemeContext.js";
+import { technologies, type Technology } from "../../content/technologies";
+import { useTheme } from "../../context/ThemeContext";
 
-const TechnologyIcon = ({ technology }) => {
+const TechnologyIcon = ({ technology }: { technology: Technology }) => {
   const { isDark } = useTheme();
 
-  const techInfo = {
-    Vite: {
-      logo: viteLogo,
-      href: "https://vite.dev/",
-    },
-    TailwindCSS: {
-      logo: tailwindLogo,
-      href: "https://tailwindcss.com/",
-    },
-    "React.js": {
-      logo: reactLogo,
-      href: "https://react.dev/",
-    },
-    Svelte: {
-      logo: svelteLogo,
-      href: "https://svelte.dev/",
-    },
-    "Next.js": {
-      logo: isDark ? nextLogoDark : nextLogoLight,
-      href: "https://nextjs.org/",
-    },
-    Vercel: {
-      logo: isDark ? vercelLogoDark : vercelLogoLight,
-      href: "https://vercel.com/",
-    },
-    Java: {
-      logo: javaLogo,
-      href: "https://www.java.com/en/",
-    },
-    "Java Swing Library": {
-      logo: javaLogo,
-      href: "https://docs.oracle.com/javase/7/docs/api/javax/swing/package-summary.html",
-    },
-    "Java HSA2 Library": {
-      logo: javaLogo,
-      href: "https://github.com/salamander2/HSA2",
-    },
-  };
+  const info = technologies[technology];
+  const logo = isDark && "darkLogo" in info ? info.darkLogo : info.logo;
 
   return (
     <a
-      href={techInfo[technology].href}
+      href={info.href}
       target="_blank"
+      rel="noopener noreferrer"
       className="group block perspective-[1000px] cursor-default"
     >
       <div className="relative transition-transform duration-400 transform-3d group-hover:rotate-y-180">
@@ -67,7 +24,7 @@ const TechnologyIcon = ({ technology }) => {
         <div
           className={`absolute top-0 left-0 w-full h-full p-2 flex items-center justify-center backface-hidden rotate-y-180 pointer-events-none ${isDark ? "bg-dark-grey" : "bg-light-grey"} border rounded-xl`}
         >
-          <img className="w-5" src={techInfo[technology].logo} alt="vite" />
+          <img className="w-5" src={logo} alt={technology} />
         </div>
       </div>
     </a>
