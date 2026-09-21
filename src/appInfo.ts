@@ -1,80 +1,110 @@
-export const projects = {
+export type AppTitle =
+  | "Workout Finder"
+  | "Rush Hour"
+  | "Dungeon Escape"
+  | "Loading Icon"
+  | "Snake"
+  | "Pong"
+  | "Punch-in Page"
+  | "About Me"
+  | "Previous Work"
+  | "Website Images"
+  | "Terminal";
+
+export type App =
+  | "workout-finder"
+  | "rush-hour"
+  | "dungeon-escape"
+  | "loading-icon"
+  | "snake"
+  | "pong"
+  | "punch-in-page"
+  | "about-me"
+  | "previous-work"
+  | "terminal";
+
+export type DesktopApp = {
+  id: string;
+  title: AppTitle;
+  appImageSrc?: string;
+  desktopImageSrc: string;
+  route?: string;
+  repoLink?: string;
+};
+
+export const apps: Record<string, DesktopApp> = {
   // --------- PROJECTS ---------
-  "Workout Finder": {
-    id: 1,
+  "workout-finder": {
+    id: "workout-finder",
     title: "Workout Finder",
     appImageSrc: "exercise-finder-banner.jpg",
     desktopImageSrc: "exercise-finder.jpg",
     route: "/exercisefinder",
     repoLink: "https://github.com/samdeitz/exercisefinder",
   },
-  "Rush Hour": {
-    id: 2,
+  "rush-hour": {
+    id: "rush-hour",
     title: "Rush Hour",
     appImageSrc: "rush-hour-banner.jpg",
     desktopImageSrc: "rush-hour.jpg",
     repoLink: "https://github.com/samdeitz/rushhour",
   },
-  "Dungeon Escape": {
-    id: 3,
+  "dungeon-escape": {
+    id: "dungeon-escape",
     title: "Dungeon Escape",
     appImageSrc: "escape-banner.jpg",
     desktopImageSrc: "escape.jpg",
     repoLink: "https://github.com/samdeitz/riddlegame",
   },
-  "Loading Icon": {
-    id: 4,
+  "loading-icon": {
+    id: "loading-icon",
     title: "Loading Icon",
     appImageSrc: "loading-banner.gif",
     desktopImageSrc: "loading.jpg",
     repoLink: "https://github.com/samdeitz/loadingicon",
   },
-  Snake: {
-    id: 5,
+  snake: {
+    id: "snake",
     title: "Snake",
     appImageSrc: "snake-banner.jpg",
     desktopImageSrc: "snake.jpg",
     repoLink: "https://github.com/samdeitz/snakegame",
   },
-  Pong: {
-    id: 6,
+  pong: {
+    id: "pong",
     title: "Pong",
     appImageSrc: "pong-banner.jpg",
     desktopImageSrc: "pong.jpg",
     repoLink: "https://github.com/samdeitz/pong",
   },
   "Punch-in Page": {
-    id: 7,
+    id: "punch-in-page",
     title: "Punch-in Page",
     appImageSrc: "punch-in-banner2.jpg",
     desktopImageSrc: "punch-in.jpg",
     route: "/md-punch-in",
     repoLink: "https://github.com/samdeitz/md-punch-in",
   },
-};
 
-export const info = {
   // --------- OTHER THINGS ---------
-  "About Me": {
-    id: 20,
+  "about-me": {
+    id: "about-me",
     title: "About Me",
     appImageSrc: "family.jpg",
     desktopImageSrc: "abt-me.jpg",
   },
-  "Previous Work": {
-    id: 21,
+  "previous-work": {
+    id: "previous-work",
     title: "Previous Work",
     appImageSrc: "sample.jpg",
-    position: "",
     desktopImageSrc: "logo-dark.png",
   },
-  Terminal: {
-    id: 23,
+  terminal: {
+    id: "terminal",
     title: "Terminal",
-    desktopImageSrc: "",
+    desktopImageSrc: "logo-dark.png",
+    appImageSrc: "logo-dark.png",
   },
 };
-
-const apps = { ...projects, ...info };
 
 export default apps;

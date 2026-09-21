@@ -1,22 +1,35 @@
+import { useTheme } from "../context/ThemeContext";
 import VBox from "./ui/VBox";
-import { useTheme } from "@/context/ThemeContext.js";
-
 
 const Header = () => {
-    const { isDark } = useTheme();
+  const { isDark } = useTheme();
 
-    return (
-        <VBox className="
+  return (
+    <VBox
+      className="
         p-4
         py-10
         text-center
         z-98
-        ">
-            <h1 className={`text-2xl leading-tight font-normal ${isDark ? "text-tdark-secondary" : "text-tlight-secondary"}`}>Hello,</h1>
-            <h1 className={`text-5xl leading-tight font-bold -mt-2 title-gradient ${isDark ? "dark" : "light"}`}>I'm Sam Deitz</h1>
-            <h1 className={`text-2xl leading-tight font-normal ${isDark ? "text-tdark-secondary" : "text-tlight-secondary"}`}>A Front End Developer</h1>
-        </VBox>       
-    )
-}
+        "
+    >
+      <h1
+        className={`text-2xl leading-tight font-normal ${isDark ? "text-tdark-secondary" : "text-tlight-secondary"}`}
+      >
+        Hello,
+      </h1>
+      <h1
+        className={`text-5xl leading-tight font-bold -mt-2 title-gradient ${isDark ? "dark" : "light"}`}
+      >
+        I'm Sam Deitz
+      </h1>
+      <h1
+        className={`text-2xl leading-tight font-normal ${isDark ? "text-tdark-secondary" : "text-tlight-secondary"}`}
+      >
+        A Front End Developer
+      </h1>
+    </VBox>
+  );
+};
 
 export default Header;

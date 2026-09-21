@@ -1,4 +1,20 @@
-export const calculateLayout = (tree, currNode, layouts, prevLayout) => {
+import type { LayoutTree, NodeID, ContainerNode } from "../context/types";
+
+export interface GridBounds {
+  colStart: number;
+  rowStart: number;
+  colEnd: number;
+  rowEnd: number;
+}
+
+export type Layouts = Record<NodeID, GridBounds>;
+
+export const calculateLayout = (
+  tree: LayoutTree,
+  currNode: NodeID | null,
+  layouts: Layouts,
+  prevLayout: GridBounds,
+): Layouts => {
   const node = tree[currNode];
   if (!node) {
     console.error(`NO NODE WITH ID: ${currNode}`);
@@ -10,8 +26,7 @@ export const calculateLayout = (tree, currNode, layouts, prevLayout) => {
     return layouts;
   }
 
-  let leftChild = node.children[0];
-  let rightChild = node.children[1];
+  const [leftChild, rightChild] = (node as ContainerNode).children;
 
   const verticalSplit =
     prevLayout.colEnd - prevLayout.colStart >
@@ -20,14 +35,14 @@ export const calculateLayout = (tree, currNode, layouts, prevLayout) => {
   const colChange = Math.floor((prevLayout.colStart + prevLayout.colEnd) / 2);
 
   // CREATE NEW LAYOUT OBJECTS FOR EACH CHILD, SHOULD SPLIT BASED ON PREV LAYOUT
-  const leftLayout = {
+  const leftLayout: GridBounds = {
     colStart: prevLayout.colStart,
     rowStart: prevLayout.rowStart,
     colEnd: verticalSplit ? colChange : prevLayout.colEnd,
     rowEnd: verticalSplit ? prevLayout.rowEnd : rowChange,
   };
   //
-  const rightLayout = {
+  const rightLayout: GridBounds = {
     colStart: verticalSplit ? colChange : prevLayout.colStart,
     rowStart: verticalSplit ? prevLayout.rowStart : rowChange,
     rowEnd: prevLayout.rowEnd,

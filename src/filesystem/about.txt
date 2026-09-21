@@ -1,0 +1,4 @@
+Hi, I'm Sam Deitz.
+
+I'm a Computer Science student and web developer interested in building useful software and experimenting with new technologies.
+

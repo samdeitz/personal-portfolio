@@ -1,0 +1,22 @@
+Languages:
+- TypeScript
+- JavaScript
+- Java
+- C
+- Python
+
+Web:
+- React
+- Next.js
+- Vercel
+- Payload CMS
+- Sanity CMS
+- REST API
+- Tailwind CSS
+- Svelte
+
+Tools:
+- Git
+- Docker
+- Linux
+- AWS

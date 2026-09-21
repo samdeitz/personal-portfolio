@@ -1,32 +1,79 @@
-const vite = {
+import type { App, AppTitle } from "../../appInfo";
+
+type Technology = {
+  technology: string;
+};
+
+const vite: Technology = {
   technology: "Vite",
 };
-const tailwind = {
+const tailwind: Technology = {
   technology: "TailwindCSS",
 };
-const svelte = {
+const svelte: Technology = {
   technology: "Svelte",
 };
-const react = {
+const react: Technology = {
   technology: "React.js",
 };
-const next = {
+const next: Technology = {
   technology: "Next.js",
 };
-const vercel = {
+const vercel: Technology = {
   technology: "Vercel",
 };
-const java = {
+const java: Technology = {
   technology: "Java",
 };
-const javaSwing = {
+const javaSwing: Technology = {
   technology: "Java Swing Library",
 };
-const javaHSA2 = {
+const javaHSA2: Technology = {
   technology: "Java HSA2 Library",
 };
 
-const workoutFinderApp = [
+type HeaderImage = {
+  type: "HeaderImage";
+  className?: string;
+};
+
+type Paragraph = {
+  type: "Paragraph";
+  text: string;
+};
+
+type HorizontalBox = {
+  type: "Horizontal Box";
+  content: ContentBlock[];
+};
+
+type TechStack = {
+  type: "Tech Stack";
+  content: Technology[];
+};
+
+type RepoLink = {
+  type: "RepoLink";
+};
+
+type Route = {
+  type: "Route";
+};
+
+type Terminal = {
+  type: "Terminal";
+};
+
+type ContentBlock =
+  | HeaderImage
+  | Paragraph
+  | HorizontalBox
+  | TechStack
+  | RepoLink
+  | Route
+  | Terminal;
+
+const workoutFinderApp: ContentBlock[] = [
   {
     type: "HeaderImage",
   },
@@ -50,7 +97,7 @@ const workoutFinderApp = [
     content: [react, vite, tailwind],
   },
 ];
-const rushHourApp = [
+const rushHourApp: ContentBlock[] = [
   {
     type: "HeaderImage",
   },
@@ -66,7 +113,7 @@ const rushHourApp = [
     content: [java, javaSwing],
   },
 ];
-const dungeonEscapeApp = [
+const dungeonEscapeApp: ContentBlock[] = [
   {
     type: "HeaderImage",
     className: "object-left",
@@ -83,7 +130,7 @@ const dungeonEscapeApp = [
     content: [java],
   },
 ];
-const loadingIconApp = [
+const loadingIconApp: ContentBlock[] = [
   {
     type: "HeaderImage",
   },
@@ -99,7 +146,7 @@ const loadingIconApp = [
     content: [java, javaSwing],
   },
 ];
-const snakeApp = [
+const snakeApp: ContentBlock[] = [
   {
     type: "HeaderImage",
   },
@@ -115,7 +162,7 @@ const snakeApp = [
     content: [java, javaSwing],
   },
 ];
-const pongApp = [
+const pongApp: ContentBlock[] = [
   {
     type: "HeaderImage",
   },
@@ -131,7 +178,7 @@ const pongApp = [
     content: [java, javaHSA2],
   },
 ];
-const punchInApp = [
+const punchInApp: ContentBlock[] = [
   {
     type: "HeaderImage",
     className: "",
@@ -156,7 +203,7 @@ const punchInApp = [
     content: [svelte, vite, tailwind],
   },
 ];
-const aboutMeApp = [
+const aboutMeApp: ContentBlock[] = [
   {
     type: "HeaderImage",
     className: "object-[50%_20%]",
@@ -170,110 +217,34 @@ const aboutMeApp = [
     text: "Details Coming soon...",
   },
 ];
-const previousWorkApp = [
+const previousWorkApp: ContentBlock[] = [
   {
     type: "Paragraph",
     text: "Details Coming soon...",
   },
 ];
-const websiteImagesApp = [
+const websiteImagesApp: ContentBlock[] = [
   {
     type: "Paragraph",
     text: "Details Coming soon...",
   },
 ];
 
-const terminalApp = [
+const terminalApp: ContentBlock[] = [
   {
     type: "Terminal",
   },
 ];
 
-export const appLayouts = {
-  "Workout Finder": workoutFinderApp,
-  "Rush Hour": rushHourApp,
-  "Dungeon Escape": dungeonEscapeApp,
-  "Loading Icon": loadingIconApp,
-  Snake: snakeApp,
-  Pong: pongApp,
-  "Punch-in Page": punchInApp,
-  "About Me": aboutMeApp,
-  "Previous Work": previousWorkApp,
-  "Website Images": websiteImagesApp,
-  Terminal: terminalApp,
+export const appLayouts: Record<App, ContentBlock[]> = {
+  "workout-finder": workoutFinderApp,
+  "rush-hour": rushHourApp,
+  "dungeon-escape": dungeonEscapeApp,
+  "loading-icon": loadingIconApp,
+  snake: snakeApp,
+  pong: pongApp,
+  "punch-in-page": punchInApp,
+  "about-me": aboutMeApp,
+  "previous-work": previousWorkApp,
+  terminal: terminalApp,
 };
-
-// {/* --- HEADER --- */}
-//                         <HBox className={`
-//                             ${isDark ? "bg-dark-grey" : "bg-light-grey"}
-//                             justify-between
-//                             rounded-t-lg
-//                         `}>
-
-//                             {/* App Title */}
-//                             <h1 className="self-center pl-2 font-bold">{currentApp.title}</h1>
-
-//                             {/* Close/Minimize buttons */}
-//                             <HBox>
-//                                 {notMobile && <img onClick={minimizeApp} src={isDark ? minimizeWhite : minimizeBlack} className="hover-over w-10 h-fit p-2 rounded-lg"/>}
-//                                 <img onClick={closeApp} className="w-10 p-2 h-fit hover-over rounded-lg" src={isDark ? closeWhite : closeBlack} />
-//                             </HBox>
-//                         </HBox>
-
-//                         {/* --- APP CONTENT --- */}
-//                         <VBox className={`
-//                             ${isDark ? "dark" : "light"}
-//                             overflow-auto
-//                             scrollbar-style
-//                             items-center
-//                             h-full
-//                             p-4
-//                             gap-y-1
-//                         `}>
-
-//                             {/* --- PROJECTS --- */}
-//                             {currentApp.id < 20 &&
-//                                 <VBox className="gap-4">
-//                                     <p className="text-center">Coming Soon...</p>
-//                                     {/* <img className="max-w-10/12 max-h-4/6 border-2 rounded-lg" src={appImages[currentApp.appImageSrc]?.default} />
-//                                     <hr className="w-11/12 my-5" />
-
-//                                     <p className="w-10/12">Project overview: Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
-//                                     <hr className="w-11/12 my-5" />
-//                                     <p className="w-10/12">Project Impact: Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
-//                                     <hr className="w-11/12 my-5" /> */}
-
-//
-
-//                                 </VBox>
-//                             }
-
-//                             {/* --- OTHER (ID = 20 and UP) --- */}
-//                             {/* {currentApp.id === 20 && // about me
-//                                 <>
-//                                     <img className="border-2 rounded-lg" src={imagesByName[`${currentApp.appImageSrc}`]} />
-//                                 </>
-//                             } */}
-
-//                             {currentApp.id === 21 || currentApp.id === 20 && // previous work
-//                                 <>
-//                                     <h1 className="">Coming soon...</h1>
-//                                 </>
-//                             }
-
-//                             {currentApp.id === 22 && // references for images used
-//                                 <>
-//                                     <h1 className="pt-5">Icons used for this website from <a className="reference-link" href="https://icons8.com/" target="_blank">Icons8</a> </h1>
-//                                     <a className="reference-link" target="_blank" href="https://icons8.com/icon/7695/search">Search</a>
-//                                     <a className="reference-link" target="_blank" href="https://icons8.com/icon/YRRhCXfA0Vd0/mail">Mail</a>
-//                                     <a className="reference-link" target="_blank" href="https://icons8.com/icon/8808/linkedin">LinkedIn</a>
-//                                     <a className="reference-link" target="_blank" href="https://icons8.com/icon/62856/github">GitHub</a>
-//                                     <a className="reference-link" target="_blank" href="https://icons8.com/icon/5e8ZvPF0Llyj/sun-and-moon">Sun And Moon</a>
-//                                     <a className="reference-link" target="_blank" href="https://icons8.com/icon/60664/external-link">Open</a>
-//                                     <a className="reference-link" target="_blank" href="https://icons8.com/icon/71200/close">Close</a>
-//                                     <a className="reference-link" target="_blank" href="https://icons8.com/icon/WeOgTBKEK9Zc/horizontal-line">Horizontal Line</a>
-
-//                                 </>
-//                             }
-//                         </VBox>
-

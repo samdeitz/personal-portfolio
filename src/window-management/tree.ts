@@ -1,4 +1,28 @@
-export const insertNode = ({ tree, rootID, parentID, window }) => {
+import type {
+  LayoutTree,
+  NodeID,
+  AppWindow,
+  WindowNode,
+  ContainerNode,
+} from "../context/types";
+
+interface InsertNodeArgs {
+  tree: LayoutTree;
+  rootID: NodeID | null;
+  parentID: NodeID;
+  window: AppWindow;
+}
+
+interface TreeResult {
+  tree: LayoutTree;
+  rootID: NodeID | null;
+}
+export const insertNode = ({
+  tree,
+  rootID,
+  parentID,
+  window,
+}: InsertNodeArgs): TreeResult => {
   // The tree is empty
   if (rootID === null) {
     rootID = window.id;
@@ -22,7 +46,7 @@ export const insertNode = ({ tree, rootID, parentID, window }) => {
 
   // create new container
   const newContainerID = crypto.randomUUID();
-  const newContainer = {
+  const newContainer: ContainerNode = {
     id: newContainerID,
     nodeType: "container",
     parent: grandParent != null ? grandParent.id : null,
@@ -33,14 +57,15 @@ export const insertNode = ({ tree, rootID, parentID, window }) => {
   if (!grandParent) rootID = newContainerID;
   // make
   else {
-    const newChildren = grandParent.children.map((child) => {
+    const gp = grandParent as ContainerNode;
+    const newChildren = gp.children.map((child) => {
       if (child == parent.id) return newContainer.id;
       return child;
-    });
+    }) as [NodeID, NodeID];
     tree = {
       ...tree,
-      [grandParent.id]: {
-        ...grandParent,
+      [gp.id]: {
+        ...gp,
         children: newChildren,
       },
     };
@@ -63,7 +88,10 @@ export const insertNode = ({ tree, rootID, parentID, window }) => {
   };
 };
 
-const getNewWindowNode = (window, parent) => {
+const getNewWindowNode = (
+  window: AppWindow,
+  parent: NodeID | null,
+): WindowNode => {
   return {
     id: window.id,
     nodeType: "window",
@@ -72,16 +100,29 @@ const getNewWindowNode = (window, parent) => {
   };
 };
 
-export const getNewFocusID = (tree, windowToRemoveID) => {
+export const getNewFocusID = (
+  tree: LayoutTree,
+  windowToRemoveID: NodeID,
+): NodeID | null => {
   if (Object.keys(tree).length <= 1) return null;
 
-  const parent = tree[tree[windowToRemoveID].parent];
+  const parent = tree[tree[windowToRemoveID].parent] as ContainerNode;
   const sibling = parent.children.find((id) => id != windowToRemoveID);
 
   return sibling;
 };
 
-export const removeWindow = ({ tree, rootID, windowID }) => {
+interface RemoveWindowArgs {
+  tree: LayoutTree;
+  rootID: NodeID | null;
+  windowID: NodeID;
+}
+
+export const removeWindow = ({
+  tree,
+  rootID,
+  windowID,
+}: RemoveWindowArgs): TreeResult => {
   const node = tree[windowID];
 
   // The window to remove does not exist
@@ -106,12 +147,11 @@ export const removeWindow = ({ tree, rootID, windowID }) => {
     };
   }
 
-  const parent = tree[node.parent];
+  const parent = tree[node.parent as NodeID] as ContainerNode;
 
   const siblingID = parent.children.find((id) => id !== windowID);
   const sibling = tree[siblingID];
-
-  const grandParent = tree[parent.parent];
+  const grandParent = tree[parent.parent] as ContainerNode;
 
   const newTree = { ...tree };
 
@@ -138,7 +178,7 @@ export const removeWindow = ({ tree, rootID, windowID }) => {
     ...grandParent,
     children: grandParent.children.map((id) =>
       id === parent.id ? siblingID : id,
-    ),
+    ) as [NodeID, NodeID],
   };
 
   return {

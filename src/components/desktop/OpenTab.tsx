@@ -1,19 +1,20 @@
 import { appLayouts } from "./AppLayout.jsx";
-import { useApp } from "@/context/AppContext.js";
-import { useTheme } from "@/context/ThemeContext.js";
 import { useMediaQuery } from "react-responsive";
 
-import apps from "@/appInfo.js";
-import AppElement from "./AppElement.jsx";
-import VBox from "@/components/ui/VBox.jsx";
 import AppHeader from "./AppHeader.jsx";
+import apps from "../../appInfo.js";
+import { useApp } from "../../context/AppContext.js";
+import { useTheme } from "../../context/ThemeContext.js";
+import VBox from "../ui/VBox.js";
+import AppElement from "./AppElement.js";
 
-const OpenTab = ({ style, appID, windowID, isVisible, imagesByName }) => {
+const OpenTab = ({ style, windowID, isVisible, imagesByName }) => {
   const notMobile = useMediaQuery({ minWidth: 400 }); // boolean to conditionally render for devices that are not mobile
   const { isDark } = useTheme(); // Theme boolean
   const { focusedWindowID, windows, dispatch } = useApp();
-  const currentApp = apps[windows.find((window) => window.id === appID).title];
-  const currentAppLayout = appLayouts[currentApp.title];
+  const currentApp =
+    apps[windows.find((window) => window.id === windowID).type];
+  const currentAppLayout = appLayouts[currentApp.id];
 
   return (
     <VBox
@@ -29,6 +30,7 @@ const OpenTab = ({ style, appID, windowID, isVisible, imagesByName }) => {
         ${focusedWindowID === windowID && "border-blue-300"}
         relative
         min-w-0
+        h-full
 
         rounded-lg
         z-100
@@ -43,13 +45,18 @@ const OpenTab = ({ style, appID, windowID, isVisible, imagesByName }) => {
       }
     >
       {/* --- HEADER --- */}
-      <AppHeader appID={appID} title={currentApp.title} notMobile={notMobile} />
+      <AppHeader
+        appID={windowID}
+        title={currentApp.title}
+        notMobile={notMobile}
+      />
 
       {/* --- APP CONTENT --- */}
       <VBox
         className={`
                 ${isDark ? "dark" : "light"}
                 overflow-y-auto
+                ${currentApp.title == "Terminal" && "hide-scrollbar"}
                 scrollbar-style
                 items-center
                 h-full

@@ -11,14 +11,18 @@ const layoutGrid = {
 };
 
 export const SPLIT_BREAKPOINT = 700;
+interface AppProviderProps {
+  children: React.ReactNode;
+}
 
-export const AppProvider = ({ children }) => {
+export const AppProvider = ({ children }: AppProviderProps) => {
   const isMobile = useMediaQuery({ maxWidth: SPLIT_BREAKPOINT });
   const [wmState, dispatch] = useReducer(wmReducer, {
     windows: [],
     layoutTree: {},
     rootID: null,
     focusedWindowID: null,
+    layoutMode: "desktop",
   });
 
   useEffect(() => {

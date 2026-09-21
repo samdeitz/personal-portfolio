@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
-import { useApp } from "@/context/AppContext";
 import OpenTab from "./OpenTab";
+import { useApp } from "../../context/AppContext";
 
 const appImages = import.meta.glob("@/assets/images/*", {
   eager: true,
@@ -45,7 +45,6 @@ const DesktopApp = () => {
                   gridRowEnd: layouts[window.id].rowEnd,
                   minWidth: 0,
                 }}
-                appID={window.id}
                 windowID={window.id}
                 isVisible={isVisible}
                 imagesByName={imagesByName}

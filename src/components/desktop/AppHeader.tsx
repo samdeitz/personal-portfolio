@@ -1,12 +1,11 @@
-import HBox from "@/components/ui/HBox.jsx";
-import { useTheme } from "@/context/ThemeContext.js";
-
 import closeBlack from "@/assets/icons/close-black.svg";
 import closeWhite from "@/assets/icons/close-white.svg";
 
 import minimizeWhite from "@/assets/icons/minimize-white.svg";
 import minimizeBlack from "@/assets/icons/minimize-black.svg";
 import { useApp } from "../../context/AppContext";
+import { useTheme } from "../../context/ThemeContext";
+import HBox from "../ui/HBox";
 
 const AppHeader = ({ title, notMobile, appID }) => {
   const { isDark } = useTheme();

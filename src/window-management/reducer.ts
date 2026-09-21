@@ -1,7 +1,8 @@
-import apps from "@/appInfo.js";
+import apps from "../appInfo";
+import type { AppWindow, WMAction, WMState } from "../context/types";
 import { insertNode, removeWindow, getNewFocusID } from "./tree";
 
-export const wmReducer = (state, action) => {
+export const wmReducer = (state: WMState, action: WMAction): WMState => {
   switch (action.type) {
     case "CREATE_WINDOW": {
       if (state.layoutTree[action.payload.windowID] != null) return state;
@@ -10,14 +11,14 @@ export const wmReducer = (state, action) => {
         Object.values(state.layoutTree).length >= 1
       )
         return state;
-      let appType = Object.values(apps).find(
+      let app = Object.values(apps).find(
         (appInfo) => appInfo.id === action.payload.windowID,
-      ).title;
+      );
 
-      let newWindow = {
+      let newWindow: AppWindow = {
         id: crypto.randomUUID(),
-        type: appType,
-        title: appType,
+        type: app.id,
+        title: app.title,
         layout: null,
         minimized: false,
         zIndex: state.windows.length != 0 ? state.windows[0].zIndex + 1 : 100,
@@ -48,7 +49,7 @@ export const wmReducer = (state, action) => {
         Object.values(state.layoutTree).length >= 1
       )
         return state;
-      let windowToRestore = {};
+      let windowToRestore: AppWindow | undefined;
       const newWindows = state.windows.map((window) => {
         if (window.id == action.payload.windowID) {
           windowToRestore = window;
@@ -69,7 +70,7 @@ export const wmReducer = (state, action) => {
         windows: newWindows,
         layoutTree: result.tree,
         rootID: result.rootID,
-        focusedWindowID: windowToRestore.id,
+        focusedWindowID: windowToRestore.id ?? null,
       };
     }
     case "MINIMIZE_WINDOW": {
@@ -129,7 +130,9 @@ export const wmReducer = (state, action) => {
         let newRoot = null;
         let newWindows = [];
 
-        let ID = state.layoutTree[state.rootID].children[0];
+        let rootNode = state.layoutTree[state.rootID as string];
+        if (rootNode.nodeType !== "container") return state; // narrows type, plus a real safety check
+        let ID = rootNode.children[0];
         let node = state.layoutTree[ID];
         newTree = {
           [ID]: {
@@ -148,7 +151,6 @@ export const wmReducer = (state, action) => {
           } else return window;
         });
 
-        console.log(newTree);
         return {
           ...state,
           windows: newWindows,
@@ -159,7 +161,7 @@ export const wmReducer = (state, action) => {
       } else return state;
     }
     default: {
-      console.log(`No dispatch for ${action.type}`);
+      console.log(`No dispatch for ${(action as WMAction).type}`);
       return state;
     }
   }

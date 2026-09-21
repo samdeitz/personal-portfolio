@@ -1,5 +1,3 @@
-import { useTheme } from "@/context/ThemeContext.js";
-
 import HBox from "../ui/HBox";
 import githubWhite from "@/assets/icons/github-white.svg";
 import githubBlack from "@/assets/icons/github-black.svg";
@@ -7,6 +5,7 @@ import openWhite from "@/assets/icons/open-white.svg";
 import openBlack from "@/assets/icons/open-black.svg";
 import TechnologyIcon from "./TechnologyIcon";
 import Terminal from "./apps/Terminal";
+import { useTheme } from "../../context/ThemeContext";
 
 const AppElement = ({ element, currentApp, images }) => {
   const { isDark } = useTheme();

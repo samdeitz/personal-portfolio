@@ -1,7 +1,7 @@
+import apps from "../../appInfo.js";
+import { useApp } from "../../context/AppContext.js";
+import HBox from "../ui/HBox.js";
 import Card from "./AppCard.jsx";
-import apps from "@/appInfo.js";
-import HBox from "@/components/ui/HBox.jsx";
-import { useApp } from "@/context/AppContext.js";
 
 // Glob images for apps
 const appImages = import.meta.glob("@/assets/icons/appIcons/*", {
@@ -41,7 +41,7 @@ const Desktop = () => {
           return (
             <Card
               key={a.id}
-              className={`${a.position}`}
+              className={""}
               apptitle={a.title}
               onClick={() =>
                 dispatch({
