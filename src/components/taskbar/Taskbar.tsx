@@ -1,13 +1,12 @@
 import { useState, useRef, useEffect } from "react";
 import { useMediaQuery } from "react-responsive";
-import { useApp } from "@/context/AppContext.js";
-import { useTheme } from "@/context/ThemeContext.js";
-
-import HBox from "@/components/ui/HBox.jsx";
-import VBox from "@/components/ui/VBox.jsx";
-import Searchbar from "./Searchbar.jsx";
 import SearchResults from "./SearchResults.jsx";
 import OverflowingApps from "./OverflowingApps.jsx";
+import { useApp } from "../../context/AppContext.js";
+import { useTheme } from "../../context/ThemeContext.js";
+import HBox from "../ui/HBox.js";
+import VBox from "../ui/VBox.js";
+import Searchbar from "./Searchbar.js";
 
 // White icons (for dark mode)
 import searchWhite from "@/assets/icons/taskbarIcons/search-white.svg";
@@ -24,9 +23,8 @@ import mailBlack from "@/assets/icons/taskbarIcons/mail-black.svg";
 import githubBlack from "@/assets/icons/github-black.svg";
 import linkedinBlack from "@/assets/icons/taskbarIcons/linkedin-black.svg";
 import sunBlack from "@/assets/icons/taskbarIcons/sun-black.svg";
-
 // glob images for apps
-const appImages = import.meta.glob("@/assets/icons/appIcons/*.jpg", {
+const appImages = import.meta.glob("@/assets/icons/appIcons/*", {
   eager: true,
   import: "default",
 });

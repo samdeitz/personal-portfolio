@@ -66,6 +66,11 @@
   }
 }
 
+@theme inline {
+  --color-dark: var(--dark);
+  --color-light: var(--light);
+}
+
 @layer components {
   .project-viewport {
     container-type: inline-size;
@@ -173,6 +178,19 @@
   --animate-small-bounce: smallBounce 0.3s linear 0s infinite;
   --animate-shake: shake 0.3s linear 0s infinite;
   --animate-flip: flip 0.5 ease-in-out 0s both 1;
+  --animate-window-open: windowOpen 0.2s ease-in-out;
+
+  /* Replay the entrance whenever a window is opened or restored. */
+  @keyframes windowOpen {
+    from {
+      scale: 0;
+      opacity: 0;
+    }
+    to {
+      scale: 1;
+      opacity: 1;
+    }
+  }
 
   @keyframes flip {
     0% {

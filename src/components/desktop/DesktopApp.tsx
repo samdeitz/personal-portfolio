@@ -1,15 +1,8 @@
-import { useState, useEffect } from "react";
 import OpenTab from "./OpenTab";
 import { useApp } from "../../context/AppContext";
 
 const DesktopApp = () => {
   const { windows, layoutGrid, layouts } = useApp(); // open app information
-  const [isVisible, setIsVisible] = useState(false); // if an app is open
-
-  // determine if an app is open
-  useEffect(() => {
-    if (windows.length != 0) setIsVisible(true);
-  }, [windows]);
 
   return (
     <>
@@ -37,7 +30,6 @@ const DesktopApp = () => {
                   minWidth: 0,
                 }}
                 windowID={window.id}
-                isVisible={isVisible}
               ></OpenTab>
             );
           })}

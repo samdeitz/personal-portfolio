@@ -1,10 +1,10 @@
-import VBox from "@/components/ui/VBox.jsx";
-import HBox from "@/components/ui/HBox.jsx";
-import { useApp } from "@/context/AppContext.js";
-import { useTheme } from "@/context/ThemeContext.js";
+import { useApp } from "../../context/AppContext";
+import { useTheme } from "../../context/ThemeContext";
+import HBox from "../ui/HBox";
+import VBox from "../ui/VBox";
 
 // import app icons for results tab
-const appImages = import.meta.glob("@/assets/icons/appIcons/*.jpg", {
+const appImages = import.meta.glob("@/assets/icons/appIcons/*", {
   eager: true,
   import: "default",
 });

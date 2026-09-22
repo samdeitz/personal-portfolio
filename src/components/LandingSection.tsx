@@ -1,3 +1,5 @@
+import { useEffect } from "react";
+import { useApp } from "../context/AppContext";
 import { FileSystemProvider } from "../context/FileSystemContext.js";
 import Header from "./Header.jsx";
 import Desktop from "./desktop/Desktop.jsx";
@@ -6,8 +8,30 @@ import VBox from "./ui/VBox.jsx";
 import meDark from "@/assets/images/me-dark.png";
 
 const LandingSection = () => {
+  const { windows } = useApp();
+  const hasVisibleWindows = windows.some((window) => !window.minimized);
+
+  useEffect(() => {
+    if (!hasVisibleWindows) return;
+
+    // Lock document scrolling as well as the desktop's own scroll container.
+    const root = document.documentElement;
+    const body = document.body;
+    const previousRootOverflow = root.style.overflow;
+    const previousBodyOverflow = body.style.overflow;
+    root.style.overflow = "hidden";
+    body.style.overflow = "hidden";
+
+    return () => {
+      root.style.overflow = previousRootOverflow;
+      body.style.overflow = previousBodyOverflow;
+    };
+  }, [hasVisibleWindows]);
+
   return (
-    <VBox className="@container overflow-y-scroll hide-scrollbar">
+    <VBox
+      className={`@container hide-scrollbar ${hasVisibleWindows ? "overflow-hidden" : "overflow-y-scroll"}`}
+    >
       <FileSystemProvider>
         <DesktopApp />
       </FileSystemProvider>

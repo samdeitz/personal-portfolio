@@ -4,12 +4,20 @@ import { useMediaQuery } from "react-responsive";
 import AppHeader from "./AppHeader.jsx";
 import { getApp } from "../../apps/registry";
 import { useApp } from "../../context/AppContext.js";
+import { SPLIT_BREAKPOINT } from "../../context/AppProvider";
 import { useTheme } from "../../context/ThemeContext.js";
 import VBox from "../ui/VBox.js";
 import AppContent from "./AppContent";
 
-const OpenTab = ({ style, windowID, isVisible }: { style: CSSProperties; windowID: string; isVisible: boolean }) => {
+const OpenTab = ({
+  style,
+  windowID,
+}: {
+  style: CSSProperties;
+  windowID: string;
+}) => {
   const notMobile = useMediaQuery({ minWidth: 400 }); // boolean to conditionally render for devices that are not mobile
+  const isSingleWindow = useMediaQuery({ maxWidth: SPLIT_BREAKPOINT });
   const { isDark } = useTheme(); // Theme boolean
   const { focusedWindowID, windows, dispatch } = useApp();
   const window = windows.find((window) => window.id === windowID);
@@ -22,11 +30,10 @@ const OpenTab = ({ style, windowID, isVisible }: { style: CSSProperties; windowI
       className={`
         transition-all 
         border-2
-        duration-300 
         ease-in-out
-        origin-bottom-left
+        ${isSingleWindow ? "origin-bottom-left" : "origin-center"}
         ${isDark ? "bg-dark" : "bg-light"}
-        ${isVisible ? "scale-100 opacity-100" : "scale-0 opacity-0"}
+        animate-window-open
         ${focusedWindowID === windowID && "border-blue-300"}
         relative
         min-w-0

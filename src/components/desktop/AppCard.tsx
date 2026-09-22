@@ -17,7 +17,10 @@ const Card = (props) => {
       {/* <img className={`w-5 absolute top-2 right-2 ${ isDark ? "bg-[#15151550]" : "bg-[#d9d9d950]"} rounded-tr-sm rounded-bl-sm`} src={isDark ? openWhite : openBlack} /> */}
 
       {/* App image */}
-      <img className="@max-lg:w-24 w-35 sm rounded-t-lg" src={props.imgsrc} />
+      <img
+        className={`@max-lg:w-24 w-35 sm rounded-t-lg ${isDark ? "bg-light/50" : "bg-dark/10"}`}
+        src={props.imgsrc}
+      />
 
       {/* App name */}
       <h3
