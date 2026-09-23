@@ -1,7 +1,12 @@
-import { projects } from "../projects";
+import type { AppShape } from "../content/types";
+import { desktopProjects, allProjects } from "../projects";
 import { specialApps } from "./specialApps";
 
-export const apps = { ...projects, ...specialApps };
+export const apps: Record<string, AppShape> = {
+  ...allProjects,
+  ...specialApps,
+};
+export const desktopApps = { ...desktopProjects };
 export type AppID = keyof typeof apps;
 export type DesktopApp = (typeof apps)[AppID];
 export type AppTitle = DesktopApp["title"];

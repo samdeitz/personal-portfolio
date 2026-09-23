@@ -1,4 +1,6 @@
-export const specialApps = {
+import type { AppShape } from "../content/types";
+
+export const specialApps: Record<string, AppShape> = {
   "about-me": {
     kind: "special",
     id: "about-me",

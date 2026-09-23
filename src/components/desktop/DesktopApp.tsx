@@ -8,7 +8,7 @@ const DesktopApp = () => {
     <>
       {Object.values(layouts).length != 0 && (
         <div
-          className="fixed w-full top-0 bottom-13 z-99 p-4"
+          className="fixed w-full top-0 bottom-13 z-99 p-4 backdrop-blur-[2px]"
           style={{
             display: "grid",
             gap: layoutGrid.gap,

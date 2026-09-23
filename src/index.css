@@ -69,6 +69,8 @@
 @theme inline {
   --color-dark: var(--dark);
   --color-light: var(--light);
+  --color-grey-dark: var(--dark-grey);
+  --color-grey-light: var(--light-grey);
 }
 
 @layer components {
@@ -259,6 +261,12 @@
 
 @utility hover-over {
   @apply hover:bg-[rgba(100,100,100,0.5)];
+  transition: background-color 1s;
+}
+
+@utility highlight {
+  @apply bg-[rgba(100,100,100,0.5)];
+
   transition: background-color 1s;
 }
 

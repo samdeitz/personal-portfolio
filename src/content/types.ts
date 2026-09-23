@@ -12,3 +12,10 @@ export type ContentBlock = (
       content: readonly ContentBlock[];
     }
 ) & { className?: string };
+
+export type AppShape = {
+  kind: "project" | "special";
+  id: string;
+  title: string;
+  desktopImageSrc: string;
+};

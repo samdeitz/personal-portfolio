@@ -24,13 +24,13 @@ import githubBlack from "@/assets/icons/github-black.svg";
 import linkedinBlack from "@/assets/icons/taskbarIcons/linkedin-black.svg";
 import sunBlack from "@/assets/icons/taskbarIcons/sun-black.svg";
 // glob images for apps
-const appImages = import.meta.glob("@/assets/icons/appIcons/*", {
+const appImages = import.meta.glob<string>("@/assets/icons/appIcons/*", {
   eager: true,
   import: "default",
 });
 
 // change keys to be by image name rather than path
-const imagesByName = Object.fromEntries(
+const imagesByName: Record<string, string> = Object.fromEntries(
   Object.entries(appImages).map(([path, url]) => [path.split("/").pop(), url]),
 );
 
@@ -86,14 +86,6 @@ const Taskbar = ({ apps }) => {
 
   return (
     <>
-      {/* -------- SEARCH RESULTS MENU -------- */}
-      <SearchResults
-        apps={apps}
-        isSearching={isSearching}
-        setIsSearching={setIsSearching}
-        searchValue={searchValue}
-      />
-
       {/* -------- TASKBAR -------- */}
       <VBox className="fixed z-100 bottom-0 max-w-full" id="taskbar">
         {/* Left aligned items */}
@@ -112,13 +104,7 @@ const Taskbar = ({ apps }) => {
             `}
         >
           {/* --- SEARCHBAR --- */}
-          <Searchbar
-            searchImg={isDark ? searchWhite : searchBlack}
-            searchValue={searchValue}
-            setSearchValue={setSearchValue}
-            isSearching={isSearching}
-            setIsSearching={setIsSearching}
-          />
+          <Searchbar searchImg={isDark ? searchWhite : searchBlack} />
 
           {/* --- SOCIAL ICONS --- */}
           <HBox

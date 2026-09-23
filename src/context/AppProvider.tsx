@@ -50,18 +50,19 @@ export const AppProvider = ({ children }: AppProviderProps) => {
     return () => clearTimeout(layoutTimer);
   }, [isMobile]);
 
-  useEffect(() => {
-    console.log(wmState.windows);
-  }, [wmState.windows]);
-  useEffect(() => {
-    console.log(wmState.layoutTree);
-  }, [wmState.layoutTree]);
-  useEffect(() => {
-    console.log(wmState.rootID);
-  }, [wmState.rootID]);
-  useEffect(() => {
-    console.log(wmState.focusedWindowID);
-  }, [wmState.focusedWindowID]);
+  //  --- DEBUG PRINTOUTS ---
+  // useEffect(() => {
+  //   console.log(wmState.windows);
+  // }, [wmState.windows]);
+  // useEffect(() => {
+  //   console.log(wmState.layoutTree);
+  // }, [wmState.layoutTree]);
+  // useEffect(() => {
+  //   console.log(wmState.rootID);
+  // }, [wmState.rootID]);
+  // useEffect(() => {
+  //   console.log(wmState.focusedWindowID);
+  // }, [wmState.focusedWindowID]);
 
   const layouts = useMemo(() => {
     return calculateLayout(

@@ -1,9 +1,6 @@
-import type { ContentBlock } from "../content/types";
+import type { AppShape, ContentBlock } from "../content/types";
 
-export interface Project {
+export interface Project extends AppShape {
   kind: "project";
-  id: string;
-  title: string;
-  desktopImageSrc: string;
   content: readonly ContentBlock[];
 }

@@ -1,7 +1,9 @@
-import apps from "../../apps/registry.js";
+import { useMediaQuery } from "react-responsive";
+import { desktopApps as apps } from "../../apps/registry.js";
 import { useApp } from "../../context/AppContext.js";
 import HBox from "../ui/HBox.js";
 import Card from "./AppCard.jsx";
+import { SPLIT_BREAKPOINT } from "../../context/AppProvider.js";
 
 // Glob images for apps
 const appImages = import.meta.glob("@/assets/icons/appIcons/*", {
@@ -16,6 +18,9 @@ const imagesByName = Object.fromEntries(
 
 const Desktop = () => {
   const { dispatch } = useApp(); // Get function to open an app
+  const isMobile = useMediaQuery({ maxWidth: SPLIT_BREAKPOINT });
+  const allApps = Object.values(apps);
+  const desktopApps = isMobile ? allApps.slice(0, 4) : allApps;
 
   return (
     <HBox
@@ -37,7 +42,7 @@ const Desktop = () => {
     >
       {
         // Render all apps on desktop from apps/registry.js
-        Object.values(apps).map((a) => {
+        desktopApps.map((a) => {
           return (
             <Card
               key={a.id}

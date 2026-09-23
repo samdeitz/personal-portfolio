@@ -2,14 +2,17 @@ import about from "./filesystem/about.txt?raw";
 import skills from "./filesystem/skills.txt?raw";
 import settings from "./filesystem/settings.conf?raw";
 import apps, { type AppID } from "./apps/registry";
-import { projects } from "./projects";
+import { allProjects as projects } from "./projects";
 import type { FileNode } from "./filesystem/types";
 export type { Directory, FileType, FileNode } from "./filesystem/types";
 
 const appEntry = (appID: AppID): FileNode => ({
-  type: "app", name: apps[appID].title, appID,
+  type: "app",
+  name: apps[appID].title,
+  appID,
 });
-const projectEntries = (): FileNode[] => Object.values(projects).map(project => appEntry(project.id));
+const projectEntries = (): FileNode[] =>
+  Object.values(projects).map((project) => appEntry(project.id));
 
 export const filesystem: FileNode = {
   type: "directory",

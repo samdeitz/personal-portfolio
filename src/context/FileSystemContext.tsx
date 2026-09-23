@@ -34,7 +34,6 @@ export const FileSystemProvider = ({ children }: FileSystemProps) => {
   const [history, setHistory] = useState<HistoryRecord[]>([]);
   const [historyIndex, setHistoryIndex] = useState<number>(-1);
 
-  console.log(historyIndex);
   const value = {
     filesystem: fileSystem,
     setFileSystem,

@@ -17,7 +17,6 @@ export const calculateLayout = (
 ): Layouts => {
   const node = tree[currNode];
   if (!node) {
-    console.error(`NO NODE WITH ID: ${currNode}`);
     return {};
   }
   // ADD BASE CASE FOR LEAF NODE -> IF LEAF, NO CHANGES NEEDED
