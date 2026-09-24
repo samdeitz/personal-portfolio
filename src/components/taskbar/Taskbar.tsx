@@ -11,7 +11,7 @@ const Taskbar = ({ apps }: { apps: Record<string, AppShape> }) => {
   return (
     <div id="taskbar" className="fixed bottom-0 z-100 max-w-full">
       <div
-        className="flex h-13 w-screen flex-nowrap items-center justify-between bg-theme-surface"
+        className="taskbar-surface flex h-13 w-screen flex-nowrap items-center justify-between bg-theme-surface"
       >
         <Searchbar />
         <TaskbarSocialLinks iconRef={iconRef} />

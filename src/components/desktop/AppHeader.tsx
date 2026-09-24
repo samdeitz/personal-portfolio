@@ -7,14 +7,14 @@ const AppHeader = ({ title, notMobile, appID }) => {
   const { dispatch } = useApp();
 
   return (
-    <HBox
-      className="bg-theme-surface shrink-0 justify-between rounded-t-lg"
-    >
+    <HBox className="bg-theme-surface shrink-0 justify-between rounded-t-lg flex-nowrap [container-type:inline-size]">
       {/* App Title */}
-      <h1 className="self-center pl-2 font-bold">{title}</h1>
+      <h1 className="min-w-0 self-center pl-2 font-bold text-[clamp(0.5rem,6cqi,1.125rem)]">
+        {title}
+      </h1>
 
       {/* Close/Minimize buttons */}
-      <HBox>
+      <HBox className="shrink-0">
         {notMobile && (
           <button
             type="button"

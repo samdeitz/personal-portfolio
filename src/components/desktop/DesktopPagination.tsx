@@ -1,4 +1,6 @@
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa6";
+import { useTheme } from "../../context/ThemeContext";
+import { twMerge } from "tailwind-merge";
 
 interface DesktopPaginationProps {
   page: number;
@@ -14,10 +16,15 @@ export default function DesktopPagination({
   pageCount,
   onPageChange,
 }: DesktopPaginationProps) {
+  const { isDark } = useTheme();
   return (
     <nav
       aria-label="Desktop pages"
-      className={`flex h-14 shrink-0 items-center justify-center gap-4 ${pageCount === 1 ? "invisible" : ""}`}
+      className={twMerge(
+        `flex h-14 shrink-0 items-center justify-center gap-4 `,
+        pageCount === 1 && "invisible",
+        !isDark && "text-theme-inverse-foreground lg:text-inherit",
+      )}
     >
       <button
         type="button"

@@ -61,6 +61,7 @@ export default function SearchModal() {
   };
 
   useKeyDown((event) => {
+    if (!isSearching) return;
     const keyHit = () => {
       event.preventDefault();
       document.body.style.pointerEvents = "none";
@@ -75,6 +76,9 @@ export default function SearchModal() {
     }
     if (event.code === "Enter") {
       handleOpen(highlighted);
+    }
+    if (event.code === "Escape") {
+      toggleSearching();
     }
   });
 

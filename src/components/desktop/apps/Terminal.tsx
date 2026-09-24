@@ -145,7 +145,7 @@ const Terminal = () => {
     <VBox
       onClick={focusInput}
       ref={scrollRef}
-      className="bg-theme-terminal text-theme-on-dark w-full gap-2 h-full rounded-lg z-200 p-4 border-3 overflow-y-auto hide-scrollbar"
+      className="bg-theme-terminal text-theme-on-dark w-full gap-2 h-full rounded-lg z-200 p-4 overflow-y-auto hide-scrollbar"
     >
       {history.map((entry, index) => {
         return (

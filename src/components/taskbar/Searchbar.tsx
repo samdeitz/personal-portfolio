@@ -14,11 +14,12 @@ const Searchbar = () => {
   return (
     <HBox
       className={`
+                taskbar-search-surface
                 gap-1
                 items-center
                 origin-left
                 flex-shrink-0
-                ${isSearching ? "bg-theme-inverse-surface text-theme-inverse-foreground" : "bg-theme-surface"}
+                ${isSearching ? "bg-theme-inverse-surface text-theme-inverse-foreground" : "bg-theme-surface text-theme-foreground"}
         `}
     >
       {/* icon to toggle searching */}
