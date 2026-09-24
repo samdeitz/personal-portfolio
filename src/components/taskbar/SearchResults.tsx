@@ -1,5 +1,4 @@
 import { useApp } from "../../context/AppContext";
-import { useTheme } from "../../context/ThemeContext";
 import HBox from "../ui/HBox";
 import VBox from "../ui/VBox";
 
@@ -16,7 +15,6 @@ const imagesByName = Object.fromEntries(
 
 const SearchResults = ({ apps, isSearching, setIsSearching, searchValue }) => {
   const { dispatch } = useApp();
-  const { isDark } = useTheme();
 
   return (
     <VBox
@@ -25,18 +23,18 @@ const SearchResults = ({ apps, isSearching, setIsSearching, searchValue }) => {
                 bottom-13
                 z-100
                 min-w-60.25
-                sm:min-w-64 
-                md:min-w-74 
+                sm:min-w-64
+                md:min-w-74
                 lg:min-w-94
-                transition-all
+                transition-[opacity,scale,max-width,max-height]
                 duration-500
                 ease-in-out
                 origin-bottom-left
                 overflow-auto
                 scrollbar-style
-                ${isDark ? "dark" : "light"}
-                ${isDark ? "bg-light-grey" : "bg-dark-grey"}
-                ${isDark ? "text-[#151515]" : "text-[#d9d9d9]"}
+
+                bg-theme-inverse-surface
+                text-theme-inverse-foreground
                 ${isSearching ? "max-h-55 opacity-100 scale-100" : "max-h-0 opacity-0 scale-0"}
             `}
     >

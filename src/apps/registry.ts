@@ -6,7 +6,7 @@ export const apps: Record<string, AppShape> = {
   ...allProjects,
   ...specialApps,
 };
-export const desktopApps = { ...desktopProjects };
+export const desktopApps = { ...specialApps, ...desktopProjects };
 export type AppID = keyof typeof apps;
 export type DesktopApp = (typeof apps)[AppID];
 export type AppTitle = DesktopApp["title"];

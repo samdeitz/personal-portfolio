@@ -5,7 +5,6 @@ import AppHeader from "./AppHeader.jsx";
 import { getApp } from "../../apps/registry";
 import { useApp } from "../../context/AppContext.js";
 import { SPLIT_BREAKPOINT } from "../../context/AppProvider";
-import { useTheme } from "../../context/ThemeContext.js";
 import VBox from "../ui/VBox.js";
 import AppContent from "./AppContent";
 
@@ -18,7 +17,6 @@ const OpenTab = ({
 }) => {
   const notMobile = useMediaQuery({ minWidth: 400 }); // boolean to conditionally render for devices that are not mobile
   const isSingleWindow = useMediaQuery({ maxWidth: SPLIT_BREAKPOINT });
-  const { isDark } = useTheme(); // Theme boolean
   const { focusedWindowID, windows, dispatch } = useApp();
   const window = windows.find((window) => window.id === windowID);
   const currentApp = window && getApp(window.type);
@@ -28,11 +26,11 @@ const OpenTab = ({
     <VBox
       style={style}
       className={`
-        transition-all 
+        transition-[opacity,scale,max-width,max-height]
         border-2
         ease-in-out
         ${isSingleWindow ? "origin-bottom-left" : "origin-center"}
-        ${isDark ? "bg-dark" : "bg-light"}
+        bg-theme-page
         animate-window-open
         ${focusedWindowID === windowID && "border-blue-300"}
         relative
@@ -63,7 +61,7 @@ const OpenTab = ({
       {/* --- APP CONTENT --- */}
       <VBox
         className={`
-                ${isDark ? "dark" : "light"}
+
                 overflow-y-auto
                 ${currentApp.title == "Terminal" && "hide-scrollbar"}
                 scrollbar-style

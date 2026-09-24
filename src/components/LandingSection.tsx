@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { useApp } from "../context/AppContext";
 import { FileSystemProvider } from "../context/FileSystemContext.js";
 import Header from "./Header.jsx";
@@ -14,9 +13,8 @@ const LandingSection = () => {
   useScrollLock(hasVisibleWindows);
   return (
     <VBox
-      className={`z-1 @container hide-scrollbar ${hasVisibleWindows ? "overflow-hidden" : "overflow-y-scroll"}`}
+      className="fixed inset-0 h-dvh z-1 @container overflow-hidden pb-13"
     >
-      {/* <SearchModal></SearchModal> */}
       <FileSystemProvider>
         <DesktopApp />
       </FileSystemProvider>
@@ -26,6 +24,7 @@ const LandingSection = () => {
         src={meDark}
         className="
             fixed
+            pointer-events-none
             z-97
             right-0
             bottom-0

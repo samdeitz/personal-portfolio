@@ -1,15 +1,11 @@
+import { FaGithub } from "react-icons/fa6";
+import { LuExternalLink } from "react-icons/lu";
 import type { ReactElement } from "react";
 import type { ContentBlock } from "../../content/types";
 import HBox from "../ui/HBox";
-import githubWhite from "@/assets/icons/github-white.svg";
-import githubBlack from "@/assets/icons/github-black.svg";
-import openWhite from "@/assets/icons/open-white.svg";
-import openBlack from "@/assets/icons/open-black.svg";
 import TechnologyIcon from "./TechnologyIcon";
-import { useTheme } from "../../context/ThemeContext";
 
 const AppElement = ({ element }: { element: ContentBlock }): ReactElement => {
-  const { isDark } = useTheme();
   const className = element.className ?? "";
   switch (element.type) {
     case "heading": {
@@ -48,19 +44,11 @@ const AppElement = ({ element }: { element: ContentBlock }): ReactElement => {
             className={`items-center min-h-10 gap-2 hover-over px-2 py-1 rounded-lg cursor-pointer`}
           >
             {element.icon === "github" && (
-              <img
-                className="w-5 shrink-0"
-                src={isDark ? githubWhite : githubBlack}
-                alt=""
-              />
+              <FaGithub className="size-5 shrink-0" aria-hidden="true" />
             )}
             <span className="h-fit text-sm font-semibold">{element.label}</span>
             {element.icon === "open" && (
-              <img
-                className="w-5 shrink-0"
-                src={isDark ? openWhite : openBlack}
-                alt=""
-              />
+              <LuExternalLink className="size-5 shrink-0" aria-hidden="true" />
             )}
           </HBox>
         </a>

@@ -1,8 +1,79 @@
 @import url("https://fonts.googleapis.com/css2?family=Jura:wght@300..700&display=swap");
 @import "tailwindcss";
 
+/* Animate colors once at the root; descendants inherit the same frame. */
+@property --theme-page {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: #202020;
+}
+
+@property --theme-surface {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: #333;
+}
+
+@property --theme-inverse-surface {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: #aaa;
+}
+
+@property --theme-foreground {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: #d9d9d9;
+}
+
+@property --theme-inverse-foreground {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: #151515;
+}
+
+@property --theme-secondary {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: #a0a0a0;
+}
+
+@property --theme-indicator {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: #ccc;
+}
+
+@property --theme-card-image {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: rgb(204 204 204 / 50%);
+}
+
+@property --theme-card-label {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: rgb(0 0 0 / 30%);
+}
+
+@property --theme-title-start {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: #666;
+}
+
+@property --theme-title-end {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: #999;
+}
+
 @layer base {
   :root {
+    /* The single duration for every theme fade. */
+    --theme-transition-duration: 500ms;
+    --theme-transition-easing: ease;
+
     --light: #ccc;
     --dark: #202020;
     --dark-grey: #333;
@@ -12,14 +83,25 @@
 
   html {
     @apply hide-scrollbar;
-  }
-
-  html.dark {
-    @apply bg-dark text-tlight;
+    background-color: var(--theme-page);
+    color: var(--theme-foreground);
+    transition-property: --theme-page, --theme-surface, --theme-inverse-surface, --theme-foreground, --theme-inverse-foreground, --theme-secondary, --theme-indicator, --theme-card-image, --theme-card-label, --theme-title-start, --theme-title-end;
+    transition-duration: var(--theme-transition-duration);
+    transition-timing-function: var(--theme-transition-easing);
   }
 
   html.light {
-    @apply bg-light text-tdark;
+    --theme-page: #ccc;
+    --theme-surface: #aaa;
+    --theme-inverse-surface: #333;
+    --theme-foreground: #1f1f1f;
+    --theme-inverse-foreground: #d9d9d9;
+    --theme-secondary: #555;
+    --theme-indicator: #202020;
+    --theme-card-image: rgb(32 32 32 / 10%);
+    --theme-card-label: rgb(0 0 0 / 70%);
+    --theme-title-start: #202020;
+    --theme-title-end: #555;
   }
 
   body {
@@ -38,7 +120,7 @@
     position: fixed;
     inset: 0;
     pointer-events: none;
-    transition: opacity 0.5s ease;
+    transition: opacity var(--theme-transition-duration) var(--theme-transition-easing);
   }
 
   /* dark layer (visible by default) */
@@ -67,6 +149,18 @@
 }
 
 @theme inline {
+  --color-theme-page: var(--theme-page);
+  --color-theme-surface: var(--theme-surface);
+  --color-theme-inverse-surface: var(--theme-inverse-surface);
+  --color-theme-foreground: var(--theme-foreground);
+  --color-theme-inverse-foreground: var(--theme-inverse-foreground);
+  --color-theme-secondary: var(--theme-secondary);
+  --color-theme-indicator: var(--theme-indicator);
+  --color-theme-card-image: var(--theme-card-image);
+  --color-theme-card-label: var(--theme-card-label);
+  --color-theme-title-start: var(--theme-title-start);
+  --color-theme-title-end: var(--theme-title-end);
+
   --color-dark: var(--dark);
   --color-light: var(--light);
   --color-grey-dark: var(--dark-grey);
@@ -145,12 +239,10 @@
     @apply hover-over p-2 flex-nowrap rounded-lg hover:opacity-100 opacity-80;
   }
 
-  .title-gradient.dark {
-    @apply bg-gradient-to-r from-[#666] via-[#999] to-[#666] bg-clip-text text-transparent;
-  }
-
-  .title-gradient.light {
-    @apply bg-gradient-to-r from-[#202020] via-[#555] to-[#202020] bg-clip-text text-transparent;
+  .title-gradient {
+    background-image: linear-gradient(to right, var(--theme-title-start), var(--theme-title-end));
+    background-clip: text;
+    color: transparent;
   }
 
   .overlay {
@@ -161,14 +253,9 @@
     @apply md:text-lg text-sm;
   }
 
-  .scrollbar-style.dark {
+  .scrollbar-style {
     scrollbar-width: thin;
-    scrollbar-color: #d9d9d9 transparent;
-  }
-
-  .scrollbar-style.light {
-    scrollbar-width: thin;
-    scrollbar-color: #151515 transparent;
+    scrollbar-color: var(--theme-foreground) transparent;
   }
 
   .reference-link {
@@ -261,13 +348,13 @@
 
 @utility hover-over {
   @apply hover:bg-[rgba(100,100,100,0.5)];
-  transition: background-color 1s;
+  transition: background-color var(--theme-transition-duration) var(--theme-transition-easing);
 }
 
 @utility highlight {
   @apply bg-[rgba(100,100,100,0.5)];
 
-  transition: background-color 1s;
+  transition: background-color var(--theme-transition-duration) var(--theme-transition-easing);
 }
 
 @utility no-bottom-shadow {

@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useLayoutEffect } from "react";
 import { ThemeContext } from "./ThemeContext.js"
 
 export const ThemeProvider = ({ children }) => {
@@ -6,10 +6,10 @@ export const ThemeProvider = ({ children }) => {
     const [isDark, setDark] = useState(true);
 
     const toggleTheme = () => {
-        setDark(!isDark);
+        setDark((dark) => !dark);
     }
 
-    useEffect(() => {
+    useLayoutEffect(() => {
         document.body.classList.remove("dark", "light");
         document.body.classList.add(isDark ? "dark" : "light");
         document.documentElement.classList.remove("dark", "light");

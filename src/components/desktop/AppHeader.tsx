@@ -1,24 +1,14 @@
-import closeBlack from "@/assets/icons/close-black.svg";
-import closeWhite from "@/assets/icons/close-white.svg";
+import { LuMinus, LuX } from "react-icons/lu";
 
-import minimizeWhite from "@/assets/icons/minimize-white.svg";
-import minimizeBlack from "@/assets/icons/minimize-black.svg";
 import { useApp } from "../../context/AppContext";
-import { useTheme } from "../../context/ThemeContext";
 import HBox from "../ui/HBox";
 
 const AppHeader = ({ title, notMobile, appID }) => {
-  const { isDark } = useTheme();
   const { dispatch } = useApp();
 
   return (
     <HBox
-      className={`
-                ${isDark ? "bg-dark-grey" : "bg-light-grey"} 
-                shrink-0
-                justify-between
-                rounded-t-lg
-            `}
+      className="bg-theme-surface shrink-0 justify-between rounded-t-lg"
     >
       {/* App Title */}
       <h1 className="self-center pl-2 font-bold">{title}</h1>
@@ -26,7 +16,8 @@ const AppHeader = ({ title, notMobile, appID }) => {
       {/* Close/Minimize buttons */}
       <HBox>
         {notMobile && (
-          <img
+          <button
+            type="button"
             onClick={() =>
               dispatch({
                 type: "MINIMIZE_WINDOW",
@@ -35,11 +26,14 @@ const AppHeader = ({ title, notMobile, appID }) => {
                 },
               })
             }
-            src={isDark ? minimizeWhite : minimizeBlack}
-            className="hover-over w-10 h-fit p-2 rounded-lg"
-          />
+            aria-label="Minimize window"
+            className="hover-over size-10 p-2 rounded-lg cursor-pointer"
+          >
+            <LuMinus className="size-6" aria-hidden="true" />
+          </button>
         )}
-        <img
+        <button
+          type="button"
           onClick={() =>
             dispatch({
               type: "CLOSE_WINDOW",
@@ -48,9 +42,11 @@ const AppHeader = ({ title, notMobile, appID }) => {
               },
             })
           }
-          className="w-10 p-2 h-fit hover-over rounded-lg"
-          src={isDark ? closeWhite : closeBlack}
-        />
+          className="size-10 p-2 hover-over rounded-lg cursor-pointer"
+          aria-label="Close window"
+        >
+          <LuX className="size-6" aria-hidden="true" />
+        </button>
       </HBox>
     </HBox>
   );

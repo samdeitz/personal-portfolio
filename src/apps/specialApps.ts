@@ -1,6 +1,12 @@
 import type { AppShape } from "../content/types";
 
 export const specialApps: Record<string, AppShape> = {
+  terminal: {
+    kind: "special",
+    id: "terminal",
+    title: "Terminal",
+    desktopImageSrc: "terminal.jpg",
+  },
   "about-me": {
     kind: "special",
     id: "about-me",
@@ -12,11 +18,5 @@ export const specialApps: Record<string, AppShape> = {
     id: "previous-work",
     title: "Previous Work",
     desktopImageSrc: "work.jpg",
-  },
-  terminal: {
-    kind: "special",
-    id: "terminal",
-    title: "Terminal",
-    desktopImageSrc: "terminal.jpg",
   },
 } as const;

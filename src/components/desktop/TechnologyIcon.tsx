@@ -1,11 +1,9 @@
 import { technologies, type Technology } from "../../content/technologies";
-import { useTheme } from "../../context/ThemeContext";
 
 const TechnologyIcon = ({ technology }: { technology: Technology }) => {
-  const { isDark } = useTheme();
 
   const info = technologies[technology];
-  const logo = isDark && "darkLogo" in info ? info.darkLogo : info.logo;
+  const Icon = "Icon" in info ? info.Icon : null;
 
   return (
     <a
@@ -22,9 +20,13 @@ const TechnologyIcon = ({ technology }: { technology: Technology }) => {
 
         {/* back */}
         <div
-          className={`absolute top-0 left-0 w-full h-full p-2 flex items-center justify-center backface-hidden rotate-y-180 pointer-events-none ${isDark ? "bg-dark-grey" : "bg-light-grey"} border rounded-xl`}
+          className="absolute top-0 left-0 w-full h-full p-2 flex items-center justify-center backface-hidden rotate-y-180 pointer-events-none bg-theme-surface border rounded-xl"
         >
-          <img className="w-5" src={logo} alt={technology} />
+          {Icon ? (
+            <Icon className="size-5" aria-hidden="true" />
+          ) : "logo" in info ? (
+            <img className="w-5" src={info.logo} alt={technology} />
+          ) : null}
         </div>
       </div>
     </a>

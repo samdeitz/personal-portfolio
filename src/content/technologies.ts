@@ -1,12 +1,9 @@
+import { SiNextdotjs, SiVercel } from "react-icons/si";
 import viteLogo from "@/assets/icons/vite-logo.svg";
 import tailwindLogo from "@/assets/icons/tailwind-logo.svg";
 import svelteLogo from "@/assets/icons/svelte-logo.svg";
 import reactLogo from "@/assets/icons/react-logo.svg";
 import javaLogo from "@/assets/icons/java-logo.svg";
-import nextLogoLight from "@/assets/icons/next-logo-light.svg";
-import nextLogoDark from "@/assets/icons/next-logo-dark.svg";
-import vercelLogoLight from "@/assets/icons/vercel-logo-light.svg";
-import vercelLogoDark from "@/assets/icons/vercel-logo-dark.svg";
 export const technologies = {
     Vite: {
       logo: viteLogo,
@@ -25,13 +22,11 @@ export const technologies = {
       href: "https://svelte.dev/",
     },
     "Next.js": {
-      logo: nextLogoLight,
-      darkLogo: nextLogoDark,
+      Icon: SiNextdotjs,
       href: "https://nextjs.org/",
     },
     Vercel: {
-      logo: vercelLogoLight,
-      darkLogo: vercelLogoDark,
+      Icon: SiVercel,
       href: "https://vercel.com/",
     },
     Java: {
