@@ -145,11 +145,11 @@ const Terminal = () => {
     <VBox
       onClick={focusInput}
       ref={scrollRef}
-      className="bg-terminal w-full gap-2 h-full rounded-lg z-200 p-4 border-3 overflow-y-auto hide-scrollbar"
+      className="bg-theme-terminal text-theme-on-dark w-full gap-2 h-full rounded-lg z-200 p-4 border-3 overflow-y-auto hide-scrollbar"
     >
       {history.map((entry, index) => {
         return (
-          <VBox key={index} className="text-light-grey">
+          <VBox key={index} className="text-theme-on-dark">
             <HBox className="gap-4">
               <p>{entry.input}</p>
             </HBox>
@@ -169,7 +169,7 @@ const Terminal = () => {
           ref={inputRef}
           onKeyDown={handlePress}
           autoFocus
-          className="outline-none caret-terminal caret-tlight text-light-grey"
+          className="outline-none caret-terminal caret-theme-on-dark text-theme-on-dark"
           type="text"
           autoComplete="off"
         />

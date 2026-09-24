@@ -1,7 +1,6 @@
 import VBox from "../ui/VBox";
 import apps from "../../apps/registry";
 import { useApp } from "../../context/AppContext";
-import { useTheme } from "../../context/ThemeContext";
 import { useSearch } from "../../context/SearchContext";
 import { useScrollLock } from "../../hooks/useScrollLock";
 import AppResult from "./search/AppResult";
@@ -24,7 +23,6 @@ export default function SearchModal() {
   const firstApp = Object.values(apps)[0].id ?? "";
   const [highlighted, setHighlighted] = useState<string>(firstApp);
   const { dispatch } = useApp();
-  const { isDark } = useTheme();
   const {
     isSearching,
     searchValue,
@@ -93,10 +91,10 @@ export default function SearchModal() {
 
   return isSearching ? (
     <div className="flex fixed w-screen h-full backdrop-blur-[2px] z-100 items-center justify-center">
-      <VBox className="fixed p-4 bg-dark min-w-124 gap-4 border-light-grey border-2 rounded-md">
+      <VBox className="fixed p-4 bg-theme-page text-theme-foreground min-w-11/12 md:min-w-124 gap-4 border-theme-secondary border-2 rounded-md">
         {/* searchbar, conditionally rendered by isSearching */}
         <input
-          className="transition-[opacity, transform] duration-500 ease-in-out origin-left w-full h-12 rounded-sm pl-2 outline-none bg-dark-grey"
+          className="transition-[opacity, transform] duration-500 ease-in-out origin-left w-full h-12 rounded-sm pl-2 outline-none bg-theme-surface"
           placeholder="Launch..."
           type="text"
           value={searchValue[0]}

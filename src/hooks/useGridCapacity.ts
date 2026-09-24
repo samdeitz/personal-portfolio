@@ -5,6 +5,7 @@ export function useGridCapacity(columns: number) {
   const gridRef = useRef<HTMLDivElement>(null);
   const [card, cardRef] = useState<HTMLDivElement | null>(null);
   const [rows, setRows] = useState(1);
+  const [rowHeight, setRowHeight] = useState(0);
 
   useLayoutEffect(() => {
     const grid = gridRef.current;
@@ -12,6 +13,7 @@ export function useGridCapacity(columns: number) {
 
     const measure = () => {
       const cardHeight = Math.max(1, card.offsetHeight);
+      setRowHeight(cardHeight);
       const gap = parseFloat(getComputedStyle(grid).rowGap) || 0;
       setRows(
         Math.max(1, Math.floor((grid.clientHeight + gap) / (cardHeight + gap))),
@@ -25,5 +27,5 @@ export function useGridCapacity(columns: number) {
     return () => observer.disconnect();
   }, [columns, card]);
 
-  return { gridRef, cardRef, pageSize: columns * rows };
+  return { gridRef, cardRef, rows, rowHeight, pageSize: columns * rows };
 }

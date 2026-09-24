@@ -1,3 +1,4 @@
+import { createNodeID } from "./createNodeID";
 import type {
   LayoutTree,
   NodeID,
@@ -45,7 +46,7 @@ export const insertNode = ({
   let grandParent = tree[parent.parent];
 
   // create new container
-  const newContainerID = crypto.randomUUID();
+  const newContainerID = createNodeID();
   const newContainer: ContainerNode = {
     id: newContainerID,
     nodeType: "container",

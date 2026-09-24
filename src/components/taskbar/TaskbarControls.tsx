@@ -12,7 +12,7 @@ const TaskbarControls = () => {
       <button
         type="button"
         onClick={toggleTheme}
-        className="taskbar-item"
+        className="taskbar-item border-0 outline-none"
         aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}
       >
         {isDark ? <LuSun className="size-7" aria-hidden="true" /> : <LuMoon className="size-7" aria-hidden="true" />}

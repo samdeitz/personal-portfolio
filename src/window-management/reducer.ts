@@ -1,6 +1,7 @@
 import apps from "../apps/registry";
 import type { AppWindow, WMAction, WMState } from "../context/types";
 import { insertNode, removeWindow, getNewFocusID } from "./tree";
+import { createNodeID } from "./createNodeID";
 
 export const wmReducer = (state: WMState, action: WMAction): WMState => {
   switch (action.type) {
@@ -18,7 +19,7 @@ export const wmReducer = (state: WMState, action: WMAction): WMState => {
       if (!app) return state;
 
       let newWindow: AppWindow = {
-        id: crypto.randomUUID(),
+        id: createNodeID(),
         type: app.id,
         title: app.title,
         layout: null,

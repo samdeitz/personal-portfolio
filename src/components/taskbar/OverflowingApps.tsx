@@ -14,7 +14,7 @@ const OverflowingApps = ({ windows, apps, appImages }: OverflowingAppsProps) => 
   const { dispatch } = useApp();
   // Unmounting on mobile or when all apps fit also resets the menu.
   const [isOpen, setIsOpen] = useState(false);
-  const menuBackground = "bg-theme-inverse-surface";
+  const menuBackground = "bg-theme-inverse-surface text-theme-inverse-foreground";
 
   return (
     <div className={`flex flex-col shrink-0 ${isOpen ? menuBackground : ""}`}>

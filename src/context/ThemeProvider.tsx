@@ -10,8 +10,6 @@ export const ThemeProvider = ({ children }) => {
     }
 
     useLayoutEffect(() => {
-        document.body.classList.remove("dark", "light");
-        document.body.classList.add(isDark ? "dark" : "light");
         document.documentElement.classList.remove("dark", "light");
         document.documentElement.classList.add(isDark ? "dark" : "light");
     }, [isDark])

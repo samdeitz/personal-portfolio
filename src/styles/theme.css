@@ -1,0 +1,95 @@
+/* Original grayscale dark mode, with a muted slate light-mode override. */
+@layer base {
+  :root {
+    --light: #ccc;
+    --dark: #202020;
+    --dark-grey: #333;
+    --light-grey: #aaa;
+    --tlight: #d9d9d9;
+    --theme-transition-duration: 500ms;
+    --theme-transition-easing: ease;
+
+    /* Dark is the default; components use these shared color roles. */
+    color-scheme: dark;
+    --theme-page: var(--dark);
+    --theme-surface: var(--dark-grey);
+    --theme-inverse-surface: var(--light-grey);
+    --theme-foreground: var(--tlight);
+    --theme-inverse-foreground: #151515;
+    --theme-secondary: #a0a0a0;
+    --theme-indicator: var(--light);
+    --theme-card-image: rgb(204 204 204 / 50%);
+    --theme-card-label: rgb(0 0 0 / 30%);
+    --title-gradient: linear-gradient(to right, #666, #999, #666);
+  }
+
+  /* Muted slate light mode, inspired by the Nord palette. */
+  html.light {
+    color-scheme: light;
+    --theme-page: #B6BFCB;
+    --theme-surface: #C9D1DA;
+    --theme-inverse-surface: #2E3440;
+    --theme-foreground: #2E3440;
+    --theme-inverse-foreground: #ECEFF4;
+    --theme-secondary: #4C566A;
+    --theme-indicator: #3B6280;
+    --theme-card-image: rgb(46 52 64 / 10%);
+    --theme-card-label: rgb(46 52 64 / 70%);
+    --title-gradient: linear-gradient(to right, #2E3440, #3B6280, #2E3440);
+  }
+
+  html {
+    background-color: var(--theme-page);
+    color: var(--theme-foreground);
+  }
+
+  /* Fade between backgrounds, behind all page content. */
+  body::before,
+  body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    transition: opacity var(--theme-transition-duration) ease;
+  }
+
+  body::before {
+    background: linear-gradient(to bottom, #303030 0%, var(--dark) 50%);
+    opacity: 1;
+  }
+
+  body::after {
+    background: linear-gradient(to bottom, #98A3B2, #B6BFCB);
+    opacity: 0;
+  }
+
+  html.light body::before {
+    opacity: 0;
+  }
+  html.light body::after {
+    opacity: 1;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    :root {
+      --theme-transition-duration: 0ms;
+    }
+  }
+}
+
+/* Make the shared roles available as Tailwind classes. */
+@theme inline {
+  --color-theme-page: var(--theme-page);
+  --color-theme-surface: var(--theme-surface);
+  --color-theme-inverse-surface: var(--theme-inverse-surface);
+  --color-theme-foreground: var(--theme-foreground);
+  --color-theme-inverse-foreground: var(--theme-inverse-foreground);
+  --color-theme-secondary: var(--theme-secondary);
+  --color-theme-indicator: var(--theme-indicator);
+  --color-theme-card-image: var(--theme-card-image);
+  --color-theme-card-label: var(--theme-card-label);
+  --color-theme-on-dark: var(--tlight);
+  --color-theme-terminal: #1d1d1d;
+  --color-theme-hover: rgb(100 100 100 / 50%);
+}

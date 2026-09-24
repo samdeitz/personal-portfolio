@@ -12,18 +12,18 @@ const LandingSection = () => {
   const hasVisibleWindows = windows.some((win) => !win.minimized);
   useScrollLock(hasVisibleWindows);
   return (
-    <VBox
-      className="fixed inset-0 h-dvh z-1 @container overflow-hidden pb-13"
-    >
+    <VBox className="fixed inset-0 h-dvh z-1 @container overflow-hidden pb-13">
       <FileSystemProvider>
         <DesktopApp />
       </FileSystemProvider>
       <Header />
       <Desktop />
-      <img
-        src={meDark}
-        className="
+      <div className="hero-photo-wrap">
+        <img
+          src={meDark}
+          className="
             fixed
+            hero-photo
             pointer-events-none
             z-97
             right-0
@@ -32,7 +32,8 @@ const LandingSection = () => {
             overflow-none
             aspect-auto
             "
-      />
+        />
+      </div>
     </VBox>
   );
 };

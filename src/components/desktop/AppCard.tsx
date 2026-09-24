@@ -31,7 +31,7 @@ const AppCard = ({
 
       <h3
         title={apptitle}
-        className="flex h-11 shrink-0 w-full items-center justify-center px-1 py-1.5 text-center text-[clamp(0.75rem,1.5vw,0.875rem)] leading-tight font-bold wrap-break-word text-tlight rounded-b-lg bg-theme-card-label"
+        className="flex h-11 shrink-0 w-full items-center justify-center px-1 py-1.5 text-center text-[clamp(0.75rem,1.5vw,0.875rem)] leading-tight font-bold wrap-break-word text-theme-on-dark rounded-b-lg bg-theme-card-label"
       >
         <span className="line-clamp-2">{apptitle}</span>
       </h3>

@@ -24,7 +24,7 @@ const Desktop = () => {
   const { dispatch } = useApp(); // Get function to open an app
   const breakpoint = useBreakpoint();
   const columns = { sm: 2, md: 3, lg: 4, xl: 5 }[breakpoint];
-  const { gridRef, cardRef, pageSize } = useGridCapacity(columns);
+  const { gridRef, cardRef, rows, rowHeight, pageSize } = useGridCapacity(columns);
   const [page, setPage] = useState(0);
   const pageCount = Math.max(1, Math.ceil(allApps.length / pageSize));
   const currentPage = Math.min(page, pageCount - 1);
@@ -42,12 +42,14 @@ const Desktop = () => {
       className="relative z-98 flex min-h-0 w-full flex-1 flex-col px-4 sm:px-8"
       aria-label="Desktop apps"
     >
-      <div className="relative min-h-0 flex-1 justify-self-center">
+      <div className="relative min-h-0 flex-1">
         <div
           ref={gridRef}
-          className={`${gridClasses} h-full content-start`}
+          className={`${gridClasses} h-full content-center`}
           style={{
             gridTemplateColumns: `repeat(${columns}, minmax(0, 1fr))`,
+            // Reserve empty rows so app positions stay consistent across pages.
+            gridTemplateRows: rowHeight ? `repeat(${rows}, ${rowHeight}px)` : undefined,
           }}
         >
           {desktopApps.map((app, index) => (

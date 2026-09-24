@@ -18,7 +18,7 @@ const Searchbar = () => {
                 items-center
                 origin-left
                 flex-shrink-0
-                ${isSearching ? "bg-theme-inverse-surface" : "bg-theme-surface"}
+                ${isSearching ? "bg-theme-inverse-surface text-theme-inverse-foreground" : "bg-theme-surface"}
         `}
     >
       {/* icon to toggle searching */}
