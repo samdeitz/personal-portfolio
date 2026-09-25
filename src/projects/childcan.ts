@@ -1,43 +1,96 @@
 import type { Project } from "./types";
+import childcanBanner from "../assets/images/childcan-banner.jpg";
 
-// Based on the project account in resume_eval.md.
 const childcan = {
   kind: "project",
   id: "childcan",
   title: "Childcan",
   desktopImageSrc: "childcan.jpg",
+  metadata: {
+    summary:
+      "A large nonprofit website redesign focused on accessibility, navigation, and reusable frontend architecture. I co-led frontend development, supported junior developers, and built the content-rendering and dynamic-routing systems used across the site.",
+    status: "Deployed",
+    links: [
+      {
+        href: "https://childcan.com",
+        label: "Visit Site",
+        icon: "open",
+      },
+    ],
+    technologies: [
+      "React",
+      "Next.js",
+      "TypeScript",
+      "Tailwind CSS",
+      "Figma",
+      "Sanity",
+      "Webflow",
+    ],
+    banner: {
+      src: childcanBanner,
+      alt: "childcan",
+    },
+  },
   content: [
     {
       type: "heading",
-      text: "Helping families find the information they need",
+      text: "Improving a large nonprofit website",
+      level: 3,
     },
     {
       type: "paragraph",
-      text: "Through Tethos, I worked as one of two senior developers alongside five junior developers on Childcan’s website redesign. The existing Squarespace site had more than 20 pages, and visitors struggled to find information. We worked together in Figma to rethink navigation, accessibility, and the path to donating.",
+      text: "I was one of two senior frontend developers on a seven-person team rebuilding Childcan's website alongside five junior developers.",
+    },
+    {
+      type: "paragraph",
+      text: "The existing site had more than 20 pages and one of its biggest problems was navigability. Visitors had difficulty finding the information they needed, so the redesign focused heavily on accessibility, discoverability, and making important actions such as donating easier to find.",
+    },
+    {
+      type: "paragraph",
+      text: "Part of my role was taking on more complicated React work and acting as a technical resource for junior developers.",
     },
     {
       type: "heading",
-      text: "A reusable system for content pages",
+      text: "Standardizing content across the site",
+      level: 3,
     },
     {
       type: "paragraph",
-      text: "My main contribution was a typed content renderer for the React and Next.js implementation. Many pages shared the same kinds of content, so I modeled elements such as paragraphs and titles and rendered each with consistent styling. This let us populate more than ten content pages without recreating the same markup and layout logic for each one.",
+      text: "More than 10 pages shared a similar content structure, so manually rebuilding each page would have created a lot of repeated markup.",
+    },
+    {
+      type: "paragraph",
+      text: "I created a typed content-rendering system that could receive structured content such as titles and paragraphs and render the correct components and styles. This gave us a consistent way to build large content-heavy pages.",
     },
     {
       type: "heading",
-      text: "Routing, search, and team support",
+      text: "Creating scalable routes and navigation",
+      level: 3,
     },
     {
       type: "paragraph",
-      text: "I built slug-based routes for family stories and events, the responsive header, and the frontend of the fuzzy-search interface. The other senior developer implemented the fuzzy-matching logic. I took on the more complex React work and helped junior developers when they needed support. Our frontend used TypeScript and Tailwind CSS.",
+      text: "Family stories and events needed individual pages, so I designed a slug-based dynamic-routing system for them. The goal was to let future CMS content generate pages without manually creating a route for every story or event.",
+    },
+    {
+      type: "paragraph",
+      text: "I also built the responsive header and frontend interface for a fuzzy-search feature. Another senior developer handled the fuzzy-search logic while I focused on the user-facing experience.",
     },
     {
       type: "heading",
-      text: "Adapting to the client’s editing needs",
+      text: "Adapting to a client-driven platform change",
+      level: 3,
     },
     {
       type: "paragraph",
-      text: "The client ultimately wanted the freedom to move page content around, and the project transitioned to Webflow, where the site launched. Our React implementation and early Sanity collections were not the final production platform. The content renderer and routing were my contributions to that earlier implementation; the change in direction made the client’s editing workflow a central part of the delivery decision.",
+      text: "The original rebuild used React, Next.js, TypeScript, and Tailwind CSS, and we had started integrating Sanity.",
+    },
+    {
+      type: "paragraph",
+      text: "Before that version was completed, the client decided they wanted more direct drag-and-drop control over page layouts, so the project transitioned to Webflow.",
+    },
+    {
+      type: "paragraph",
+      text: "The final site launched through Webflow, while the earlier React work shaped the redesign and gave me experience adapting technical plans when client needs changed.",
     },
   ],
 } as const satisfies Project;

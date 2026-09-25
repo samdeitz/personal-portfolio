@@ -32,7 +32,7 @@ const OpenTab = ({
         ${isSingleWindow ? "origin-bottom-left" : "origin-center"}
         bg-theme-page
         animate-window-open
-        ${focusedWindowID === windowID && "border-blue-300"}
+        ${focusedWindowID === windowID && "border-theme-focused"}
         relative
         min-w-0
         min-h-0
@@ -67,7 +67,7 @@ const OpenTab = ({
                 scrollbar-style
                 min-h-0
                 flex-1
-                ${currentApp.kind === "project" ? "project-viewport" : "items-center gap-y-5"}
+                ${currentApp.kind === "project" ? "[container-type:size]" : "items-center gap-y-5"}
             `}
       >
         <AppContent app={currentApp} />

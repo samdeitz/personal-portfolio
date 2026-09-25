@@ -21,21 +21,23 @@
     --theme-card-image: rgb(204 204 204 / 50%);
     --theme-card-label: rgb(0 0 0 / 30%);
     --title-gradient: linear-gradient(to right, #666, #999, #666);
+    --theme-focused: #5e81ac;
   }
 
   /* Muted slate light mode, inspired by the Nord palette. */
   html.light {
     color-scheme: light;
-    --theme-page: #B6BFCB;
-    --theme-surface: #C9D1DA;
-    --theme-inverse-surface: #2E3440;
-    --theme-foreground: #2E3440;
-    --theme-inverse-foreground: #ECEFF4;
-    --theme-secondary: #4C566A;
-    --theme-indicator: #3B6280;
+    --theme-page: #b6bfcb;
+    --theme-surface: #c9d1da;
+    --theme-inverse-surface: #2e3440;
+    --theme-foreground: #2e3440;
+    --theme-inverse-foreground: #eceff4;
+    --theme-secondary: #4c566a;
+    --theme-indicator: #3b6280;
     --theme-card-image: rgb(46 52 64 / 10%);
     --theme-card-label: rgb(46 52 64 / 70%);
-    --title-gradient: linear-gradient(to right, #2E3440, #3B6280, #2E3440);
+    --title-gradient: linear-gradient(to right, #2e3440, #3b6280, #2e3440);
+    --theme-focused: #c98a4b;
   }
 
   html {
@@ -60,7 +62,7 @@
   }
 
   body::after {
-    background: linear-gradient(to bottom, #98A3B2, #B6BFCB);
+    background: linear-gradient(to bottom, #98a3b2, #b6bfcb);
     opacity: 0;
   }
 
@@ -90,6 +92,7 @@
   --color-theme-card-image: var(--theme-card-image);
   --color-theme-card-label: var(--theme-card-label);
   --color-theme-on-dark: var(--tlight);
+  --color-theme-focused: var(--theme-focused);
   --color-theme-terminal: #1d1d1d;
   --color-theme-hover: rgb(100 100 100 / 50%);
 }

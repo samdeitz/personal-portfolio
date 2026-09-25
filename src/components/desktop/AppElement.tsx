@@ -1,9 +1,17 @@
 import { FaGithub } from "react-icons/fa6";
 import { LuExternalLink } from "react-icons/lu";
 import type { ReactElement } from "react";
-import type { ContentBlock } from "../../content/types";
+import type { ContentBlock, ProjectStatus } from "../../content/types";
 import HBox from "../ui/HBox";
 import TechnologyIcon from "./TechnologyIcon";
+
+const statusColors = {
+  Deployed: "bg-emerald-500",
+  Published: "bg-violet-500",
+  Active: "bg-sky-500",
+  Finalizing: "bg-amber-500",
+  Completed: "bg-slate-400",
+} satisfies Record<ProjectStatus, string>;
 
 const AppElement = ({ element }: { element: ContentBlock }): ReactElement => {
   const className = element.className ?? "";
@@ -24,6 +32,15 @@ const AppElement = ({ element }: { element: ContentBlock }): ReactElement => {
     }
     case "paragraph":
       return <p className={`content-paragraph ${className}`}>{element.text}</p>;
+    case "status":
+      return (
+        <div className={className}>
+          <span className="inline-flex items-center gap-2 rounded-full border border-current/15 bg-current/5 px-3 py-1 text-xs font-semibold" aria-label={`Project status: ${element.status}`}>
+            <span className={`size-2 shrink-0 rounded-full ${statusColors[element.status]}`} aria-hidden="true" />
+            {element.status}
+          </span>
+        </div>
+      );
     case "image":
       return (
         <img

@@ -40,22 +40,6 @@
     filter: grayscale(1) contrast(1.05) brightness(1.05);
     mix-blend-mode: luminosity;
   }
-  /* Size project padding relative to its window, not the browser viewport. */
-  .project-viewport {
-    container-type: inline-size;
-  }
-
-  .project-content {
-    flex-shrink: 0;
-    width: 100%;
-    max-width: 76ch; /* Limit reading width to roughly 76 characters. */
-    margin-inline: auto;
-    padding: clamp(1rem, 4cqi, 2rem); /* 4% of window width, between 1–2rem. */
-    font-size: 1rem;
-    line-height: 1.65;
-    overflow-wrap: anywhere;
-  }
-
   /* Space belongs to the flow, rather than padding on individual blocks. */
   .content-flow > * + * {
     margin-block-start: 0.875rem;
@@ -107,7 +91,8 @@
   .taskbar-surface,
   .taskbar-search-surface {
     transition:
-      background-color var(--theme-transition-duration) var(--theme-transition-easing),
+      background-color var(--theme-transition-duration)
+        var(--theme-transition-easing),
       color var(--theme-transition-duration) var(--theme-transition-easing);
   }
 

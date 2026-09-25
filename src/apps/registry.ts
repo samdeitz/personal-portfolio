@@ -1,14 +1,15 @@
-import type { AppShape } from "../content/types";
+import type { Project } from "../projects/types";
 import { desktopProjects, allProjects } from "../projects";
 import { specialApps } from "./specialApps";
 
-export const apps: Record<string, AppShape> = {
+export type DesktopApp = Project | (typeof specialApps)[keyof typeof specialApps];
+
+export const apps: Record<string, DesktopApp> = {
   ...allProjects,
   ...specialApps,
 };
 export const desktopApps = { ...specialApps, ...desktopProjects };
 export type AppID = keyof typeof apps;
-export type DesktopApp = (typeof apps)[AppID];
 export type AppTitle = DesktopApp["title"];
 
 export function getApp(id: string): DesktopApp | undefined {

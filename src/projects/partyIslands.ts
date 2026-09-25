@@ -1,53 +1,88 @@
 import type { Project } from "./types";
+import islandsBanner from "../assets/images/party-islands-banner.jpg";
 
-// Based on the project account in resume_eval.md.
 const partyIslands = {
   kind: "project",
   id: "party-islands",
   title: "Party Islands",
   desktopImageSrc: "islandBg.jpg",
+  metadata: {
+    summary:
+      "A real-time multiplayer typing game built in Java Swing by a five-person team. I co-led the project and focused on UDP lobby discovery, application navigation architecture, and several major player-facing screens.",
+    status: "Completed",
+    links: [
+      {
+        label: "View course repository",
+        href: "https://gitlab.sci.uwo.ca/courses/2026/01/COMPSCI2212/group44/-/tree/28d4dbca10e28def07f63d0d3bf2d2ff4b349f38/",
+        icon: "open",
+      },
+    ],
+    technologies: ["Java", "Java Swing", "UDP", "Sockets"],
+    banner: {
+      src: islandsBanner,
+      alt: "Party Islands Banner",
+    },
+  },
   content: [
     {
       type: "heading",
-      text: "A multiplayer typing game over LAN",
+      text: "Building a real-time multiplayer game",
+      level: 3,
     },
     {
       type: "paragraph",
-      text: "I co-led a five-person team building Party Islands, a real-time multiplayer typing game in Java Swing. Players compete over three rounds, lose life for typing mistakes, and use power-ups such as word skips, score boosts, and restored life. My main contributions were LAN lobby discovery and the event-driven screen navigation system.",
+      text: "Party Islands was a month-and-a-half project built by a five-person team. I acted as one of three co-leads and worked across networking, application flow, and UI implementation.",
+    },
+    {
+      type: "paragraph",
+      text: "Players compete across three typing rounds, lose life for mistakes, use power-ups, and can see other players' progress in real time.",
     },
     {
       type: "heading",
-      text: "Finding and joining a lobby",
+      text: "Discovering multiplayer lobbies over LAN",
+      level: 3,
     },
     {
       type: "paragraph",
-      text: "I built UDP broadcasting and discovery so hosts can advertise a room on the local network. Players scan for available lobbies and join using the connection information in the broadcast. I also implemented the login, find-lobby, waiting-room, and player interfaces. A teammate built the game-state system that drives the shared multiplayer experience.",
+      text: "My largest networking contribution was the LAN lobby discovery system.",
+    },
+    {
+      type: "paragraph",
+      text: "Hosts broadcast lobby information using UDP sockets. From the Find Lobby screen, players can scan the local network, see available rooms, and join one using information contained in the host's broadcast.",
+    },
+    {
+      type: "paragraph",
+      text: "Inside the lobby, players use their account name, receive an assigned color, ready up, and enter the game together.",
     },
     {
       type: "heading",
-      text: "Decoupling more than ten screens",
+      text: "Managing more than 10 screens",
+      level: 3,
     },
     {
       type: "paragraph",
-      text: "I introduced an EventBus interface with listener and window-event implementations so screens could request a transition without holding direct references to each other. Static screens use goToScreen, while screens that need fresh parameters use createDynamicScreen. A separate manager handles the in-game window flow after a player joins a lobby.",
+      text: "The application had more than 10 screens, and I did not want individual screens to hold direct references to every other screen they could navigate to.",
+    },
+    {
+      type: "paragraph",
+      text: "I designed an EventBus-based window manager that lets screens request navigation at a higher level.",
+    },
+    {
+      type: "paragraph",
+      text: "Static screens can be reused after initialization, while dynamic screens can be created when their state depends on the current session. This gave us a consistent way to manage screen transitions across the application.",
     },
     {
       type: "heading",
-      text: "Working through the development lifecycle",
+      text: "Building and testing the player-facing flow",
+      level: 3,
     },
     {
       type: "paragraph",
-      text: "Over roughly a month and a half, we worked through requirements, UML design, implementation, and testing. I built reusable Swing components for consistency and wrote tests for the EventBus and UDP broadcasting. The architecture let us coordinate more than ten screens while keeping screen changes separate from the gameplay state owned by my teammate.",
+      text: "I implemented the login, lobby discovery, broadcast-room, waiting-room, and player-facing interfaces using reusable Swing components.",
     },
     {
-      type: "link",
-      label: "View course repository",
-      href: "https://gitlab.sci.uwo.ca/courses/2026/01/COMPSCI2212/group44/-/tree/28d4dbca10e28def07f63d0d3bf2d2ff4b349f38/",
-      icon: "open",
-    },
-    {
-      type: "technologies",
-      technologies: ["Java", "Java Swing Library"],
+      type: "paragraph",
+      text: "The project also went through requirements gathering, UML design, implementation, and testing, including tests for parts of the EventBus and UDP networking.",
     },
   ],
 } as const satisfies Project;

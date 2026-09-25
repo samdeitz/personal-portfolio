@@ -1,41 +1,80 @@
 import type { Project } from "./types";
+import throwbackBanner from "../assets/images/throwback-banner.jpg";
 
-// Based on the project account in resume_eval.md.
 const throwback = {
   kind: "project",
   id: "throwback",
   title: "Throwback",
   desktopImageSrc: "throwback.jpg",
+  metadata: {
+    summary:
+      "A product-design concept for helping university students reconnect with old friends. Our three-person team took the idea from early wireframes to an interactive high-fidelity prototype during a 24-hour design sprint.",
+    status: "Completed",
+    links: [
+      {
+        label: "Explore the presentation",
+        href: "https://colorful-goal-666822.framer.app/",
+        icon: "open",
+      },
+    ],
+    technologies: ["Framer", "Product Design"],
+    banner: {
+      src: throwbackBanner,
+      alt: "ThrowBack",
+    },
+  },
   content: [
     {
       type: "heading",
-      text: "Designing a way to reconnect",
+      text: "Designing around reconnection",
+      level: 3,
     },
     {
       type: "paragraph",
-      text: "Throwback is a social-app concept for university students who want to reconnect with old friends. During a 24-hour design sprint with a “2016” theme, our team explored recommendations based on shared schools and the areas where people grew up. The concept also included messaging and planning events together.",
+      text: 'Throwback was created around the theme "2016" and the idea of reconnecting with people from earlier parts of your life.',
+    },
+    {
+      type: "paragraph",
+      text: "Users would enter information such as their age, school, and the part of the city they grew up in. The app would use those shared connections to recommend old friends or people they may have known.",
+    },
+    {
+      type: "paragraph",
+      text: "The concept also included messaging, event scheduling, and invitations.",
     },
     {
       type: "heading",
-      text: "From an idea to an interactive prototype",
+      text: "Going from idea to prototype in 24 hours",
+      level: 3,
     },
     {
       type: "paragraph",
-      text: "I contributed to ideation, low- and mid-fidelity wireframes, the prototype, and the presentation. We developed a user persona and screens for the main app flows, then brought them together in a high-fidelity interactive prototype. Familiar navigation and clear contrast were important to making the design approachable.",
+      text: "Our three-person team worked collaboratively through ideation, low-fidelity wireframes, mid-fidelity designs, a user persona, and a complete high-fidelity interactive prototype.",
+    },
+    {
+      type: "paragraph",
+      text: "The core idea stayed relatively consistent, so most of our iteration focused on making the experience feel familiar and easy to understand.",
     },
     {
       type: "heading",
-      text: "Presenting the process",
+      text: "Designing for familiarity and accessibility",
+      level: 3,
     },
     {
       type: "paragraph",
-      text: "We created a Framer presentation site showing the persona, design process, screens, and final prototype. I helped present the work to judges at an event with approximately 150 participants, where our team won Most Accessible Design. The deliverable was a design prototype and presentation site, rather than an implemented social network.",
+      text: "We used familiar navigation patterns, strong contrast, and straightforward interactions so users would not have to learn an unusual interface before using the app.",
     },
     {
-      type: "link",
-      label: "Explore the presentation",
-      href: "https://colorful-goal-666822.framer.app/",
-      icon: "open",
+      type: "paragraph",
+      text: "That emphasis on usability contributed to the project receiving the Most Accessible Design award.",
+    },
+    {
+      type: "heading",
+      text: "Presenting the product",
+      level: 3,
+    },
+    {
+      type: "paragraph",
+      text: "I contributed heavily to the presentation. We built a Framer site showing our design process, persona, screens, and final prototype and presented the concept to judges at an event with approximately 150 participants.",
     },
   ],
 } as const satisfies Project;

@@ -75,9 +75,11 @@ export default function SearchModal() {
       if (!event.repeat) goToNext();
     }
     if (event.code === "Enter") {
+      keyHit();
       handleOpen(highlighted);
     }
     if (event.code === "Escape") {
+      keyHit();
       toggleSearching();
     }
   });

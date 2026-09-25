@@ -1,53 +1,89 @@
 import type { Project } from "./types";
+import swingsyncBanner from "../assets/images/swingsync-banner.jpg";
 
-// Based on the project account in resume_eval.md.
 const swingSync = {
   kind: "project",
   id: "swing-sync",
   title: "SwingSync",
   desktopImageSrc: "swingsync.jpg",
+  metadata: {
+    summary:
+      "A Java developer utility that hot-reloads Swing interfaces without restarting the application. I built it using file watching, Java Reflection, and custom ClassLoaders to make Swing UI development faster and less frustrating.",
+    status: "Published",
+    links: [
+      {
+        label: "GitHub",
+        href: "https://github.com/samdeitz/SwingSync",
+        icon: "github",
+      },
+    ],
+    technologies: [
+      "Java",
+      "Java Swing",
+      "Reflection",
+      "ClassLoaders",
+      "WatchService",
+      "JitPack",
+      "Maven",
+      "Gradle",
+    ],
+    banner: {
+      src: swingsyncBanner,
+      alt: "SwingSync",
+    },
+  },
   content: [
     {
       type: "heading",
-      text: "Shortening the Swing development loop",
+      text: "Solving a frustrating Swing workflow",
+      level: 3,
     },
     {
       type: "paragraph",
-      text: "After building a Java Swing project, I was frustrated by having to restart the application for every UI change. I built SwingSync as a developer utility that reloads a Swing interface while keeping its window open, so developers can see their changes without repeatedly relaunching the application.",
+      text: "SwingSync came from a problem I experienced while building Java Swing projects: every UI change required stopping the application, rebuilding it, starting it again, and navigating back to the screen I was working on.",
+    },
+    {
+      type: "paragraph",
+      text: "I wanted Swing development to have a faster feedback loop, so I built a utility that can rebuild the interface while keeping the application window open.",
     },
     {
       type: "heading",
-      text: "Watching compiled classes and rebuilding the UI",
+      text: "Rebuilding the UI at runtime",
+      level: 3,
     },
     {
       type: "paragraph",
-      text: "SwingSync watches the Java build folder for file changes. When compiled classes change, it uses reflection and a new ClassLoader to rebuild the root interface with the supplied constructor parameters and replace the active UI. Watching build output means changes become visible after compilation, rather than merely when a source file is saved.",
+      text: "SwingSync watches the project's compiled build directory for changes. When it detects an update, it identifies the application's root, creates a new ClassLoader, tears down the old UI hierarchy, and reconstructs the root panel using the newly loaded classes.",
+    },
+    {
+      type: "paragraph",
+      text: "Java Reflection is used to inspect the necessary classes and rebuild the interface with the constructor parameters supplied by the developer.",
     },
     {
       type: "heading",
-      text: "Keeping the integration small",
+      text: "Learning Java internals through the project",
+      level: 3,
     },
     {
       type: "paragraph",
-      text: "I wanted the setup to be simple enough for the high-school projects that originally inspired it. A developer provides a JFrame, a root JPanel, and the panel’s constructor parameters to the Syncher, then calls start. I published the library on JitPack so it can be added as a Maven or Gradle dependency.",
+      text: "Before SwingSync, I had very little experience with Reflection or ClassLoaders.",
+    },
+    {
+      type: "paragraph",
+      text: "The hardest part of the project was learning how those systems work well enough to design an architecture around them. Building the utility forced me to understand how compiled classes, object construction, and runtime class loading interact inside a running Java application.",
     },
     {
       type: "heading",
-      text: "Learning the runtime architecture",
+      text: "Keeping the API simple",
+      level: 3,
     },
     {
       type: "paragraph",
-      text: "I learned reflection and ClassLoaders while building the tool. The hardest part was understanding how to load a new version of the UI classes and reconstruct the interface around them. The result is a reusable library built around a specific development frustration; I had not recorded external adoption at the time of this project account.",
+      text: "I wanted SwingSync to be approachable for students.",
     },
     {
-      type: "link",
-      label: "View source",
-      href: "https://github.com/samdeitz/SwingSync",
-      icon: "github",
-    },
-    {
-      type: "technologies",
-      technologies: ["Java", "Java Swing Library"],
+      type: "paragraph",
+      text: "After adding the dependency, a developer provides the JFrame, root JPanel, and constructor parameters to the Syncher and starts it. SwingSync handles the file watching and runtime rebuilding from there.",
     },
   ],
 } as const satisfies Project;

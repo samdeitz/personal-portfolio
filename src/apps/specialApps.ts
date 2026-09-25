@@ -1,6 +1,6 @@
 import type { AppShape } from "../content/types";
 
-export const specialApps: Record<string, AppShape> = {
+export const specialApps = {
   terminal: {
     kind: "special",
     id: "terminal",
@@ -19,4 +19,4 @@ export const specialApps: Record<string, AppShape> = {
     title: "Previous Work",
     desktopImageSrc: "work.jpg",
   },
-} as const;
+} as const satisfies Record<string, AppShape>;
