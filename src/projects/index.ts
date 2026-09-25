@@ -26,10 +26,10 @@ export const desktopProjects = {
   [partyIslands.id]: partyIslands,
   [throwback.id]: throwback,
   [homeServer.id]: homeServer,
+  [workoutFinder.id]: workoutFinder,
 };
 
 export const otherProjects = {
-  [workoutFinder.id]: workoutFinder,
   [rushHour.id]: rushHour,
   [dungeonEscape.id]: dungeonEscape,
   [loadingIcon.id]: loadingIcon,
