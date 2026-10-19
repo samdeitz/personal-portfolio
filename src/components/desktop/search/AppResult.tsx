@@ -3,7 +3,7 @@ import { twMerge } from "tailwind-merge";
 import { useEffect, useRef, type SetStateAction } from "react";
 
 interface AppResultProps {
-  handleOpen: (id: String) => void;
+  handleOpen: (id: string) => void;
   setHighlighted: React.Dispatch<SetStateAction<string>>;
   title: string;
   id: string;
@@ -22,7 +22,8 @@ export default function AppResult({
   const resultRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const element: HTMLDivElement = resultRef.current;
+    const element = resultRef.current;
+    if (!element) return;
 
     const entered = () => {
       setHighlighted(id);
@@ -33,7 +34,7 @@ export default function AppResult({
     return () => {
       element.removeEventListener("mouseover", entered);
     };
-  }, []);
+  }, [id, setHighlighted]);
 
   return (
     // app to show

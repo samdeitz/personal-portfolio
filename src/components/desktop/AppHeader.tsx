@@ -3,7 +3,7 @@ import { LuMinus, LuX } from "react-icons/lu";
 import { useApp } from "../../context/AppContext";
 import HBox from "../ui/HBox";
 
-const AppHeader = ({ title, notMobile, appID }) => {
+const AppHeader = ({ title, notMobile, appID }: { title: string; notMobile: boolean; appID: string }) => {
   const { dispatch } = useApp();
 
   return (

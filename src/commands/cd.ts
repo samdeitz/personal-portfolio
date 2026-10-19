@@ -1,22 +1,11 @@
-import type { CommandOutput } from "../components/desktop/apps/terminal/CommandOutput";
-import filesystem from "../filesystem";
-import { getNodeByPath } from "../filesystem/traversal";
-import type { CommandPayloadArgs } from "./registry";
+import { getNodeByPath, HOME_PATH, resolvePath } from "../filesystem/traversal";
+import { failure, type CommandPayloadArgs, type CommandResult } from "./types";
 
-export const cd = ({ args, state }: CommandPayloadArgs): CommandOutput => {
-  if (args.length === 0 || args[0] == "~") {
-    state.setPath("/home/sam");
-  } else if (args[0] == "..") {
-    const parentPath = state.path.slice(0, state.path.lastIndexOf("/"));
-    state.setPath(parentPath);
-  } else {
-    const res = getNodeByPath(filesystem, state.path + "/" + args[0]);
-    if (!res)
-      return {
-        type: "message",
-        content: "Error: No directory found",
-      };
-    state.setPath(state.path + "/" + args[0]);
-  }
-  return null;
+export const cd = ({ args, state }: CommandPayloadArgs): CommandResult => {
+  if (args.length > 1) return failure("cd: expected one directory");
+  const path = resolvePath(state.cwd, args[0] ?? HOME_PATH);
+  const node = getNodeByPath(state.filesystem, path);
+  if (!node) return failure(`cd: ${path}: no such directory`);
+  if (node.type !== "directory") return failure(`cd: ${path}: not a directory`);
+  return { output: null, effects: [{ type: "changeDirectory", path }] };
 };

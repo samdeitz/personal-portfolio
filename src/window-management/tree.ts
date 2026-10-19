@@ -40,10 +40,10 @@ export const insertNode = ({
   // this focused node does not exsit
   if (parent == null) {
     console.error(`Window ${parentID} does not exist.`);
-    return;
+    return { tree, rootID };
   }
 
-  let grandParent = tree[parent.parent];
+  const grandParent = parent.parent ? tree[parent.parent] : undefined;
 
   // create new container
   const newContainerID = createNodeID();
@@ -105,12 +105,13 @@ export const getNewFocusID = (
   tree: LayoutTree,
   windowToRemoveID: NodeID,
 ): NodeID | null => {
-  if (Object.keys(tree).length <= 1) return null;
-
-  const parent = tree[tree[windowToRemoveID].parent] as ContainerNode;
-  const sibling = parent.children.find((id) => id != windowToRemoveID);
-
-  return sibling;
+  const node = tree[windowToRemoveID];
+  if (!node?.parent) return null;
+  const parent = tree[node.parent];
+  if (parent?.nodeType !== "container") return null;
+  let sibling = tree[parent.children.find((id) => id !== windowToRemoveID)!];
+  while (sibling?.nodeType === "container") sibling = tree[sibling.children[0]];
+  return sibling?.id ?? null;
 };
 
 interface RemoveWindowArgs {
@@ -150,9 +151,9 @@ export const removeWindow = ({
 
   const parent = tree[node.parent as NodeID] as ContainerNode;
 
-  const siblingID = parent.children.find((id) => id !== windowID);
+  const siblingID = parent.children.find((id) => id !== windowID)!;
   const sibling = tree[siblingID];
-  const grandParent = tree[parent.parent] as ContainerNode;
+  const grandParent = parent.parent ? tree[parent.parent] as ContainerNode : undefined;
 
   const newTree = { ...tree };
 
@@ -163,6 +164,7 @@ export const removeWindow = ({
   // If sibling becomes new root
   if (!grandParent) {
     rootID = siblingID;
+    newTree[siblingID] = { ...sibling, parent: null };
     return {
       tree: newTree,
       rootID,

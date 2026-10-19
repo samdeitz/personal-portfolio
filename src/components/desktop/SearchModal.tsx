@@ -4,7 +4,7 @@ import { useApp } from "../../context/AppContext";
 import { useSearch } from "../../context/SearchContext";
 import { useScrollLock } from "../../hooks/useScrollLock";
 import AppResult from "./search/AppResult";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import type { AppShape } from "../../content/types";
 import { useKeyDown } from "../../hooks/useKeyDown";
 
@@ -22,7 +22,7 @@ const imagesByName: Record<string, string> = Object.fromEntries(
 export default function SearchModal() {
   const firstApp = Object.values(apps)[0].id ?? "";
   const [highlighted, setHighlighted] = useState<string>(firstApp);
-  const { dispatch } = useApp();
+  const { openApp } = useApp();
   const {
     isSearching,
     searchValue,
@@ -86,12 +86,7 @@ export default function SearchModal() {
 
   const handleOpen = (id: string) => {
     toggleSearching();
-    dispatch({
-      type: "CREATE_WINDOW",
-      payload: {
-        windowID: id,
-      },
-    });
+    openApp(id);
   };
   focusInput();
 

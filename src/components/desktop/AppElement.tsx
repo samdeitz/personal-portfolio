@@ -35,8 +35,14 @@ const AppElement = ({ element }: { element: ContentBlock }): ReactElement => {
     case "status":
       return (
         <div className={className}>
-          <span className="inline-flex items-center gap-2 rounded-full border border-current/15 bg-current/5 px-3 py-1 text-xs font-semibold" aria-label={`Project status: ${element.status}`}>
-            <span className={`size-2 shrink-0 rounded-full ${statusColors[element.status]}`} aria-hidden="true" />
+          <span
+            className="inline-flex items-center gap-2 rounded-full border border-current/15 bg-current/5 px-3 py-1 text-xs font-semibold"
+            aria-label={`Project status: ${element.status}`}
+          >
+            <span
+              className={`size-2 shrink-0 rounded-full ${statusColors[element.status]}`}
+              aria-hidden="true"
+            />
             {element.status}
           </span>
         </div>

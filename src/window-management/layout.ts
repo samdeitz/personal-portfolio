@@ -15,6 +15,7 @@ export const calculateLayout = (
   layouts: Layouts,
   prevLayout: GridBounds,
 ): Layouts => {
+  if (currNode === null) return layouts;
   const node = tree[currNode];
   if (!node) {
     return {};

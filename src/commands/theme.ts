@@ -1,16 +1,7 @@
-import type { CommandOutput } from "../components/desktop/apps/terminal/CommandOutput";
-import type { CommandPayloadArgs } from "./registry";
-
-export const changeTheme = ({
-  args,
-  state,
-}: CommandPayloadArgs): CommandOutput => {
-  let output = "";
-  state.toggleTheme();
-  output = `Theme changed to ${args[0]}.`;
-  if (args.length > 1) output.concat(" Cannot change to multiple themes.");
-  return {
-    type: "message",
-    content: output,
-  };
+import { failure, type CommandPayloadArgs, type CommandResult } from "./types";
+export const changeTheme = ({ args, state }: CommandPayloadArgs): CommandResult => {
+  if (args.length > 1 || (args[0] && !["dark", "light", "toggle"].includes(args[0])))
+    return failure("Usage: theme [dark|light|toggle]");
+  const theme = args[0] === "dark" || args[0] === "light" ? args[0] : state.isDark ? "light" : "dark";
+  return { output: { type: "message", content: `Theme changed to ${theme}.` }, effects: [{ type: "theme", theme }] };
 };

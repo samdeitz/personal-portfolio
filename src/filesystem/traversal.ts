@@ -1,47 +1,36 @@
-import { type FileNode, type Directory, filesystem } from "../filesystem";
+import type { FileNode } from "./types";
 
-export function getNodeByPath(root: FileNode, path: string): Directory | null {
-  const parts = path.split("/").filter(Boolean);
+export const HOME_PATH = "/home/sam";
 
-  let current: FileNode = root;
-
-  for (const part of parts) {
-    if (current.type !== "directory") {
-      return null;
-    }
-
-    const next = current.children.find((child) => child.name === part);
-
-    if (!next) {
-      return null;
-    }
-
-    current = next;
+// Normalize paths without looking them up; callers separately validate existence/type.
+// Popping an empty stack keeps attempts to move above root at "/".
+export function resolvePath(cwd: string, target: string): string {
+  const expanded =
+    target === "~"
+      ? HOME_PATH
+      : target.startsWith("~/")
+        ? HOME_PATH + target.slice(1)
+        : target;
+  const parts: string[] = [];
+  for (const part of (expanded.startsWith("/")
+    ? expanded
+    : `${cwd}/${expanded}`
+  ).split("/")) {
+    if (!part || part === ".") continue;
+    if (part === "..") parts.pop();
+    else parts.push(part);
   }
-
-  return (current as Directory) || null;
+  return "/" + parts.join("/");
 }
 
-export const getParent = (currPath: string) => {
-  const currPathSplit = currPath.split("/");
-  const parentsPath = currPathSplit
-    .slice(0, currPathSplit.length - 1)
-    .join("/");
-  return getNodeByPath(filesystem, parentsPath);
-};
-
-export const findChild = (currPath: string, query: string) => {
-  let result = null;
-  const currNode = getNodeByPath(filesystem, currPath);
-  for (const child of currNode.children) {
-    if (child.name === query) result = child;
+// Return the actual node type; a matching file must never be cast into a directory.
+export function getNodeByPath(root: FileNode, path: string): FileNode | null {
+  let current = root;
+  for (const part of resolvePath("/", path).split("/").filter(Boolean)) {
+    if (current.type !== "directory") return null;
+    const next = current.children.find((child) => child.name === part);
+    if (!next) return null;
+    current = next;
   }
-  return result;
-};
-
-export const resolveTarget = (currPath: string, appToOpen: string): string => {
-  const app = findChild(currPath, appToOpen);
-  if (!app || app.type != "app") return null;
-
-  return app.appID;
-};
+  return current;
+}

@@ -1,26 +1,23 @@
-import type { CommandOutput } from "../components/desktop/apps/terminal/CommandOutput";
-import filesystem from "../filesystem";
-import { getNodeByPath } from "../filesystem/traversal";
-import { getDashOptions } from "../filesystem/utils";
-import type { CommandPayloadArgs } from "./registry";
+import { getNodeByPath, resolvePath } from "../filesystem/traversal";
+import { failure, type CommandPayloadArgs, type CommandResult } from "./types";
 
-export const ls = ({ args, state }: CommandPayloadArgs): CommandOutput => {
-  const currTree = getNodeByPath(filesystem, state.path);
-  if (currTree.type != "directory")
-    return {
-      type: "message",
-      content: "Error: im not sure how you got here...",
-    };
-
-  let res = [];
-  for (const file of currTree.children) {
-    const options = getDashOptions(args);
-
-    if (!options.includes("a")) if (file.name.startsWith(".")) continue;
-    res.unshift(file.name);
+export const ls = ({ args, state }: CommandPayloadArgs): CommandResult => {
+  let showHidden = false;
+  const paths: string[] = [];
+  let options = true;
+  for (const arg of args) {
+    if (options && arg === "--") { options = false; continue; }
+    if (options && arg.startsWith("-")) {
+      if (!/^-a+$/.test(arg)) return failure(`ls: unsupported option ${arg}`);
+      showHidden = true;
+    } else paths.push(arg);
   }
-  return {
-    type: "list",
-    content: res,
-  };
+  if (paths.length > 1) return failure("Usage: ls [-a] [directory]");
+  const path = resolvePath(state.cwd, paths[0] ?? ".");
+  const node = getNodeByPath(state.filesystem, path);
+  if (!node) return failure(`ls: ${path}: no such path`);
+  if (node.type !== "directory") return { output: { type: "list", content: [node.name] } };
+  return { output: { type: "list", content: node.children
+    .filter((child) => showHidden || !child.name.startsWith("."))
+    .map((child) => child.name + (child.type === "directory" ? "/" : "")) } };
 };

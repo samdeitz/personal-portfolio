@@ -4,7 +4,13 @@ import AboutMe from "./apps/AboutMe";
 import PreviousWork from "./apps/PreviousWork";
 import Terminal from "./apps/Terminal";
 
-export default function AppContent({ app }: { app: DesktopApp }) {
+export default function AppContent({
+  app,
+  windowID,
+}: {
+  app: DesktopApp;
+  windowID: string;
+}) {
   if (app.kind === "project") {
     const metadata = app.metadata;
     const legacyBanner = metadata
@@ -26,7 +32,7 @@ export default function AppContent({ app }: { app: DesktopApp }) {
         >
           {banner && (
             <img
-              className="block aspect-[16/7] max-h-[min(16rem,30cqh)] w-full rounded-xl object-cover bg-theme-surface"
+              className="block aspect-[16/8] max-h-[min(16rem,30cqh)] w-full rounded-xl object-cover bg-theme-surface"
               src={banner.src}
               alt={banner.alt}
             />
@@ -85,7 +91,7 @@ export default function AppContent({ app }: { app: DesktopApp }) {
     case "previous-work":
       return <PreviousWork />;
     case "terminal":
-      return <Terminal />;
+      return <Terminal windowID={windowID} />;
     default: {
       const unreachable: never = app;
       throw new Error(`Unknown special app: ${JSON.stringify(unreachable)}`);

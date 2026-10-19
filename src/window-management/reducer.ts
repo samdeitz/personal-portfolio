@@ -3,78 +3,41 @@ import type { AppWindow, WMAction, WMState } from "../context/types";
 import { insertNode, removeWindow, getNewFocusID } from "./tree";
 import { createNodeID } from "./createNodeID";
 
+
+// Shared by launch and restore so desktop, search, and terminal use the same lifecycle.
+function showWindow(state: WMState, window: AppWindow): WMState {
+  if (state.layoutMode === "mobile") {
+    // Keep other windows registered (and their terminal sessions alive), but show one app.
+    return { ...state,
+      windows: state.windows.map((item) => ({ ...item, minimized: item.id !== window.id })),
+      rootID: window.id, focusedWindowID: window.id,
+      layoutTree: { [window.id]: { id: window.id, nodeType: "window", parent: null, windowType: window.type } },
+    };
+  }
+  if (state.layoutTree[window.id]) return { ...state, focusedWindowID: window.id };
+  const result = insertNode({ tree: state.layoutTree, rootID: state.rootID,
+    parentID: state.focusedWindowID ?? state.rootID ?? "root", window });
+  return { ...state, windows: state.windows.map((item) => item.id === window.id ? { ...item, minimized: false } : item),
+    layoutTree: result.tree, rootID: result.rootID, focusedWindowID: window.id };
+}
+
 export const wmReducer = (state: WMState, action: WMAction): WMState => {
   switch (action.type) {
     case "CREATE_WINDOW": {
-      if (state.layoutTree[action.payload.windowID] != null) return state;
-      if (
-        state.layoutMode === "mobile" &&
-        Object.values(state.layoutTree).length >= 1
-      )
-        return state;
-      let app = Object.values(apps).find(
-        (appInfo) => appInfo.id === action.payload.windowID,
-      );
-
-      if (!app) return state;
-
-      let newWindow: AppWindow = {
-        id: createNodeID(),
-        type: app.id,
-        title: app.title,
-        layout: null,
-        minimized: false,
-        zIndex: state.windows.length != 0 ? state.windows[0].zIndex + 1 : 100,
+      const app = apps[action.payload.windowID];
+      if (!Object.hasOwn(apps, action.payload.windowID) || !app) return state;
+      // Terminals can have independent sessions; other apps reuse their window.
+      const existing = app.id === "terminal" ? undefined : state.windows.find((window) => window.type === app.id);
+      if (existing) return showWindow(state, existing);
+      const window: AppWindow = {
+        id: createNodeID(), type: app.id, title: app.title,
+        layout: null, minimized: false, zIndex: state.windows.length + 100,
       };
-
-      // Add new windows
-      let newWindows = [...state.windows, newWindow];
-      const result = insertNode({
-        tree: state.layoutTree,
-        rootID: state.rootID,
-        parentID: state.focusedWindowID ?? "root",
-        window: newWindow,
-      });
-
-      // Update state
-      return {
-        ...state,
-        windows: newWindows,
-        layoutTree: result.tree,
-        focusedWindowID: newWindow.id,
-        rootID: result.rootID,
-      };
+      return showWindow({ ...state, windows: [...state.windows, window] }, window);
     }
     case "RESTORE_WINDOW": {
-      if (state.layoutTree[action.payload.windowID] != null) return state;
-      if (
-        state.layoutMode === "mobile" &&
-        Object.values(state.layoutTree).length >= 1
-      )
-        return state;
-      let windowToRestore: AppWindow | undefined;
-      const newWindows = state.windows.map((window) => {
-        if (window.id == action.payload.windowID) {
-          windowToRestore = window;
-          return {
-            ...window,
-            minimized: false,
-          };
-        } else return window;
-      });
-      const result = insertNode({
-        tree: state.layoutTree,
-        rootID: state.rootID,
-        parentID: state.focusedWindowID,
-        window: windowToRestore,
-      });
-      return {
-        ...state,
-        windows: newWindows,
-        layoutTree: result.tree,
-        rootID: result.rootID,
-        focusedWindowID: windowToRestore.id ?? null,
-      };
+      const window = state.windows.find((item) => item.id === action.payload.windowID);
+      return window ? showWindow(state, window) : state;
     }
     case "MINIMIZE_WINDOW": {
       // update context
@@ -101,7 +64,8 @@ export const wmReducer = (state: WMState, action: WMAction): WMState => {
       const newWindows = state.windows.filter(
         (window) => window.id != action.payload.windowID,
       );
-      const newFocus = getNewFocusID(state.layoutTree, action.payload.windowID);
+      const newFocus = state.layoutTree[action.payload.windowID]
+        ? getNewFocusID(state.layoutTree, action.payload.windowID) : state.focusedWindowID;
       const result = removeWindow({
         tree: state.layoutTree,
         rootID: state.rootID,

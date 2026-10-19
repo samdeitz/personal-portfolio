@@ -1,5 +1,4 @@
 import { useApp } from "../context/AppContext";
-import { FileSystemProvider } from "../context/FileSystemContext.js";
 import Header from "./Header.jsx";
 import Desktop from "./desktop/Desktop.jsx";
 import DesktopApp from "./desktop/DesktopApp.jsx";
@@ -13,9 +12,7 @@ const LandingSection = () => {
   useScrollLock(hasVisibleWindows);
   return (
     <VBox className="fixed inset-0 h-dvh z-1 @container overflow-hidden pb-13">
-      <FileSystemProvider>
         <DesktopApp />
-      </FileSystemProvider>
       <Header />
       <Desktop />
       <div className="hero-photo-wrap">

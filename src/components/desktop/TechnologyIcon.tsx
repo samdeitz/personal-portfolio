@@ -24,7 +24,7 @@ const TechnologyIcon = ({ technology }: { technology: Technology }) => {
         >
           {Icon ? (
             <Icon className="size-5" aria-hidden="true" />
-          ) : "logo" in info ? (
+          ) : "logo" in info && typeof info.logo === "string" ? (
             <img className="w-5" src={info.logo} alt={technology} />
           ) : null}
         </div>

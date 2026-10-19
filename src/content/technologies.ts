@@ -30,7 +30,6 @@ import {
 import {
   FaAws,
   FaClock,
-  FaDiagramProject,
   FaGlobe,
   FaJava,
   FaLock,

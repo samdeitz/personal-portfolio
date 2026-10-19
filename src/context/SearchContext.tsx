@@ -11,11 +11,11 @@ import { useKeyDown } from "../hooks/useKeyDown";
 const SearchContext = createContext<{
   isSearching: boolean;
   toggleSearching: () => void;
-  searchValue: any;
+  searchValue: [string, AppShape[]];
   handleSearchQuery: (newQuery: string) => void;
   focusInput: () => void;
-  inputRef: React.RefObject<HTMLInputElement>;
-}>(null);
+  inputRef: React.RefObject<HTMLInputElement | null>;
+} | null>(null);
 
 export default function SearchProvider({
   children,
@@ -29,10 +29,10 @@ export default function SearchProvider({
     allApps,
   ]); // search value state
   const [isSearching, setIsSearching] = useState(false); // user is searching
-  const inputRef = useRef(null);
+  const inputRef = useRef<HTMLInputElement>(null);
 
   const handleSearchQuery = (newQuery: string) => {
-    setSearchValue((prev) => {
+    setSearchValue(() => {
       const filtered = allApps.filter((app) =>
         app.title.toLocaleLowerCase().includes(newQuery.toLocaleLowerCase()),
       );
@@ -74,7 +74,7 @@ export default function SearchProvider({
 export const useSearch = () => {
   const ctx = useContext(SearchContext);
   if (!ctx)
-    console.error(
+    throw new Error(
       "Search context must be used only when wrapped by its provider",
     );
   return ctx;

@@ -1,6 +1,7 @@
+import type { ComponentPropsWithRef } from "react";
 import { twMerge } from "tailwind-merge";
 
-const HBox = (props) => {
+const HBox = (props: ComponentPropsWithRef<"div">) => {
   return (
     <div
       {...props}

@@ -1,9 +1,10 @@
+import type { DesktopApp } from "../../apps/registry";
 import { useApp } from "../../context/AppContext";
 import HBox from "../ui/HBox";
 import VBox from "../ui/VBox";
 
 // import app icons for results tab
-const appImages = import.meta.glob("@/assets/icons/appIcons/*", {
+const appImages = import.meta.glob<string>("@/assets/icons/appIcons/*", {
   eager: true,
   import: "default",
 });
@@ -13,8 +14,8 @@ const imagesByName = Object.fromEntries(
   Object.entries(appImages).map(([path, url]) => [path.split("/").pop(), url]),
 );
 
-const SearchResults = ({ apps, isSearching, setIsSearching, searchValue }) => {
-  const { dispatch } = useApp();
+const SearchResults = ({ apps, isSearching, setIsSearching, searchValue }: { apps: Record<string, DesktopApp>; isSearching: boolean; setIsSearching: (value: boolean) => void; searchValue: string }) => {
+  const { openApp } = useApp();
 
   return (
     <VBox
@@ -48,12 +49,7 @@ const SearchResults = ({ apps, isSearching, setIsSearching, searchValue }) => {
               key={a.id}
               onClick={() => {
                 setIsSearching(false);
-                dispatch({
-                  type: "CREATE_WINDOW",
-                  payload: {
-                    windowID: a.id,
-                  },
-                });
+                openApp(a.id);
               }}
             >
               <img

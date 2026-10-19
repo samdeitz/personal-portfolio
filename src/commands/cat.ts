@@ -1,25 +1,14 @@
-import type { CommandOutput } from "../components/desktop/apps/terminal/CommandOutput";
-import filesystem from "../filesystem";
-import { getNodeByPath } from "../filesystem/traversal";
-import type { CommandPayloadArgs } from "./registry";
+import { getNodeByPath, resolvePath } from "../filesystem/traversal";
+import { failure, type CommandPayloadArgs, type CommandResult } from "./types";
 
-export default function cat({
-  args,
-  state,
-}: CommandPayloadArgs): CommandOutput {
+export default function cat({ args, state }: CommandPayloadArgs): CommandResult {
+  if (!args.length) return failure("Usage: cat <file> [...files]");
   const output: string[] = [];
-  const currentNode = getNodeByPath(filesystem, state.path);
   for (const arg of args) {
-    const target = currentNode.children.find((child) => child.name === arg);
-    if (!target) continue;
-    if (target.type === "file") output.unshift(target.content);
+    const node = getNodeByPath(state.filesystem, resolvePath(state.cwd, arg));
+    if (!node) return failure(`cat: ${arg}: no such file`);
+    if (node.type !== "file") return failure(`cat: ${arg}: not a text file`);
+    output.push(node.content);
   }
-
-  if (!output)
-    return {
-      type: "errorMessage",
-      content: "Unable to show file contents that do not exist",
-    };
-
-  return { type: "list", content: output };
+  return { output: { type: "list", content: output } };
 }

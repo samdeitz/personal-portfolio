@@ -7,7 +7,8 @@ const rushHour = {
   title: "Rush Hour",
   desktopImageSrc: "rush-hour.jpg",
   metadata: {
-    summary: "A Java Swing recreation of the classic Rush Hour board game, built with a partner as my Grade 12 final project. The game included six playable levels, scoring, timing, pausing, and supporting screens such as instructions and credits.",
+    summary:
+      "A Java Swing recreation of the classic Rush Hour board game, built with a partner as my Grade 12 final project. The game included six playable levels, scoring, timing, pausing, and supporting screens such as instructions and credits.",
     status: "Completed",
     links: [
       {
@@ -16,10 +17,7 @@ const rushHour = {
         icon: "github",
       },
     ],
-    technologies: [
-      "Java",
-      "Java Swing",
-    ],
+    technologies: ["Java", "Java Swing"],
     banner: {
       src: previewImage,
       alt: "Rush Hour preview",

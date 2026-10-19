@@ -1,33 +1,6 @@
-export interface Message {
-  type: "message";
-  content: string;
-}
+import type { CommandOutput as Output } from "../../../../commands/types";
 
-export interface List {
-  type: "list";
-  content: string[];
-}
-
-export interface DNS {
-  type: "DNS";
-}
-
-export interface ErrorMessage {
-  type: "errorMessage";
-  content: string;
-}
-
-export type CommandOutput = Message | List | DNS | ErrorMessage;
-
-export default function CommandOutput({ output }: { output: CommandOutput }) {
-  switch (output.type) {
-    case "message":
-    case "errorMessage":
-      return <p>{output.content}</p>;
-    case "list": {
-      return output.content.map((item) => <p key={item}>{item}</p>);
-    }
-    default:
-      return <p>Rendering Error</p>;
-  }
+export default function CommandOutput({ output }: { output: Output }) {
+  if (output.type === "list") return <div>{output.content.map((item, index) => <p className="whitespace-pre-wrap break-words" key={index}>{item}</p>)}</div>;
+  return <p className={`whitespace-pre-wrap break-words ${output.type === "errorMessage" ? "text-red-400" : ""}`}>{output.content}</p>;
 }

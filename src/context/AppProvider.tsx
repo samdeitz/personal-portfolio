@@ -22,7 +22,7 @@ export const AppProvider = ({ children }: AppProviderProps) => {
     layoutTree: {},
     rootID: null,
     focusedWindowID: null,
-    layoutMode: "desktop",
+    layoutMode: isMobile ? "mobile" as const : "desktop" as const,
   });
 
   useEffect(() => {
@@ -56,7 +56,7 @@ export const AppProvider = ({ children }: AppProviderProps) => {
   // }, [wmState.windows]);
   // useEffect(() => {
   //   console.log(wmState.layoutTree);
-  // }, [wmState.layoutTree]);
+  // }, [wmState.layoutTree, wmState.rootID]);
   // useEffect(() => {
   //   console.log(wmState.rootID);
   // }, [wmState.rootID]);
@@ -76,7 +76,7 @@ export const AppProvider = ({ children }: AppProviderProps) => {
         rowEnd: layoutGrid.rows,
       },
     );
-  }, [wmState.layoutTree]);
+  }, [wmState.layoutTree, wmState.rootID]);
 
   // implement useMemo to avoid updating all states when one state changes
   const appValue = useMemo(
@@ -85,6 +85,7 @@ export const AppProvider = ({ children }: AppProviderProps) => {
       windows: wmState.windows,
       focusedWindowID: wmState.focusedWindowID,
       dispatch,
+      openApp: (appID: string) => dispatch({ type: "CREATE_WINDOW", payload: { windowID: appID } }),
       layouts,
     }),
     [wmState, layouts],

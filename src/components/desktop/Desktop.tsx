@@ -21,7 +21,7 @@ const imagesByName = Object.fromEntries(
 const allApps = Object.values(apps);
 
 const Desktop = () => {
-  const { dispatch } = useApp(); // Get function to open an app
+  const { openApp } = useApp(); // Get function to open an app
   const breakpoint = useBreakpoint();
   const columns = { sm: 2, md: 3, lg: 4, xl: 5 }[breakpoint];
   const { gridRef, cardRef, rows, rowHeight, pageSize } = useGridCapacity(columns);
@@ -59,10 +59,7 @@ const Desktop = () => {
               apptitle={app.title}
               imgsrc={imagesByName[app.desktopImageSrc]}
               onClick={() =>
-                dispatch({
-                  type: "CREATE_WINDOW",
-                  payload: { windowID: app.id },
-                })
+                openApp(app.id)
               }
             />
           ))}

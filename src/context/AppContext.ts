@@ -9,9 +9,14 @@ interface AppContextValue {
   focusedWindowID: NodeID | null;
   dispatch: Dispatch<WMAction>;
   layouts: Layouts;
+  openApp: (appID: string) => void;
 }
 
 // context in a separate file ensures that HMR will be updated correctly
 // and not recreate context
-export const AppContext = createContext<AppContextValue>(undefined);
-export const useApp = () => useContext(AppContext);
+export const AppContext = createContext<AppContextValue | null>(null);
+export const useApp = () => {
+  const context = useContext(AppContext);
+  if (!context) throw new Error("App requires AppProvider");
+  return context;
+};

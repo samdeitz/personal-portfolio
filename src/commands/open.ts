@@ -1,27 +1,13 @@
-import type { CommandOutput } from "../components/desktop/apps/terminal/CommandOutput";
-import { resolveTarget } from "../filesystem/traversal";
-import type { CommandPayloadArgs } from "./registry";
+import { getNodeByPath, resolvePath } from "../filesystem/traversal";
+import { failure, type CommandPayloadArgs, type CommandResult, type CommandEffect } from "./types";
 
-export const open = ({ args, state }: CommandPayloadArgs): CommandOutput => {
-  if (args.length === 0) return null;
-
-  const res = [];
+export const open = ({ args, state }: CommandPayloadArgs): CommandResult => {
+  if (!args.length) return failure("Usage: launch <app-path> [...app-paths]");
+  const effects: CommandEffect[] = [];
   for (const arg of args) {
-    const id = resolveTarget(state.path, arg);
-    if (!id) {
-      res.unshift(`launch: Unable to launch ${arg}`);
-      continue;
-    }
-    state.dispatch({
-      type: "CREATE_WINDOW",
-      payload: {
-        windowID: id,
-      },
-    });
-    res.unshift(`launch: Launched ${arg}.`);
+    const node = getNodeByPath(state.filesystem, resolvePath(state.cwd, arg));
+    if (!node || node.type !== "app") return failure(`launch: ${arg}: no such app`);
+    effects.push({ type: "openApp", appID: node.appID });
   }
-  return {
-    type: "list",
-    content: res,
-  };
+  return { output: null, effects };
 };

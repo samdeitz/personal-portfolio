@@ -1,7 +1,4 @@
-import type { CommandOutput } from "../components/desktop/apps/terminal/CommandOutput";
-import type { CommandStateArg } from "./registry";
-
-export default function clear({ state }: CommandStateArg): CommandOutput {
-  state.setHistory([]);
-  return { type: "DNS" };
+import { failure, type CommandPayloadArgs, type CommandResult } from "./types";
+export default function clear({ args }: CommandPayloadArgs): CommandResult {
+  return args.length ? failure("Usage: clear") : { output: null, effects: [{ type: "clear" }] };
 }

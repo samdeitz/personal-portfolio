@@ -70,7 +70,7 @@ const OpenTab = ({
                 ${currentApp.kind === "project" ? "[container-type:size]" : "items-center gap-y-5"}
             `}
       >
-        <AppContent app={currentApp} />
+        <AppContent app={currentApp} windowID={windowID} />
       </VBox>
     </VBox>
   );

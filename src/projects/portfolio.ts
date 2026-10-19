@@ -1,4 +1,5 @@
 import type { Project } from "./types";
+import PortfolioBanner from "../assets/images/portfolio.jpg";
 
 const portfolio = {
   kind: "project",
@@ -17,6 +18,10 @@ const portfolio = {
       },
     ],
     technologies: ["React", "TypeScript", "Vite", "Tailwind CSS"],
+    banner: {
+      src: PortfolioBanner,
+      alt: "Website landing page",
+    },
   },
   content: [
     {
