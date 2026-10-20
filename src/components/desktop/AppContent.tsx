@@ -3,6 +3,8 @@ import AppElement from "./AppElement";
 import AboutMe from "./apps/AboutMe";
 import PreviousWork from "./apps/PreviousWork";
 import Terminal from "./apps/Terminal";
+import ProjectStory from "./project-story/ProjectStory";
+import type { Project } from "../../projects/types";
 
 export default function AppContent({
   app,
@@ -12,6 +14,9 @@ export default function AppContent({
   windowID: string;
 }) {
   if (app.kind === "project") {
+    // Only projects with story data opt in; legacy projects retain their layout.
+    const projectStory = (app as Project).story;
+    if (projectStory) return <ProjectStory title={app.title} story={projectStory} metadata={app.metadata} />;
     const metadata = app.metadata;
     const legacyBanner = metadata
       ? undefined

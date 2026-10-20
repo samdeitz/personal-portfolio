@@ -1,4 +1,5 @@
 import type { AppShape, ContentBlock, ProjectStatus } from "../content/types";
+import type { ProjectStoryContent } from "../content/story";
 import type { Technology } from "../content/technologies";
 
 export interface ProjectMetadata {
@@ -17,4 +18,5 @@ export interface Project extends AppShape {
   kind: "project";
   metadata?: ProjectMetadata;
   content: readonly ContentBlock[];
+  story?: ProjectStoryContent;
 }

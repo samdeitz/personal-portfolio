@@ -3,7 +3,7 @@ import { LuExternalLink } from "react-icons/lu";
 import type { ReactElement } from "react";
 import type { ContentBlock, ProjectStatus } from "../../content/types";
 import HBox from "../ui/HBox";
-import TechnologyIcon from "./TechnologyIcon";
+import TechnologyList from "./content/TechnologyList";
 
 const statusColors = {
   Deployed: "bg-emerald-500",
@@ -87,13 +87,7 @@ const AppElement = ({ element }: { element: ContentBlock }): ReactElement => {
         </div>
       );
     case "technologies":
-      return (
-        <HBox className={`gap-2 self-start ${className}`}>
-          {element.technologies.map((technology, index) => (
-            <TechnologyIcon key={index} technology={technology} />
-          ))}
-        </HBox>
-      );
+      return <TechnologyList technologies={element.technologies} className={`self-start ${className}`} />;
     default: {
       const unreachable: never = element;
       throw new Error(`Unknown content block: ${JSON.stringify(unreachable)}`);

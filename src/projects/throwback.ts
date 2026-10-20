@@ -23,60 +23,155 @@ const throwback = {
       alt: "ThrowBack",
     },
   },
-  content: [
-    {
-      type: "heading",
-      text: "Designing around reconnection",
-      level: 3,
+  content: [],
+  story: {
+    "overview": {
+      "eyebrow": "Throwback",
+      "headline": "Find a familiar face from another chapter.",
+      "summary": "A 24-hour design challenge exploring reconnection, shared memories, and accessible interaction.",
+      "facts": [
+        {
+          "label": "Team",
+          "value": "3 designers"
+        },
+        {
+          "label": "Timebox",
+          "value": "24 hours"
+        },
+        {
+          "label": "Recognition",
+          "value": "Most Accessible Design"
+        }
+      ],
+      "stack": [
+        "Figma",
+        "Framer"
+      ],
+      "image": {
+        "type": "figure",
+        "src": throwbackBanner,
+        "alt": "Throwback project preview",
+        "caption": "Throwback — project preview"
+      }
     },
-    {
-      type: "paragraph",
-      text: 'Throwback was created around the theme "2016" and the idea of reconnecting with people from earlier parts of your life.',
-    },
-    {
-      type: "paragraph",
-      text: "Users would enter information such as their age, school, and the part of the city they grew up in. The app would use those shared connections to recommend old friends or people they may have known.",
-    },
-    {
-      type: "paragraph",
-      text: "The concept also included messaging, event scheduling, and invitations.",
-    },
-    {
-      type: "heading",
-      text: "Going from idea to prototype in 24 hours",
-      level: 3,
-    },
-    {
-      type: "paragraph",
-      text: "Our three-person team worked collaboratively through ideation, low-fidelity wireframes, mid-fidelity designs, a user persona, and a complete high-fidelity interactive prototype.",
-    },
-    {
-      type: "paragraph",
-      text: "The core idea stayed relatively consistent, so most of our iteration focused on making the experience feel familiar and easy to understand.",
-    },
-    {
-      type: "heading",
-      text: "Designing for familiarity and accessibility",
-      level: 3,
-    },
-    {
-      type: "paragraph",
-      text: "We used familiar navigation patterns, strong contrast, and straightforward interactions so users would not have to learn an unusual interface before using the app.",
-    },
-    {
-      type: "paragraph",
-      text: "That emphasis on usability contributed to the project receiving the Most Accessible Design award.",
-    },
-    {
-      type: "heading",
-      text: "Presenting the product",
-      level: 3,
-    },
-    {
-      type: "paragraph",
-      text: "I contributed heavily to the presentation. We built a Framer site showing our design process, persona, screens, and final prototype and presented the concept to judges at an event with approximately 150 participants.",
-    },
-  ],
+    "chapters": [
+      {
+        "id": "reconnection",
+        "label": "The idea",
+        "eyebrow": "01 / The idea",
+        "title": "A shared past as a starting point.",
+        "blocks": [
+          {
+            "type": "split",
+            "content": [
+              {
+                "type": "prose",
+                "paragraphs": [
+                  "Throwback was created around the theme \"2016\" and the idea of reconnecting with people from earlier parts of your life.",
+                  "Users would enter information such as their age, school, and the part of the city they grew up in. The app would use those shared connections to recommend old friends or people they may have known.",
+                  "The concept also included messaging, event scheduling, and invitations."
+                ]
+              }
+            ],
+            "visual": {
+              "type": "figure",
+              "src": throwbackBanner,
+              "alt": "Throwback project preview",
+              "caption": "Throwback prototype preview."
+            }
+          }
+        ]
+      },
+      {
+        "id": "process",
+        "label": "From idea to prototype",
+        "eyebrow": "02 / From idea to prototype",
+        "title": "One day to make the idea tangible.",
+        "blocks": [
+          {
+            "type": "flow",
+            "label": "Design progression",
+            "items": [
+              {
+                "label": "01",
+                "title": "Explore",
+                "text": "Ideation and a user persona."
+              },
+              {
+                "label": "02",
+                "title": "Structure",
+                "text": "Low- and mid-fidelity wireframes."
+              },
+              {
+                "label": "03",
+                "title": "Prototype",
+                "text": "A high-fidelity interactive experience."
+              }
+            ]
+          },
+          {
+            "type": "prose",
+            "paragraphs": [
+              "Our three-person team worked collaboratively through ideation, low-fidelity wireframes, mid-fidelity designs, a user persona, and a complete high-fidelity interactive prototype.",
+              "The core idea stayed relatively consistent, so most of our iteration focused on making the experience feel familiar and easy to understand."
+            ]
+          }
+        ]
+      },
+      {
+        "id": "accessibility",
+        "label": "Familiar by design",
+        "eyebrow": "03 / Familiar by design",
+        "title": "Spend less effort learning the interface.",
+        "blocks": [
+          {
+            "type": "comparison",
+            "items": [
+              {
+                "title": "Navigation",
+                "text": "Familiar patterns and straightforward interactions."
+              },
+              {
+                "title": "Readability",
+                "text": "Strong contrast and accessible visual choices."
+              }
+            ]
+          },
+          {
+            "type": "callout",
+            "label": "Recognition",
+            "text": "That emphasis on usability contributed to the project receiving the Most Accessible Design award."
+          },
+          {
+            "type": "figure",
+            "src": throwbackBanner,
+            "alt": "Throwback project preview",
+            "caption": "The existing design preview; individual prototype screens can replace it."
+          }
+        ]
+      },
+      {
+        "id": "presentation",
+        "label": "Telling the story",
+        "eyebrow": "04 / Telling the story",
+        "title": "Bring the judges into the process.",
+        "blocks": [
+          {
+            "type": "prose",
+            "paragraphs": [
+              "I contributed heavily to the presentation. We built a Framer site showing our design process, persona, screens, and final prototype and presented the concept to judges at an event with approximately 150 participants."
+            ]
+          },
+          {
+            "type": "callout",
+            "label": "My contribution",
+            "text": "I contributed heavily to the presentation, connecting the persona, design iterations, and final prototype."
+          }
+        ]
+      }
+    ]
+  },
+
 } as const satisfies Project;
 
 export default throwback;

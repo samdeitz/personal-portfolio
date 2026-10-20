@@ -23,68 +23,146 @@ const partyIslands = {
       alt: "Party Islands Banner",
     },
   },
-  content: [
-    {
-      type: "heading",
-      text: "Building a real-time multiplayer game",
-      level: 3,
+  content: [],
+  story: {
+    "overview": {
+      "eyebrow": "Party Islands",
+      "headline": "Find a lobby. Race your friends.",
+      "summary": "A multiplayer typing game combining LAN discovery, real-time progress, and a shared flow through more than ten screens.",
+      "facts": [
+        {
+          "label": "My role",
+          "value": "One of 3 co-leads"
+        },
+        {
+          "label": "Team",
+          "value": "5 people"
+        },
+        {
+          "label": "Duration",
+          "value": "1½ months"
+        }
+      ],
+      "stack": [
+        "Java Swing",
+        "UDP",
+        "Sockets"
+      ],
+      "image": {
+        "type": "figure",
+        "src": islandsBanner,
+        "alt": "Party Islands project preview",
+        "caption": "Party Islands — project preview"
+      }
     },
-    {
-      type: "paragraph",
-      text: "Party Islands was a month-and-a-half project built by a five-person team. I acted as one of three co-leads and worked across networking, application flow, and UI implementation.",
-    },
-    {
-      type: "paragraph",
-      text: "Players compete across three typing rounds, lose life for mistakes, use power-ups, and can see other players' progress in real time.",
-    },
-    {
-      type: "heading",
-      text: "Discovering multiplayer lobbies over LAN",
-      level: 3,
-    },
-    {
-      type: "paragraph",
-      text: "My largest networking contribution was the LAN lobby discovery system.",
-    },
-    {
-      type: "paragraph",
-      text: "Hosts broadcast lobby information using UDP sockets. From the Find Lobby screen, players can scan the local network, see available rooms, and join one using information contained in the host's broadcast.",
-    },
-    {
-      type: "paragraph",
-      text: "Inside the lobby, players use their account name, receive an assigned color, ready up, and enter the game together.",
-    },
-    {
-      type: "heading",
-      text: "Managing more than 10 screens",
-      level: 3,
-    },
-    {
-      type: "paragraph",
-      text: "The application had more than 10 screens, and I did not want individual screens to hold direct references to every other screen they could navigate to.",
-    },
-    {
-      type: "paragraph",
-      text: "I designed an EventBus-based window manager that lets screens request navigation at a higher level.",
-    },
-    {
-      type: "paragraph",
-      text: "Static screens can be reused after initialization, while dynamic screens can be created when their state depends on the current session. This gave us a consistent way to manage screen transitions across the application.",
-    },
-    {
-      type: "heading",
-      text: "Building and testing the player-facing flow",
-      level: 3,
-    },
-    {
-      type: "paragraph",
-      text: "I implemented the login, lobby discovery, broadcast-room, waiting-room, and player-facing interfaces using reusable Swing components.",
-    },
-    {
-      type: "paragraph",
-      text: "The project also went through requirements gathering, UML design, implementation, and testing, including tests for parts of the EventBus and UDP networking.",
-    },
-  ],
+    "chapters": [
+      {
+        "id": "play",
+        "label": "The player experience",
+        "eyebrow": "01 / The player experience",
+        "title": "Three rounds. Every keystroke counts.",
+        "blocks": [
+          {
+            "type": "figure",
+            "src": islandsBanner,
+            "alt": "Party Islands project preview",
+            "caption": "Party Islands game preview."
+          },
+          {
+            "type": "prose",
+            "paragraphs": [
+              "Players compete across three typing rounds, lose life for mistakes, use power-ups, and can see other players' progress in real time."
+            ]
+          },
+          {
+            "type": "callout",
+            "label": "My part of the build",
+            "text": "I focused on UDP lobby discovery, navigation architecture, and major player-facing screens."
+          }
+        ]
+      },
+      {
+        "id": "network",
+        "label": "Finding each other",
+        "eyebrow": "02 / Finding each other",
+        "title": "Make the local network discoverable.",
+        "blocks": [
+          {
+            "type": "flow",
+            "label": "LAN lobby discovery",
+            "items": [
+              {
+                "label": "01",
+                "title": "Host",
+                "text": "Broadcast lobby information over UDP."
+              },
+              {
+                "label": "02",
+                "title": "Discover",
+                "text": "Scan for rooms from the Find Lobby screen."
+              },
+              {
+                "label": "03",
+                "title": "Join",
+                "text": "Use the broadcast information to join a room and ready up."
+              }
+            ]
+          },
+          {
+            "type": "prose",
+            "paragraphs": [
+              "My largest networking contribution was the LAN lobby discovery system.",
+              "Hosts broadcast lobby information using UDP sockets. From the Find Lobby screen, players can scan the local network, see available rooms, and join one using information contained in the host's broadcast.",
+              "Inside the lobby, players use their account name, receive an assigned color, ready up, and enter the game together."
+            ]
+          }
+        ]
+      },
+      {
+        "id": "screens",
+        "label": "Keeping screens connected",
+        "eyebrow": "03 / Keeping screens connected",
+        "title": "Navigation without a web of references.",
+        "blocks": [
+          {
+            "type": "comparison",
+            "items": [
+              {
+                "title": "Static screens",
+                "text": "Reuse screens after initialization."
+              },
+              {
+                "title": "Dynamic screens",
+                "text": "Create a screen when its state depends on the current session."
+              }
+            ]
+          },
+          {
+            "type": "prose",
+            "paragraphs": [
+              "The application had more than 10 screens, and I did not want individual screens to hold direct references to every other screen they could navigate to.",
+              "I designed an EventBus-based window manager that lets screens request navigation at a higher level.",
+              "Static screens can be reused after initialization, while dynamic screens can be created when their state depends on the current session. This gave us a consistent way to manage screen transitions across the application."
+            ]
+          },
+          {
+            "type": "details",
+            "title": "Building and testing the flow",
+            "blocks": [
+              {
+                "type": "prose",
+                "paragraphs": [
+                  "I implemented the login, lobby discovery, broadcast-room, waiting-room, and player-facing interfaces using reusable Swing components.",
+                  "The project also went through requirements gathering, UML design, implementation, and testing, including tests for parts of the EventBus and UDP networking."
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+
 } as const satisfies Project;
 
 export default partyIslands;

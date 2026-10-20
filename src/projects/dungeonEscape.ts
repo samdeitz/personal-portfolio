@@ -24,72 +24,151 @@ const dungeonEscape = {
       alt: "Dungeon Escape preview",
     },
   },
-  content: [
-    {
-      type: "heading",
-      text: "Building a text-based dungeon adventure",
-      level: 3,
+  content: [],
+  story: {
+    "overview": {
+      "eyebrow": "Dungeon Escape",
+      "headline": "Four keys between you and the exit.",
+      "summary": "A text adventure combining exploration, trivia, Hangman, and an inventory that follows the player.",
+      "facts": [
+        {
+          "label": "Format",
+          "value": "Text adventure"
+        },
+        {
+          "label": "Goal",
+          "value": "Collect 4 keys"
+        },
+        {
+          "label": "Language",
+          "value": "Java"
+        }
+      ],
+      "stack": [
+        "Java",
+        "ArrayList",
+        "HashMap"
+      ],
+      "image": {
+        "type": "figure",
+        "src": previewImage,
+        "alt": "Dungeon Escape project preview",
+        "caption": "Dungeon Escape — project preview"
+      }
     },
-    {
-      type: "paragraph",
-      text: "Dungeon Escape is a text-based adventure game built around a simple objective: find four keys hidden throughout a dungeon and use them to unlock the exit.",
-    },
-    {
-      type: "paragraph",
-      text: "Instead of moving through a graphical world, the player progresses through text prompts, choices, rooms, and different challenges.",
-    },
-    {
-      type: "paragraph",
-      text: "The project was an early opportunity for me to think beyond individual programming exercises and build multiple systems that worked together as one game.",
-    },
-    {
-      type: "heading",
-      text: "Turning rooms into different challenges",
-      level: 3,
-    },
-    {
-      type: "paragraph",
-      text: "Progress through the dungeon required completing different trials instead of simply finding the keys immediately.",
-    },
-    {
-      type: "paragraph",
-      text: "Some of those challenges included trivia questions and a Hangman-style game.",
-    },
-    {
-      type: "paragraph",
-      text: "Combining different mechanics inside the same adventure made me think about how separate pieces of logic could fit into a larger game flow without everything becoming one large block of code.",
-    },
-    {
-      type: "heading",
-      text: "Managing the player's inventory",
-      level: 3,
-    },
-    {
-      type: "paragraph",
-      text: "I used Java collections such as ArrayList and HashMap to manage information used throughout the game, including the player's inventory.",
-    },
-    {
-      type: "paragraph",
-      text: "The four keys needed to persist as the player moved through different parts of the dungeon, so the game had to keep track of what the player had already collected and use that state later.",
-    },
-    {
-      type: "paragraph",
-      text: "This was one of my earlier experiences using data structures for an actual application rather than only practicing them in isolation.",
-    },
-    {
-      type: "heading",
-      text: "Learning to organize a larger program",
-      level: 3,
-    },
-    {
-      type: "paragraph",
-      text: "Dungeon Escape helped me understand how a larger program could be separated into different pieces of functionality while still sharing state.",
-    },
-    {
-      type: "paragraph",
-      text: "It also gave me more experience with Java collections, game state, user input, and designing a program around a sequence of player decisions.",
-    },
-  ],
+    "chapters": [
+      {
+        "id": "adventure",
+        "label": "Into the dungeon",
+        "eyebrow": "01 / Into the dungeon",
+        "title": "A world built from choices.",
+        "blocks": [
+          {
+            "type": "prose",
+            "paragraphs": [
+              "Dungeon Escape is a text-based adventure game built around a simple objective: find four keys hidden throughout a dungeon and use them to unlock the exit.",
+              "Instead of moving through a graphical world, the player progresses through text prompts, choices, rooms, and different challenges."
+            ]
+          },
+          {
+            "type": "figure",
+            "src": previewImage,
+            "alt": "Dungeon Escape project preview",
+            "caption": "Dungeon Escape project preview."
+          }
+        ]
+      },
+      {
+        "id": "trials",
+        "label": "Rooms and trials",
+        "eyebrow": "02 / Rooms and trials",
+        "title": "Each room brings a different challenge.",
+        "blocks": [
+          {
+            "type": "comparison",
+            "items": [
+              {
+                "title": "Trivia",
+                "text": "Answer questions as part of the dungeon’s trials."
+              },
+              {
+                "title": "Hangman",
+                "text": "Solve a word challenge within the larger adventure."
+              }
+            ]
+          },
+          {
+            "type": "prose",
+            "paragraphs": [
+              "Combining different mechanics inside the same adventure made me think about how separate pieces of logic could fit into a larger game flow without everything becoming one large block of code."
+            ]
+          },
+          {
+            "type": "flow",
+            "label": "Adventure progression",
+            "items": [
+              {
+                "label": "01",
+                "title": "Explore",
+                "text": "Choose a route through rooms and prompts."
+              },
+              {
+                "label": "02",
+                "title": "Complete trials",
+                "text": "Work through the different challenges."
+              },
+              {
+                "label": "03",
+                "title": "Collect and escape",
+                "text": "Keep the keys and use them to unlock the exit."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "state",
+        "label": "Remembering the journey",
+        "eyebrow": "03 / Remembering the journey",
+        "title": "The inventory connects the rooms.",
+        "blocks": [
+          {
+            "type": "split",
+            "content": [
+              {
+                "type": "prose",
+                "paragraphs": [
+                  "I used Java collections such as ArrayList and HashMap to manage information used throughout the game, including the player's inventory.",
+                  "The four keys needed to persist as the player moved through different parts of the dungeon, so the game had to keep track of what the player had already collected and use that state later.",
+                  "This was one of my earlier experiences using data structures for an actual application rather than only practicing them in isolation."
+                ]
+              }
+            ],
+            "visual": {
+              "type": "figure",
+              "src": previewImage,
+              "alt": "Dungeon Escape project preview",
+              "caption": "The existing game preview; an inventory capture can replace this later."
+            }
+          },
+          {
+            "type": "details",
+            "title": "Organizing a larger program",
+            "blocks": [
+              {
+                "type": "prose",
+                "paragraphs": [
+                  "Dungeon Escape helped me understand how a larger program could be separated into different pieces of functionality while still sharing state.",
+                  "It also gave me more experience with Java collections, game state, user input, and designing a program around a sequence of player decisions."
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+
 } as const satisfies Project;
 
 export default dungeonEscape;
