@@ -1,10 +1,19 @@
 /* MOTION
    @theme creates animate-* utilities for cards, taskbar icons, and windows. */
 @theme {
+  --animate-desktop-enter: desktopEnter 200ms ease-out;
+
+  @keyframes desktopEnter {
+    from { transform: translateY(6px); }
+    to { transform: translateY(0); }
+  }
+
   --animate-small-bounce: smallBounce 0.3s linear 0s infinite;
   --animate-shake: shake 0.3s linear 0s infinite;
   --animate-window-open: windowOpen 0.2s ease-in-out;
   --animate-blink: blink 1s step-end infinite;
+  --animate-fade-in: fadeIn 0.3s linear 0s ease-in-out;
+  --animate-fade-out: fadeOut 0.3s linear 0s ease-in-out;
 
   /* Replay the entrance whenever a window is opened or restored. */
   @keyframes windowOpen {
@@ -62,6 +71,14 @@
   }
   to {
     opacity: 1;
+  }
+}
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
   }
 }
 

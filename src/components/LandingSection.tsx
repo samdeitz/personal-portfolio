@@ -7,12 +7,12 @@ import signing from "../assets/images/signing.jpg";
 import team from "../assets/images/team.jpg";
 import { useScrollLock } from "../hooks/useScrollLock.js";
 
-const LandingSection = () => {
+const LandingSection = ({ ready }: { ready: boolean }) => {
   const { windows } = useApp();
   const hasVisibleWindows = windows.some((win) => !win.minimized);
   useScrollLock(hasVisibleWindows);
   return (
-    <VBox className="fixed inset-0 h-dvh z-1 @container overflow-hidden pb-13">
+    <VBox className={`fixed inset-0 h-dvh z-1 @container overflow-hidden pb-13 ${ready ? "motion-safe:animate-desktop-enter" : ""}`}>
       <img
         src={team}
         alt=""
@@ -35,7 +35,7 @@ const LandingSection = () => {
         }}
       />
       <DesktopApp />
-      <Header />
+      <Header ready={ready} />
       <Desktop />
     </VBox>
   );

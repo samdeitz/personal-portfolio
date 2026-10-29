@@ -1,68 +1,56 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import HBox from "./ui/HBox";
 
 interface TyperProps {
   baseString: string;
   transitionStrings: string[];
+  startDelay: number;
 }
 
-export default function Typer({ baseString, transitionStrings }: TyperProps) {
+export default function Typer({
+  startDelay,
+  baseString,
+  transitionStrings,
+}: TyperProps) {
   const [currentPhrase, setCurrentPhrase] = useState(0);
   const [currentLetter, setCurrentLetter] = useState(0);
-  const displayedString = transitionStrings[currentPhrase].slice(
-    0,
-    currentLetter,
-  );
+  const phrase = transitionStrings[currentPhrase] ?? "";
+  const displayedString = phrase.slice(0, currentLetter);
   const [adding, setAdding] = useState(true);
-  const [typing, setTyping] = useState(false);
+  const isLastPhrase = currentPhrase >= transitionStrings.length - 1;
+  const typing = adding
+    ? currentLetter > 0 && currentLetter < phrase.length
+    : currentLetter > 0;
 
   useEffect(() => {
-    let t;
-    const dec = (time?: number) => {
-      t = setTimeout(
-        () => {
-          setCurrentLetter((prev) => prev - 1);
-        },
-        time ? time : 30,
-      );
-    };
-    const inc = (time?: number) => {
-      t = setTimeout(
-        () => {
-          setCurrentLetter((prev) => prev + 1);
-        },
-        time ? time : 65,
-      );
-    };
-    const changeString = () => {
-      setTyping(true);
+    let timer: ReturnType<typeof setTimeout>;
 
-      if (currentLetter === transitionStrings[currentPhrase].length) {
+    if (adding && currentLetter >= phrase.length) {
+      // Leave the final phrase visible; no timer remains running.
+      if (isLastPhrase) return;
+      timer = setTimeout(() => {
         setAdding(false);
-
-        setTyping(false);
-        if (currentPhrase != transitionStrings.length - 1) {
-          dec(2000);
-        }
-      } else if (currentLetter === 0 && !adding) {
-        setCurrentPhrase((prev) => prev + 1);
+        setCurrentLetter((letter) => Math.max(0, letter - 1));
+      }, 2000);
+    } else if (!adding && currentLetter === 0) {
+      timer = setTimeout(() => {
+        setCurrentPhrase((index) => index + 1);
         setAdding(true);
-        inc();
-      } else if (adding) {
-        inc();
-      } else {
-        dec();
-      }
-    };
+      }, 65);
+    } else {
+      const isStarting = currentPhrase === 0 && currentLetter === 0 && adding;
+      const delay = isStarting
+        ? Math.max(0, startDelay) + 65
+        : adding
+          ? 65
+          : 30;
+      timer = setTimeout(() => {
+        setCurrentLetter((letter) => letter + (adding ? 1 : -1));
+      }, delay);
+    }
 
-    if (currentPhrase === 0 && currentLetter === 0 && adding)
-      t = setTimeout(changeString, 2000);
-    else changeString();
-
-    return () => {
-      clearTimeout(t);
-    };
-  }, [currentLetter]);
+    return () => clearTimeout(timer);
+  }, [currentLetter, currentPhrase, adding, phrase, isLastPhrase, startDelay]);
 
   return (
     <HBox className="gap-2">

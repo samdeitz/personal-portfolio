@@ -1,7 +1,7 @@
 import Typer from "./Typer";
 import { useBreakpoint } from "../hooks/useBreakpoint";
 
-const Header = () => {
+const Header = ({ ready }: { ready: boolean }) => {
   const breakpoint = useBreakpoint();
   const columns = { sm: 2, md: 3, lg: 4, xl: 5 }[breakpoint];
 
@@ -18,8 +18,9 @@ const Header = () => {
           Hi, I'm Sam Deitz
         </h1>
         <div className="min-h-12 sm:min-h-14">
-          <Typer
+          {ready && <Typer
             baseString=">"
+            startDelay={6600}
             transitionStrings={[
               "I develop frontend experiences.",
               "I architect backend systems.",
@@ -27,7 +28,7 @@ const Header = () => {
               "I create games.",
               "I love to build stuff.",
             ]}
-          />
+          />}
         </div>
       </div>
     </header>

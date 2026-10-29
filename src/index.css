@@ -16,7 +16,6 @@
     position: relative;
     isolation: isolate;
     font-family: "Jura", sans-serif;
-    animation: fadeIn 3s;
     z-index: 0;
   }
 
