@@ -1,13 +1,15 @@
+import StoryDivider from "./StoryDivider";
+import StoryDetails from "./StoryDetails";
 import ContentImage from "../content/ContentImage";
 import type { StoryBlock as Block, StoryFigure } from "../../../content/story";
 
 export function StoryBlocks({ blocks }: { blocks: readonly Block[] }) {
   return (
-    <>
+    <div className="grid min-w-0 gap-6">
       {blocks.map((block, index) => (
         <StoryBlock key={index} block={block} />
       ))}
-    </>
+    </div>
   );
 }
 
@@ -37,10 +39,10 @@ function StoryBlock({ block }: { block: Block }) {
       return (
         <div
           data-story-block="prose"
-          className="max-w-[68ch] text-[.94rem] [&_p+p]:mt-4"
+          className="grid max-w-prose gap-4"
         >
           {block.title && (
-            <h3 className="mb-2 text-base leading-[1.4] font-semibold">
+            <h3 className="text-base leading-snug font-semibold">
               {block.title}
             </h3>
           )}
@@ -51,8 +53,8 @@ function StoryBlock({ block }: { block: Block }) {
       );
     case "callout":
       return (
-        <aside className="mt-[26px] border-l-2 border-theme-focused pl-[18px] text-[.9rem]">
-          <span className="mb-2 block text-[.65rem] tracking-[.13em] text-theme-secondary uppercase">
+        <aside className="border-l-2 border-theme-focused pl-4">
+          <span className="text-xs font-semibold tracking-wide uppercase mb-2 block text-theme-secondary">
             {block.label}
           </span>
           {block.text}
@@ -61,18 +63,14 @@ function StoryBlock({ block }: { block: Block }) {
     case "split":
       return (
         <div
-          className={`grid items-start gap-7 ${block.content?.length && (block.splitContentVert ?? true) ? "@min-[850px]:grid-cols-[1fr_1.1fr]" : ""}`}
+          className={`grid min-w-0 gap-6 items-start ${block.content?.length && (block.splitContentVert ?? true) ? "@min-[850px]:grid-cols-[1fr_1.1fr]" : ""}`}
         >
-          {block.content && (
-            <div>
-              <StoryBlocks blocks={block.content} />
-            </div>
-          )}
+          {!!block.content?.length && <StoryBlocks blocks={block.content} />}
           {!Array.isArray(block.visual) ? (
             <ContentImage image={block.visual} />
           ) : (
             <div
-              className="grid gap-2"
+              className="grid gap-4"
               style={getImageSplitStyles(block.visual, block.splitImagesVert)}
             >
               {block.visual.map((image, index) => (
@@ -85,73 +83,81 @@ function StoryBlock({ block }: { block: Block }) {
 
     case "comparison":
       return (
-        <div className="mt-7 mb-3 grid gap-6 border-y border-theme-foreground/12 py-[22px] @min-[550px]:grid-cols-2">
-          {block.items.map((item, i) => (
-            <div key={i}>
-              <span className="mb-2 block text-[.65rem] tracking-[.13em] text-theme-secondary uppercase">
-                {item.label}
-              </span>
-              <h3 className="mb-2 text-base leading-[1.4] font-semibold">
-                {item.title}
-              </h3>
-              <p className="text-[.85rem] text-theme-secondary">{item.text}</p>
-            </div>
-          ))}
+        <div className="grid gap-6">
+          <StoryDivider />
+          <div className="grid gap-6 @min-[550px]:grid-cols-2">
+            {block.items.map((item, i) => (
+              <div key={i} className="grid content-start gap-2">
+                {item.label && <span className="text-xs font-semibold tracking-wide uppercase text-theme-secondary">{item.label}</span>}
+                <h3 className="text-base leading-snug font-semibold">
+                  {item.title}
+                </h3>
+                <p className="text-sm text-theme-secondary">{item.text}</p>
+              </div>
+            ))}
+          </div>
+          <StoryDivider />
         </div>
       );
     case "flow":
       return (
         <ol
-          className={`my-[30px] grid list-none gap-3 p-0 ${block.items.length > 3 ? "@min-[550px]:grid-cols-2 @min-[1100px]:grid-cols-4" : "@min-[550px]:grid-cols-3"}`}
+          className={`grid list-none gap-6 p-0 ${block.items.length > 3 ? "@min-[550px]:grid-cols-2 @min-[1100px]:grid-cols-4" : "@min-[550px]:grid-cols-3"}`}
           aria-label={block.label}
         >
           {block.items.map((item, i) => (
             <li
               key={i}
-              className="relative rounded-[7px] border border-theme-foreground/14 bg-theme-surface/60 p-[18px] not-last:after:absolute not-last:after:bottom-[-19px] not-last:after:left-1/2 not-last:after:z-1 not-last:after:text-theme-secondary not-last:after:content-['↓'] @min-[550px]:not-last:after:hidden @min-[1100px]:not-last:after:right-[-14px] @min-[1100px]:not-last:after:bottom-[45%] @min-[1100px]:not-last:after:left-auto @min-[1100px]:not-last:after:block @min-[1100px]:not-last:after:content-['→']"
+              className="relative rounded-lg border border-theme-foreground/20 bg-theme-surface/60 p-4"
             >
-              <span className="text-[.65rem] tracking-[.1em] text-theme-focused uppercase">
+              <span className="text-xs font-semibold tracking-wide uppercase text-theme-focused">
                 {item.label}
               </span>
-              <h3 className="mt-2 mb-2 text-[.88rem] leading-[1.4] font-semibold">
+              <h3 className="my-2 text-base leading-snug font-semibold">
                 {item.title}
               </h3>
-              <p className="text-[.74rem] text-theme-secondary">{item.text}</p>
+              <p className="text-sm text-theme-secondary">{item.text}</p>
+              {i < block.items.length - 1 && (
+                <>
+                  <span aria-hidden="true" className="absolute -bottom-6 left-1/2 text-theme-secondary @min-[550px]:hidden">↓</span>
+                  <span aria-hidden="true" className="absolute -right-5 bottom-[45%] hidden text-theme-secondary @min-[1100px]:block">→</span>
+                </>
+              )}
             </li>
           ))}
         </ol>
       );
     case "takeaways":
       return (
-        <ul className="mb-3 list-none p-0">
+        <ul className="grid list-none gap-6 p-0">
           {block.items.map((item, i) => (
             <li
               key={i}
-              className="flex gap-[22px] border-b border-theme-foreground/12 py-[22px]"
+              className="grid gap-6"
             >
-              <span className="pt-1 font-mono text-xs text-theme-focused">
-                {String(i + 1).padStart(2, "0")}
-              </span>
-              <div>
-                <h3 className="mb-2 text-base leading-[1.4] font-semibold">
-                  {item.title}
-                </h3>
-                <p className="text-[.88rem] text-theme-secondary">
-                  {item.text}
-                </p>
+              <div className="flex gap-6">
+                <span className="pt-1 font-mono text-xs text-theme-focused">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                <div className="grid gap-2">
+                  <h3 className="text-base leading-snug font-semibold">
+                    {item.title}
+                  </h3>
+                  <p className="text-sm text-theme-secondary">
+                    {item.text}
+                  </p>
+                </div>
               </div>
+              <StoryDivider />
             </li>
           ))}
         </ul>
       );
     case "details":
       return (
-        <details className="mt-7 mb-3 border-y border-theme-foreground/15 py-[18px] text-[.85rem] [&>summary+*]:mt-3 [&_[data-story-block=prose]_p]:mt-4 [&_[data-story-block=prose]_p]:max-w-[68ch] [&_[data-story-block=prose]_p]:text-theme-secondary">
-          <summary className="cursor-pointer font-semibold">
-            {block.title}
-          </summary>
+        <StoryDetails title={block.title}>
           <StoryBlocks blocks={block.blocks} />
-        </details>
+        </StoryDetails>
       );
     default: {
       const unreachable: never = block;

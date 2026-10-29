@@ -21,10 +21,13 @@ export default function StoryNavigation({
   return (
     <nav
       ref={navRef}
-      className="story-nav sticky top-0 z-2 border-b border-theme-foreground/15 bg-theme-page px-5 py-3.5 [--story-compact:1] @min-[850px]:max-h-[100cqh] @min-[850px]:overflow-y-auto @min-[850px]:border-r @min-[850px]:border-b-0 @min-[850px]:border-theme-foreground/12 @min-[850px]:px-3.5 @min-[850px]:py-[34px] @min-[850px]:[--story-compact:0]"
+      className="story-nav sticky top-0 z-2 bg-theme-page p-4 border-b border-theme-foreground/20
+        [--story-compact:1] @min-[850px]:[--story-compact:0]
+        @min-[850px]:max-h-[100cqh] @min-[850px]:overflow-y-auto
+        @min-[850px]:border-b-0 @min-[850px]:border-r @min-[850px]:py-8"
       aria-label="Project chapters"
     >
-      <p className="mb-3.5 hidden text-[.68rem] font-[650] tracking-[.16em] text-theme-secondary uppercase @min-[850px]:block">
+      <p className="text-xs font-semibold tracking-wide uppercase mb-4 hidden text-theme-secondary @min-[850px]:block">
         In this story
       </p>
       <ol className="hidden list-none p-0 @min-[850px]:block">
@@ -39,7 +42,7 @@ export default function StoryNavigation({
                 jumpTo(chapter.id);
               }}
             >
-              <span className="font-mono text-[.68rem]">
+              <span className="font-mono text-xs">
                 {String(index).padStart(2, "0")}
               </span>
               {chapter.label}
@@ -47,10 +50,10 @@ export default function StoryNavigation({
           </li>
         ))}
       </ol>
-      <label className="flex items-center gap-3.5 text-[.78rem] tracking-[.08em] uppercase @min-[850px]:hidden">
+      <label className="flex items-center gap-4 text-sm tracking-wide uppercase @min-[850px]:hidden">
         Jump to
         <select
-          className="min-w-0 flex-1 rounded-[5px] bg-theme-surface p-2 text-inherit tracking-normal text-theme-foreground normal-case"
+          className="min-w-0 flex-1 rounded bg-theme-surface p-2 text-inherit tracking-normal text-theme-foreground normal-case"
           value={active}
           onChange={(event) => jumpTo(event.target.value)}
         >

@@ -1,0 +1,24 @@
+@layer components {
+  /* Only fluid type and the window-height overview need custom sizing. */
+  .story-heading {
+    font-size: clamp(1.5rem, 3.5cqi, 2.5rem);
+    font-weight: 700;
+    line-height: 1.2;
+    text-wrap: balance;
+  }
+
+  .story-overview {
+    height: calc(100cqh - 7rem);
+    min-height: 28rem;
+  }
+
+  @container (min-width: 850px) {
+    .story-overview { height: calc(100cqh - 3rem); }
+  }
+
+  @container (max-height: 550px) {
+    .story-overview { min-height: 24rem; gap: 0.5rem; }
+    .story-overview-copy { gap: 0.5rem; }
+    .story-overview .story-heading { font-size: clamp(1.5rem, 2.7cqi, 2rem); }
+  }
+}
