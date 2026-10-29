@@ -4,6 +4,7 @@
   --animate-small-bounce: smallBounce 0.3s linear 0s infinite;
   --animate-shake: shake 0.3s linear 0s infinite;
   --animate-window-open: windowOpen 0.2s ease-in-out;
+  --animate-blink: blink 1s step-end infinite;
 
   /* Replay the entrance whenever a window is opened or restored. */
   @keyframes windowOpen {
@@ -13,6 +14,15 @@
     }
     to {
       scale: 1;
+      opacity: 1;
+    }
+  }
+  @keyframes blink {
+    from,
+    to {
+      opacity: 0;
+    }
+    50% {
       opacity: 1;
     }
   }

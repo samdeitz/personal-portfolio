@@ -122,7 +122,6 @@
 /* Ask supporting browsers to draw a steady block caret in the terminal. */
 @utility caret-terminal {
   caret-shape: block;
-  caret-animation: manual;
 }
 
 @utility hover-over {

@@ -17,7 +17,7 @@ const LandingSection = () => {
         src={team}
         alt=""
         aria-hidden="true"
-        className="pointer-events-none absolute left-0 -z-10 h-auto max-h-[45svh] w-[clamp(28rem,55vw,48rem)] aspect-auto object-cover opacity-40"
+        className="pointer-events-none absolute left-0 min-[900px]:right-auto min-[900px]:left-0 -z-10 h-auto max-h-[45svh] w-[clamp(28rem,55vw,48rem)] aspect-auto object-cover opacity-40"
         style={{
           top: "clamp(0rem, calc(24rem - 40vw), 14rem)",
           maskImage:
@@ -28,7 +28,7 @@ const LandingSection = () => {
         src={signing}
         alt=""
         aria-hidden="true"
-        className="pointer-events-none absolute right-0 bottom-13 -z-10 h-auto max-h-[45svh] w-[clamp(28rem,65vw,56rem)] aspect-auto object-cover opacity-50"
+        className="pointer-events-none absolute right-0 bottom-13 -z-10 h-auto max-h-[45svh] w-[clamp(28rem,65vw,56rem)] aspect-auto object-cover opacity-50 min-[900px]:opacity-35"
         style={{
           maskImage:
             "radial-gradient(ellipse at center, black 20%, transparent 70%)",
