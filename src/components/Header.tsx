@@ -18,17 +18,19 @@ const Header = ({ ready }: { ready: boolean }) => {
           Hi, I'm Sam Deitz
         </h1>
         <div className="min-h-12 sm:min-h-14">
-          {ready && <Typer
-            baseString=">"
-            startDelay={6600}
-            transitionStrings={[
-              "I develop frontend experiences.",
-              "I architect backend systems.",
-              "I build full stack applications.",
-              "I create games.",
-              "I love to build stuff.",
-            ]}
-          />}
+          {ready && (
+            <Typer
+              baseString=">"
+              startDelay={2000}
+              transitionStrings={[
+                "I develop frontend experiences.",
+                "I architect backend systems.",
+                "I build full stack applications.",
+                "I create games.",
+                "I love to build stuff.",
+              ]}
+            />
+          )}
         </div>
       </div>
     </header>

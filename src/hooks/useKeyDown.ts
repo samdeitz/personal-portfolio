@@ -8,13 +8,9 @@ export function useKeyDown(
   useEffect(() => {
     if (!enabled) return;
 
-    const usingMouse = () => {
-      document.body.style.pointerEvents = "auto";
-    };
-
-    window.addEventListener("mousemove", usingMouse);
-
     window.addEventListener("keydown", handler);
-    return () => window.removeEventListener("keydown", handler);
+    return () => {
+      window.removeEventListener("keydown", handler);
+    };
   }, [handler, enabled]);
 }

@@ -22,6 +22,7 @@ const imagesByName: Record<string, string> = Object.fromEntries(
 export default function SearchModal() {
   const firstApp = Object.values(apps)[0].id ?? "";
   const [highlighted, setHighlighted] = useState<string>(firstApp);
+  const [keyboardNavigation, setKeyboardNavigation] = useState(true);
   const { openApp } = useApp();
   const {
     isSearching,
@@ -29,7 +30,6 @@ export default function SearchModal() {
     handleSearchQuery,
     toggleSearching,
     inputRef,
-    focusInput,
   } = useSearch();
   useScrollLock(isSearching);
 
@@ -42,6 +42,13 @@ export default function SearchModal() {
 
     setHighlighted(firstMatch?.id ?? "");
   }, [searchValue, isSearching]);
+
+  useEffect(() => {
+    if (isSearching) {
+      setKeyboardNavigation(true);
+      inputRef.current?.focus({ preventScroll: true });
+    }
+  }, [isSearching, inputRef]);
 
   const getCurrIndex = () => {
     return currResults.findIndex((app: AppShape) => app.id === highlighted);
@@ -64,19 +71,19 @@ export default function SearchModal() {
     if (!isSearching) return;
     const keyHit = () => {
       event.preventDefault();
-      document.body.style.pointerEvents = "none";
+      setKeyboardNavigation(true);
     };
     if (event.code === "ArrowUp") {
       keyHit();
-      if (!event.repeat) goToPrev();
+      goToPrev();
     }
     if (event.code === "ArrowDown") {
       keyHit();
-      if (!event.repeat) goToNext();
+      goToNext();
     }
     if (event.code === "Enter") {
       keyHit();
-      handleOpen(highlighted);
+      if (highlighted && !event.repeat) handleOpen(highlighted);
     }
     if (event.code === "Escape") {
       keyHit();
@@ -88,7 +95,6 @@ export default function SearchModal() {
     toggleSearching();
     openApp(id);
   };
-  focusInput();
 
   return isSearching ? (
     <div className="flex fixed w-screen h-full backdrop-blur-[2px] z-100 items-center justify-center">
@@ -114,7 +120,11 @@ export default function SearchModal() {
                 id={a.id}
                 key={a.id}
                 isHighlighted={highlighted === a.id}
-                setHighlighted={setHighlighted}
+                keyboardNavigation={keyboardNavigation}
+                setHighlighted={(id) => {
+                  setKeyboardNavigation(false);
+                  setHighlighted(id);
+                }}
               />
             );
           })}

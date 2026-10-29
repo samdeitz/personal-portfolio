@@ -8,17 +8,10 @@ import apps from "./apps/registry";
 import SearchModal from "./components/desktop/SearchModal";
 import SearchProvider from "./context/SearchContext";
 import BootScreen from "./components/BootScreen";
+import useBooting from "./hooks/useBooting";
 
 function App() {
-  const [booting, setBooting] = useState(() => {
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches)
-      return false;
-    try {
-      return sessionStorage.getItem("booted") !== "true";
-    } catch {
-      return true;
-    }
-  });
+  const { booting, setBooting } = useBooting();
   const completeBoot = useCallback(() => {
     try {
       sessionStorage.setItem("booted", "true");

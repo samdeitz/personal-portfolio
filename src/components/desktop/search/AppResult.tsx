@@ -1,10 +1,11 @@
 import HBox from "../../ui/HBox";
 import { twMerge } from "tailwind-merge";
-import { useEffect, useRef, type SetStateAction } from "react";
+import { useEffect, useRef } from "react";
 
 interface AppResultProps {
   handleOpen: (id: string) => void;
-  setHighlighted: React.Dispatch<SetStateAction<string>>;
+  setHighlighted: (id: string) => void;
+  keyboardNavigation: boolean;
   title: string;
   id: string;
   isHighlighted: boolean;
@@ -15,6 +16,7 @@ export default function AppResult({
   handleOpen,
   isHighlighted,
   setHighlighted,
+  keyboardNavigation,
   title,
   id,
   image,
@@ -22,28 +24,23 @@ export default function AppResult({
   const resultRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const element = resultRef.current;
-    if (!element) return;
-
-    const entered = () => {
-      setHighlighted(id);
-    };
-
-    element.addEventListener("mouseover", entered);
-
-    return () => {
-      element.removeEventListener("mouseover", entered);
-    };
-  }, [id, setHighlighted]);
+    if (isHighlighted && keyboardNavigation) {
+      resultRef.current?.scrollIntoView({ block: "nearest", behavior: "instant" });
+    }
+  }, [isHighlighted, keyboardNavigation]);
 
   return (
     // app to show
     <HBox
       className={twMerge(
-        "w-full p-2 rounded-md gap-4 cursor-pointer hover-over duration-500 items-center",
+        "w-full p-2 rounded-md gap-4 cursor-pointer items-center",
         isHighlighted && "highlight",
       )}
       ref={resultRef}
+      onMouseMove={(event) => {
+        // Scrolling beneath a stationary pointer must not steal keyboard selection.
+        if (event.movementX || event.movementY) setHighlighted(id);
+      }}
       onClick={() => handleOpen(id)}
     >
       <img className="h-7 rounded-lg" src={image} alt="desktop image" />
