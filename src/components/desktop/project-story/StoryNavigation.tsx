@@ -11,7 +11,11 @@ interface StoryNavigationProps {
 
 // Both navigation presentations share the same chapter list and active state.
 export default function StoryNavigation({
-  navRef, chapters, active, sectionID, jumpTo,
+  navRef,
+  chapters,
+  active,
+  sectionID,
+  jumpTo,
 }: StoryNavigationProps) {
   const navigation = [{ id: "overview", label: "Overview" }, ...chapters];
   return (

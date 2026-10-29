@@ -53,7 +53,7 @@ const snake = {
         "type": "figure",
         "src": previewImage,
         "alt": "Snake project preview",
-        "caption": "Snake — project preview"
+        "caption": "Snake: project preview"
       }
     },
     "chapters": [

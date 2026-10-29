@@ -1,5 +1,6 @@
 import type { Project } from "./types";
 import childcanBanner from "../assets/images/childcan-banner.jpg";
+import childcanLanding from "../assets/storyImages/childcan/landing.png";
 
 const childcan = {
   kind: "project",
@@ -33,157 +34,154 @@ const childcan = {
   },
   content: [],
   story: {
-    "overview": {
-      "eyebrow": "Childcan",
-      "headline": "Make important information easier to find.",
-      "summary": "A nonprofit website redesign spanning navigation, reusable content, team support, and a client-driven move to Webflow.",
-      "facts": [
+    overview: {
+      eyebrow: "Childcan",
+      headline: "Make important information easier to find.",
+      summary:
+        "A nonprofit website redesign spanning navigation, reusable content, team support, and a client-driven move to Webflow.",
+      facts: [
         {
-          "label": "My role",
-          "value": "Senior frontend developer"
+          label: "My role",
+          value: "Senior frontend developer",
         },
         {
-          "label": "Team",
-          "value": "7 developers"
+          label: "Team",
+          value: "7 developers",
         },
         {
-          "label": "Scope",
-          "value": "20+ existing pages"
-        }
+          label: "Scope",
+          value: "20+ existing pages",
+        },
       ],
-      "stack": [
-        "React",
-        "Next.js",
-        "Webflow"
-      ],
-      "image": {
-        "type": "figure",
-        "src": childcanBanner,
-        "alt": "Childcan project preview",
-        "caption": "Childcan — project preview"
-      }
+      stack: ["React", "Next.js", "Webflow"],
+      image: {
+        type: "figure",
+        src: childcanBanner,
+        alt: "Childcan project preview",
+        caption: "Childcan: project preview",
+      },
     },
-    "chapters": [
+    chapters: [
       {
-        "id": "navigation",
-        "label": "Finding a way through",
-        "eyebrow": "01 / Finding a way through",
-        "title": "Start with the people looking for help.",
-        "blocks": [
+        id: "navigation",
+        label: "Finding a way through",
+        eyebrow: "01 / Finding a way through",
+        title: "Start with the people looking for help.",
+        blocks: [
           {
-            "type": "split",
-            "content": [
+            type: "split",
+            content: [
               {
-                "type": "prose",
-                "paragraphs": [
-                  "The existing site had more than 20 pages and one of its biggest problems was navigability. Visitors had difficulty finding the information they needed, so the redesign focused heavily on accessibility, discoverability, and making important actions such as donating easier to find."
-                ]
+                type: "prose",
+                paragraphs: [
+                  "The existing site had more than 20 pages and one of its biggest problems was navigability. Visitors had difficulty finding the information they needed, so the redesign focused heavily on accessibility, discoverability, and making important actions such as donating easier to find.",
+                ],
               },
               {
-                "type": "prose",
-                "paragraphs": [
-                  "I was one of two senior frontend developers on a seven-person team rebuilding Childcan's website alongside five junior developers."
-                ]
+                type: "prose",
+                paragraphs: [
+                  "I was one of two senior frontend developers on a seven-person team rebuilding Childcan's website alongside five junior developers.",
+                ],
               },
               {
-                "type": "callout",
-                "label": "Working together",
-                "text": "Part of my role was taking on more complicated React work and acting as a technical resource for junior developers."
-              }
+                type: "callout",
+                label: "Working together",
+                text: "Part of my role was taking on more complicated React work and acting as a technical resource for junior developers.",
+              },
             ],
-            "visual": {
-              "type": "figure",
-              "src": childcanBanner,
-              "alt": "Childcan project preview",
-              "caption": "Childcan project preview."
-            }
-          }
-        ]
+            visual: {
+              type: "figure",
+              src: childcanLanding,
+              alt: "New childcan landing page",
+              caption:
+                "Childcan landing page. Emphasizes searching and donate navigation",
+            },
+          },
+        ],
       },
       {
-        "id": "systems",
-        "label": "A shared foundation",
-        "eyebrow": "02 / A shared foundation",
-        "title": "Build the pattern, then build the pages.",
-        "blocks": [
+        id: "systems",
+        label: "A shared foundation",
+        eyebrow: "02 / A shared foundation",
+        title: "Build the pattern, then build the pages.",
+        blocks: [
           {
-            "type": "flow",
-            "label": "Structured content to pages",
-            "items": [
+            type: "flow",
+            label: "Structured content to pages",
+            items: [
               {
-                "label": "01",
-                "title": "Content",
-                "text": "Typed titles, paragraphs, and other page content."
+                label: "01",
+                title: "Content",
+                text: "Typed titles, paragraphs, and other page content.",
               },
               {
-                "label": "02",
-                "title": "Renderer",
-                "text": "Shared components apply consistent structure and styling."
+                label: "02",
+                title: "Renderer",
+                text: "Shared components apply consistent structure and styling.",
               },
               {
-                "label": "03",
-                "title": "Pages",
-                "text": "Reuse the pattern across more than 10 similarly structured pages."
-              }
-            ]
+                label: "03",
+                title: "Pages",
+                text: "Reuse the pattern across more than 10 similarly structured pages.",
+              },
+            ],
           },
           {
-            "type": "prose",
-            "paragraphs": [
+            type: "prose",
+            paragraphs: [
               "More than 10 pages shared a similar content structure, so manually rebuilding each page would have created a lot of repeated markup.",
-              "I created a typed content-rendering system that could receive structured content such as titles and paragraphs and render the correct components and styles. This gave us a consistent way to build large content-heavy pages."
-            ]
+              "I created a typed content-rendering system that could receive structured content such as titles and paragraphs and render the correct components and styles. This gave us a consistent way to build large content-heavy pages.",
+            ],
           },
           {
-            "type": "details",
-            "title": "Routes and search",
-            "blocks": [
+            type: "details",
+            title: "Routes and search",
+            blocks: [
               {
-                "type": "prose",
-                "paragraphs": [
+                type: "prose",
+                paragraphs: [
                   "Family stories and events needed individual pages, so I designed a slug-based dynamic-routing system for them. The goal was to let future CMS content generate pages without manually creating a route for every story or event.",
-                  "I also built the responsive header and frontend interface for a fuzzy-search feature. Another senior developer handled the fuzzy-search logic while I focused on the user-facing experience."
-                ]
-              }
-            ]
-          }
-        ]
+                  "I also built the responsive header and frontend interface for a fuzzy-search feature. Another senior developer handled the fuzzy-search logic while I focused on the user-facing experience.",
+                ],
+              },
+            ],
+          },
+        ],
       },
       {
-        "id": "change",
-        "label": "Changing direction",
-        "eyebrow": "03 / Changing direction",
-        "title": "The right platform changed with the brief.",
-        "blocks": [
+        id: "change",
+        label: "Changing direction",
+        eyebrow: "03 / Changing direction",
+        title: "The right platform changed with the brief.",
+        blocks: [
           {
-            "type": "comparison",
-            "items": [
+            type: "comparison",
+            items: [
               {
-                "title": "The original build",
-                "text": "React, Next.js, TypeScript, and Tailwind CSS, with Sanity integration underway."
+                title: "The original build",
+                text: "React, Next.js, TypeScript, and Tailwind CSS, with Sanity integration underway.",
               },
               {
-                "title": "The final delivery",
-                "text": "The client wanted drag-and-drop layout control, so the launched site used Webflow."
-              }
-            ]
+                title: "The final delivery",
+                text: "The client wanted drag-and-drop layout control, so the launched site used Webflow.",
+              },
+            ],
           },
           {
-            "type": "prose",
-            "paragraphs": [
-              "The final site launched through Webflow, while the earlier React work shaped the redesign and gave me experience adapting technical plans when client needs changed."
-            ]
+            type: "prose",
+            paragraphs: [
+              "The final site launched through Webflow, while the earlier React work shaped the redesign and gave me experience adapting technical plans when client needs changed.",
+            ],
           },
           {
-            "type": "callout",
-            "label": "What the live link shows",
-            "text": "The published Webflow site. My earlier React work shaped the redesign; it is not the stack serving the final site."
-          }
-        ]
-      }
-    ]
+            type: "callout",
+            label: "What the live link shows",
+            text: "The published Webflow site. My earlier React work shaped the redesign; it is not the stack serving the final site.",
+          },
+        ],
+      },
+    ],
   },
-
 } as const satisfies Project;
 
 export default childcan;

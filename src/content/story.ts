@@ -6,12 +6,22 @@ export interface StoryFigure {
   caption: string;
   placeholder?: boolean;
 }
-interface StoryItem { title: string; text: string; label?: string }
+interface StoryItem {
+  title: string;
+  text: string;
+  label?: string;
+}
 export type StoryBlock =
   | StoryFigure
   | { type: "prose"; title?: string; paragraphs: readonly string[] }
   | { type: "callout"; label: string; text: string }
-  | { type: "split"; content: readonly StoryBlock[]; visual: StoryFigure }
+  | {
+      type: "split";
+      splitImagesVert?: boolean; // Split IMAGES vertically or horizontally
+      splitContentVert?: boolean; // split the CONTENT and IMAGE vertically or horizontally
+      content?: readonly StoryBlock[];
+      visual: StoryFigure | StoryFigure[];
+    }
   | { type: "comparison"; items: readonly StoryItem[] }
   | { type: "flow"; label: string; items: readonly StoryItem[] }
   | { type: "takeaways"; items: readonly StoryItem[] }

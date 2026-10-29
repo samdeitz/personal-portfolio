@@ -27,7 +27,7 @@ const homeServer = {
     "overview": {
       "eyebrow": "Home Server",
       "headline": "An old PC. A useful new job.",
-      "summary": "A home server for real services—and a hands-on way to learn the infrastructure beneath my applications.",
+      "summary": "A home server for real services and a hands-on way to learn the infrastructure beneath my applications.",
       "facts": [
         {
           "label": "My role",

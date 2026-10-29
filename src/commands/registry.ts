@@ -29,7 +29,7 @@ export const commands: Record<string, CommandDefinition> = {
         output: {
           type: "list",
           content: entries.map(
-            (command) => `${command.usage} — ${command.description}`,
+            (command) => `${command.usage}: ${command.description}`,
           ),
         },
       };

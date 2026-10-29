@@ -53,7 +53,7 @@ const pong = {
         "type": "figure",
         "src": previewImage,
         "alt": "Pong project preview",
-        "caption": "Pong — project preview"
+        "caption": "Pong: project preview"
       }
     },
     "chapters": [

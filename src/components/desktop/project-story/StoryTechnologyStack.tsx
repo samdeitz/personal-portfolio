@@ -6,7 +6,7 @@ export default function StoryTechnologyStack({ technologies = [] }: {
 }) {
   if (!technologies.length) return null;
   return (
-    <details className="mt-7 border-y border-theme-foreground/15 py-[18px] text-[.85rem]">
+    <details className="mt-7 mb-3 border-y border-theme-foreground/15 py-[18px] text-[.85rem]">
       <summary className="cursor-pointer font-semibold">
         Explore the full technology stack
       </summary>

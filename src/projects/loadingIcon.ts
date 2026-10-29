@@ -51,7 +51,7 @@ const loadingIcon = {
         "type": "figure",
         "src": previewImage,
         "alt": "Loading Icon project preview",
-        "caption": "Loading Icon — project preview"
+        "caption": "Loading Icon: project preview"
       }
     },
     "chapters": [

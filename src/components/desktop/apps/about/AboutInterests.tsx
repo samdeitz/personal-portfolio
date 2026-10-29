@@ -1,29 +1,29 @@
 import { useApp } from "../../../../context/AppContext";
 import { allProjects } from "../../../../projects";
 import ContentImage from "../../content/ContentImage";
-import workoutFinder from "../../../../assets/images/exercise-finder-banner.jpg";
-import partyIslands from "../../../../assets/logos/partyislandsLogo.jpg";
+import tract from "../../../../assets/icons/appIcons/tract.jpg";
+import threeDWestern from "../../../../assets/images/3dw_poster.jpg";
 import swingSync from "../../../../assets/logos/swingsyncLogo.jpg";
 
 // Reuse project artwork as placeholders and open the existing project apps.
 const interests = [
   {
-    project: allProjects["workout-finder"],
-    image: workoutFinder,
-    title: "Interfaces that do something useful",
-    text: "My first React app brought components, state, and APIs together. That grew into full-stack websites and content systems.",
+    project: allProjects["tract"],
+    image: tract,
+    title: "Platforms built around real needs",
+    text: "Rebuilding trACT’s website brought frontend development, content management, analytics, and AWS infrastructure together in one platform.",
   },
   {
-    project: allProjects["party-islands"],
-    image: partyIslands,
-    title: "Games that bring systems to life",
-    text: "I’m getting more into game development. Multiplayer games have given me a reason to explore networking, shared state, and the player experience.",
+    project: allProjects["3d-western"],
+    image: threeDWestern,
+    title: "Content teams can manage themselves",
+    text: "For 3D Western, I built the CMS architecture and reusable data layer so the marketing team could update content without waiting for a developer.",
   },
   {
     project: allProjects["swing-sync"],
     image: swingSync,
     title: "Tools that make building better",
-    text: "Sometimes the interesting project is the tool behind the work—from rebuilding Swing interfaces at runtime to running my own server.",
+    text: "Sometimes the interesting project is the tool behind the work, from rebuilding Swing interfaces at runtime to running my own server.",
   },
 ];
 

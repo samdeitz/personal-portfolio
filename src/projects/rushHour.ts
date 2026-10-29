@@ -51,7 +51,7 @@ const rushHour = {
         "type": "figure",
         "src": previewImage,
         "alt": "Rush Hour project preview",
-        "caption": "Rush Hour — project preview"
+        "caption": "Rush Hour: project preview"
       }
     },
     "chapters": [

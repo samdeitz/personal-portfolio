@@ -55,7 +55,7 @@ const punchInPage = {
         type: "figure",
         src: previewImage,
         alt: "Punch-in Page project preview",
-        caption: "Punch-in Page — project preview",
+        caption: "Punch-in Page: project preview",
       },
     },
     chapters: [

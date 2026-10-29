@@ -53,7 +53,7 @@ const dungeonEscape = {
         "type": "figure",
         "src": previewImage,
         "alt": "Dungeon Escape project preview",
-        "caption": "Dungeon Escape — project preview"
+        "caption": "Dungeon Escape: project preview"
       }
     },
     "chapters": [
