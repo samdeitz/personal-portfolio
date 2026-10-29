@@ -45,7 +45,7 @@
     color: var(--theme-foreground);
   }
 
-  /* Fade between backgrounds, behind all page content. */
+  /* Fade between the original desktop colors when switching themes. */
   body::before,
   body::after {
     content: "";
